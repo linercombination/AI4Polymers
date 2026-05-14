@@ -1,0 +1,997 @@
+Job started on node01 at Fri Oct 31 01:40:06 PM CST 2025
+Step 1: Box Building
+Step 1.1: Optimizing the single polymer chain...
+Note that major changes are planned in future for editconf, to improve usability and utility.
+Read 889 atoms
+No velocities found
+    system size : 13.717 19.140  5.270 (nm)
+    diameter    : 23.704               (nm)
+    center      :-13.346 -7.034  7.218 (nm)
+    box vectors :  0.000  0.000  0.000 (nm)
+    box angles  :   0.00   0.00   0.00 (degrees)
+    box volume  :   0.00               (nm^3)
+    shift       : 25.698 19.386  5.134 (nm)
+new center      : 12.352 12.352 12.352 (nm)
+new box vectors : 24.704 24.704 24.704 (nm)
+new box angles  :  90.00  90.00  90.00 (degrees)
+new box volume  :15076.61               (nm^3)
+Setting the LD random seed to -673194001
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+Analysing residue names:
+There are:     1      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.415 nm between atom 615 and 621
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 208x208x208, spacing 0.119 0.119 0.119
+
+Estimate for the relative computational load of the PME mesh part: 1.00
+
+This run will generate roughly 0 Mb of data
+Setting the LD random seed to -587803717
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -1678127177
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:     1      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.398 nm between atom 490 and 497
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 208x208x208, spacing 0.119 0.119 0.119
+
+Estimate for the relative computational load of the PME mesh part: 1.00
+
+This run will generate roughly 0 Mb of data
+Note that major changes are planned in future for editconf, to improve usability and utility.
+Read 889 atoms
+Volume: 13482.6 nm^3, corresponds to roughly 6067100 electrons
+Velocities found
+Optimized single chain saved to COOHPIM1_optimized.pdb
+Step 1.2: Inserting 9 optimized chains into the box...
+Note that major changes are planned in future for editconf, to improve usability and utility.
+Read 889 atoms
+Volume: 13482.6 nm^3, corresponds to roughly 6067100 electrons
+No velocities found
+    system size :  5.460  2.874  2.891 (nm)
+    center      : 11.873 11.848 11.867 (nm)
+    box vectors : 23.801 23.801 23.801 (nm)
+    box angles  :  90.00  90.00  90.00 (degrees)
+    box volume  :13482.63               (nm^3)
+    shift       : -4.373 -4.348 -4.367 (nm)
+new center      :  7.500  7.500  7.500 (nm)
+new box vectors : 15.000 15.000 15.000 (nm)
+new box angles  :  90.00  90.00  90.00 (degrees)
+new box volume  :3375.00               (nm^3)
+
+WARNING: Masses and atomic (Van der Waals) radii will be guessed
+         based on residue and atom names, since they could not be
+         definitively assigned from the information in your input
+         files. These guessed numbers might deviate from the mass
+         and radius of the atom type. Please check the output
+         files if necessary. Note, that this functionality may
+         be removed in a future GROMACS version. Please, consider
+         using another file format for your input.
+
+NOTE: From version 5.0 gmx insert-molecules uses the Van der Waals radii
+from the source below. This means the results may be different
+compared to previous GROMACS versions.
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+A. Bondi
+van der Waals Volumes and Radii
+J. Phys. Chem. 68 (1964) pp. 441-451
+-------- -------- --- Thank You --- -------- --------
+
+Step 2: Starting the 21-step dynamic balance protocol
+Step 2.1: Minimizing the 10-chain box...
+Setting the LD random seed to 1543438111
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.402 nm between atom 7602 and 7609
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 128x128x128, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.83
+
+This run will generate roughly 1 Mb of data
+Energy minimization complete. Starting MD steps...
+Setting the LD random seed to -208404997
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -536892934
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.390 nm between atom 8559 and 8564
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 600 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 128x128x128, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.83
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -1680085122
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to 1778384891
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.406 nm between atom 6774 and 6781
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 128x128x128, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.83
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -76417601
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -1107626313
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.404 nm between atom 4999 and 5002
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 128x128x128, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.83
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -1612524743
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -71499969
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.401 nm between atom 6777 and 6780
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 600 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 128x128x128, spacing 0.113 0.113 0.113
+
+Estimate for the relative computational load of the PME mesh part: 0.83
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to 2141159415
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -1351647819
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.408 nm between atom 2332 and 2335
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 128x128x128, spacing 0.113 0.113 0.113
+
+Estimate for the relative computational load of the PME mesh part: 0.83
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -168065
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -1141618728
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.400 nm between atom 6535 and 6541
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 128x128x128, spacing 0.113 0.113 0.113
+
+Estimate for the relative computational load of the PME mesh part: 0.83
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -84936833
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to 2075621303
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.408 nm between atom 5829 and 5835
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 600 K
+
+Calculated rlist for 1x1 atom pair-list as 1.201 nm, buffer size 0.001 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 42x42x42, spacing 0.119 0.119 0.119
+
+Estimate for the relative computational load of the PME mesh part: 0.15
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -1413647373
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -436538386
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.406 nm between atom 1022 and 1028
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 42x42x42, spacing 0.119 0.119 0.119
+
+Estimate for the relative computational load of the PME mesh part: 0.15
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to 1451188137
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -69266038
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.402 nm between atom 1502 and 1508
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 42x42x42, spacing 0.119 0.119 0.119
+
+Estimate for the relative computational load of the PME mesh part: 0.15
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -20971849
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -1216762137
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.409 nm between atom 3046 and 3052
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 600 K
+
+Calculated rlist for 1x1 atom pair-list as 1.205 nm, buffer size 0.005 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 36x36x36, spacing 0.118 0.118 0.118
+
+Estimate for the relative computational load of the PME mesh part: 0.11
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to 2147381119
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to 534446071
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.414 nm between atom 7962 and 7965
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 36x36x36, spacing 0.118 0.118 0.118
+
+Estimate for the relative computational load of the PME mesh part: 0.11
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to 2134375355
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -570753201
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.404 nm between atom 3937 and 3942
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 36x36x36, spacing 0.118 0.118 0.118
+
+Estimate for the relative computational load of the PME mesh part: 0.11
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -676368705
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -571020309
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.406 nm between atom 80 and 83
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 600 K
+
+Calculated rlist for 1x1 atom pair-list as 1.204 nm, buffer size 0.004 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 40x40x40, spacing 0.110 0.110 0.110
+
+Estimate for the relative computational load of the PME mesh part: 0.12
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -1175412803
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -3213569
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.411 nm between atom 23 and 37
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 40x40x40, spacing 0.110 0.110 0.110
+
+Estimate for the relative computational load of the PME mesh part: 0.12
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -293601793
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -132613
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.404 nm between atom 3393 and 3400
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 40x40x40, spacing 0.110 0.110 0.110
+
+Estimate for the relative computational load of the PME mesh part: 0.12
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -1174937905
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -1412432900
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.401 nm between atom 21 and 27
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 600 K
+
+Calculated rlist for 1x1 atom pair-list as 1.202 nm, buffer size 0.002 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 40x40x40, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.13
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -17039396
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -67502637
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.413 nm between atom 5770 and 5773
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 40x40x40, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.13
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to 2008474877
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to 2067790246
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.401 nm between atom 2751 and 2756
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 40x40x40, spacing 0.117 0.117 0.117
+
+Estimate for the relative computational load of the PME mesh part: 0.13
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -4161
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -947931393
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.405 nm between atom 5771 and 5774
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 600 K
+
+Calculated rlist for 1x1 atom pair-list as 1.202 nm, buffer size 0.002 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 42x42x42, spacing 0.115 0.115 0.115
+
+Estimate for the relative computational load of the PME mesh part: 0.14
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to -1380126729
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -270535041
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.410 nm between atom 2332 and 2335
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 42x42x42, spacing 0.115 0.115 0.115
+
+Estimate for the relative computational load of the PME mesh part: 0.14
+
+This run will generate roughly 1 Mb of data
+Setting the LD random seed to 2012954333
+
+Generated 136 of the 136 non-bonded parameter combinations
+
+Generated 136 of the 136 1-4 parameter combinations
+
+Excluding 3 bonded neighbours molecule type 'CP1'
+
+turning H bonds into constraints...
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+J. S. Hub, B. L. de Groot, H. Grubmueller, G. Groenhof
+Quantifying Artifacts in Ewald Simulations of Inhomogeneous Systems with a Net
+Charge
+J. Chem. Theory Comput. 10 (2014) pp. 381-393
+-------- -------- --- Thank You --- -------- --------
+
+
+Setting gen_seed to -1209401345
+
+Velocities were taken from a Maxwell distribution at 300 K
+Analysing residue names:
+There are:    10      Other residues
+Analysing residues not classified as Protein/DNA/RNA/Water and splitting into groups...
+
+The largest distance between excluded atoms is 0.408 nm between atom 4586 and 4597
+
+Determining Verlet buffer for a tolerance of 0.005 kJ/mol/ps at 300 K
+
+Calculated rlist for 1x1 atom pair-list as 1.200 nm, buffer size 0.000 nm
+
+Set rlist, assuming 4x4 atom pair-list, to 1.200 nm, buffer size 0.000 nm
+
+Note that mdrun will redetermine rlist based on the actual pair-list setup
+Calculating fourier grid dimensions for X Y Z
+Using a fourier grid of 42x42x42, spacing 0.115 0.115 0.115
+
+Estimate for the relative computational load of the PME mesh part: 0.14
+
+This run will generate roughly 1 Mb of data
+Note that major changes are planned in future for editconf, to improve usability and utility.
+Read 8890 atoms
+Volume: 116.583 nm^3, corresponds to roughly 52400 electrons
+Velocities found
+Job finished at Fri Oct 31 02:28:01 PM CST 2025. Final structure saved to COOHPIM1_finished.pdb

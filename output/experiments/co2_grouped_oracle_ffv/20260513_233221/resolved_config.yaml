@@ -1,0 +1,36 @@
+seed: 42
+experiment:
+  mode: oracle_ffv
+dataset:
+  csv_path: output/cleaned_data/co2_main_subset.csv
+  target_column: log10_p_co2_barrer
+  group_column: membrane_name_raw
+  require_non_missing_columns:
+  - log10_ffv
+  id_columns:
+  - sample_id
+  - membrane_name_raw
+  - source_sheet
+  - source_row_excel
+features:
+  smiles_column: smiles_single
+  aging_column: aging_days
+  thickness_column: thickness_um
+  fingerprint_radius: 2
+  fingerprint_bits: 512
+  extra_numeric_features:
+  - column: log10_ffv
+    feature_name: ffv_oracle_log10
+    transform: identity
+    add_missing_indicator: false
+cv:
+  mode: group_kfold
+  n_splits: 5
+models:
+- ridge
+- random_forest
+- svr
+- hist_gb
+- xgboost
+output:
+  root_dir: output/experiments/co2_grouped_oracle_ffv

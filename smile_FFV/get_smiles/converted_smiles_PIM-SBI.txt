@@ -1,0 +1,6 @@
+PIM-Be-HPB.pdb: c1(c(c(c(c(c1c1ccc(cc1)Br)c1ccc2c(c1)Oc1c(O2)c(c(c(c1CN)*)*)CN)c1ccc(cc1)Br)c1ccc(cc1)Br)c1cc(c(cc1)O*)O*)c1ccc(cc1)Br	PIM-SBI/mol_pdb\PIM-Be-HPB.pdb
+PIM-CH3-HPB.pdb: c1(c(c(c(c(c1c1ccc(cc1)C)c1ccc2c(c1)Oc1c(O2)c(c(c(c1CN)*)*)CN)c1ccc(cc1)C)c1ccc(cc1)C)c1cc(c(cc1)O*)O*)c1ccc(cc1)C	PIM-SBI/mol_pdb\PIM-CH3-HPB.pdb
+PIM-CN-HPB.pdb: c1(c(c(c(c(c1c1ccc(cc1)CN)c1ccc2c(c1)Oc1c(O2)c(c(c(c1CN)*)*)CN)c1ccc(cc1)CN)c1ccc(cc1)CN)c1cc(c(cc1)O*)O*)c1ccc(cc1)CN	PIM-SBI/mol_pdb\PIM-CN-HPB.pdb
+PIM-HPB-2.pdb: c1(c(c(c(c(c1c1ccccc1)c1ccc2c(c1)Oc1c(O2)c(c(c(c1CN)*)*)CN)c1ccccc1)c1ccccc1)c1cc(c(cc1)O*)O*)c1ccccc1	PIM-SBI/mol_pdb\PIM-HPB-2.pdb
+PIM-TMN-SBI.pdb: c1(c(cc2c(-c3c([C@]42c2c(-c5c4cc4c(c5)Oc5c(O4)c(c(c(c5CN)*)*)CN)cc4c(c2)C(CCC4(C)C)(C)C)cc2c(c3)C(CCC2(C)C)(C)C)c1)O*)O*	PIM-SBI/mol_pdb\PIM-TMN-SBI.pdb
+TB-Ad-Me.pdb: c1(cc(cc(c1*)*)[C@@]1(c2cc(c3c(c2)CN(CN3C*)*)C)[C@H]2C[C@@H]3C[C@H](C2)CC[C@H]1C3)C	PIM-SBI/mol_pdb\TB-Ad-Me.pdb

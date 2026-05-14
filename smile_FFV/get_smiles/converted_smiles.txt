@@ -1,0 +1,15 @@
+PIM-1-SO3H.pdb: c1c2CC([C@@](c3cc(c(c(c3C(C)C)S(O)=O)=O*)O*)(C)c2cc2c1Oc1c(O2)c(c(c(c1C#N)*)*)C#N)(C)C	mol_pdb\PIM-1-SO3H.pdb
+Adamantane-PIM-1.pdb: c1(c(cc2c(c1)C(C[C@]12C(Cc2c1cc1c(c2)Oc2c(O1)c(c(c(c2C(=[NH2])NOC(=O)[C@@]12C[C@H]3C[C@@H](C1)C[C@H](C3)C2)*)*)C(=[NH2])NOC(=O)[C@@]12C[C@H]3C[C@@H](C1)C[C@H](C3)C2)(C)C)(C)C)O*)O*	mol_pdb\Adamantane-PIM-1.pdb
+Amine-PIM-1.pdb: c1(c(cc2c(c1)C(C[C@]12C(Cc2c1cc1c(c2)Oc2c(O1)c(c(c(c2CN)*)*)CN)(C)C)(C)C)O*)O*	mol_pdb\Amine-PIM-1.pdb
+AO-PIM-1.pdb: c1(c(cc2c(c1)C(C[C@]12C(Cc2c1cc1c(c2)Oc2c(O1)c(c(c(c2/C(=N/O)/[N+](=O)[O-])*)*)/C(=N/O)/[N+](=O)[O-])(C)C)(C)C)O*)O*	mol_pdb\AO-PIM-1.pdb
+Brominated-vinylated-PIM-1.pdb: C(=C\Br)(\Br)/c1c(c(cc2c1C(C[C@]12C(Cc2c1cc1c(c2/C(=C/Br)/Br)Oc2c(O1)c(c(c(c2CN)*)*)CN)(C)C)(C)C)O*)O*	mol_pdb\Brominated-vinylated-PIM-1.pdb
+COOH-PIM-1.pdb: O=C(O)c1c2c(Oc3c(cc4[C@@]5(c6cc(c(cc6C(C5)(C)C)O*)O*)C(Cc4c3)(C)C)O2)c(c(c1*)*)C(=O)O	mol_pdb\COOH-PIM-1.pdb
+PIM-1-M(Br).pdb: c1(c(cc2c(c1CBr)C(C[C@]12C(Cc2c1cc1c(c2CBr)Oc2c(O1)c(c(c(c2CN)*)*)CN)(C)C)(C)C)O*)O*	mol_pdb\PIM-1-M(Br).pdb
+PIM-1-M.pdb: c1(c(cc2c(c1C)C(C[C@]12C(Cc2c1cc1c(c2C)Oc2c(O1)c(c(c(c2CN)*)*)CN)(C)C)(C)C)O*)O*	mol_pdb\PIM-1-M.pdb
+PIM-1-MePy.pdb: N1(CC[C@@H](CC1)C)c1c2CC([C@]3(c4cc(c(c(c4C(C3)(C)C)N3CC[C@@H](CC3)C)O*)O*)c2cc2c1Oc1c(O2)c(c(c(c1CN)*)*)CN)(C)C	mol_pdb\PIM-1-MePy.pdb
+PIM-1-Py.pdb: C(N1CCCC1)c1c(c(cc2c1C(C[C@]12C(Cc2c1cc1c(c2CN2CCCC2)Oc2c(O1)c(c(c(c2CN)*)*)CN)(C)C)(C)C)O*)O*	mol_pdb\PIM-1-Py.pdb
+PIM-1.pdb: c1(c(cc2c(c1)C(C[C@]12C(Cc2c1cc1c(c2)Oc2c(O1)c(c(c(c2CN)O*)O*)CN)(C)C)(C)C)O*)O*	mol_pdb\PIM-1.pdb
+Thioamidea-PIM-1.pdb: c1(c(cc2c(c1)C(C[C@]12C(Cc2c1cc1c(c2)Oc2c(O1)c(c(c(c2C(=S)N)*)*)C(=S)N)(C)C)(C)C)O*)O*	mol_pdb\Thioamidea-PIM-1.pdb
+Thiophenated-ethylated-PIM-1-.pdb: C(CSc1ccccc1)c1c(c(cc2c1C(C[C@]12C(Cc2c1cc1c(c2CCSc2ccccc2)Oc2c(O1)c(c(c(c2CN)*)*)CN)(C)C)(C)C)O*)O*	mol_pdb\Thiophenated-ethylated-PIM-1-.pdb
+TZ-PIM-1.pdb: c1(c(cc2c(c1)C(C[C@]12C(Cc2c1cc1c(c2)Oc2c(O1)c(c(c(c2c1[nH]nnn1)*)*)c1[nH]nnn1)(C)C)(C)C)O*)O*	mol_pdb\TZ-PIM-1.pdb
+Vinylated PIM-1.pdb: c1(c(cc2c(c1C=C)C(C[C@]12C(Cc2c1cc1c(c2C=C)Oc2c(O1)c(c(c(c2CN)*)*)CN)(C)C)(C)C)O*)O*	mol_pdb\Vinylated PIM-1.pdb

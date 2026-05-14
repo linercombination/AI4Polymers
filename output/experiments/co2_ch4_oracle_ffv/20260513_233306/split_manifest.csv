@@ -1,0 +1,12 @@
+fold_id,sample_id,membrane_name_raw,source_sheet,source_row_excel,backbone_family,contortion_unit_family,modification_family
+1,S017,Pristine PIM-1,Sheet1,19,,,
+1,S018,Pristine PIM-1,Sheet1,20,,,
+1,S019,Pristine PIM-1,Sheet1,21,,,
+2,S058,PIM-Trip-TB,Sheet1,60,,,
+2,S059,PIM-Trip-TB,Sheet1,61,,,
+3,S006,PIM-1-M,Sheet1,8,,,
+3,S010,Vinylated PIM-1,Sheet1,12,,,
+4,S008,Brominated vinylated PIM-1,Sheet1,10,,,
+4,S009,Thiophenated vinylated PIM-1,Sheet1,11,,,
+5,S005,AO−PIM-1,Sheet1,7,,,
+5,S070,PIM-PI-12,Sheet1,72,,,

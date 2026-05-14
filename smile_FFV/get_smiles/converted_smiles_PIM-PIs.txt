@@ -1,0 +1,7 @@
+4MTBDA-6FDA.pdb: N1(C(=O)c2c(C1=O)cc(cc2)C(c1ccc2c(c1)C(=O)N(C2=O)c1c(c2c(cc1C)N1CN(C2)c2cc(c(c(c2C1)C)*)C)C)(C(*)(*)*)C(*)(*)*)*	PIM-PIs/mol_pdb\4MTBDA-6*DA.pdb
+4MTBDA-PMDA.pdb: n1(c(=O)c2c(c1=O)cc1c(c2)c(=O)n(c1=O)c1c(c2c(cc1C)N1CN(C2)c2cc(c(c(c2C1)C)*)C)C)*	PIM-PIs/mol_pdb\4MTBDA-PMDA.pdb
+KAUST-PI-1.pdb: n1(c(=O)c2c(c1=O)cc1c(c2)oc2c(o1)cc1c(c2)[C@]2(c3c([C@@]1(c1c2cccc1)C(C)C)cc1c(c3)oc2c(o1)cc1c(c2)c(=O)n(c1=O)c1c(c(c(c(c1C)C)*)C)C)C(C)C)*	PIM-PIs/mol_pdb\KAUST-PI-1.pdb
+KAUST-PI-2.pdb: c1(c(cc(cc1C)c1cc(c(n2c(=O)c3c(cc4c(oc5c(cc6c([C@@]7(c8c(cc9c(oc%10c(cc%11c(c(=O)n(c%11=O)*)c%10)o9)c8)[C@]6(c6c7cccc6)C(C)C)C(C)C)c5)o4)c3)c2=O)c(c1)C)C)C)*	PIM-PIs/mol_pdb\KAUST-PI-2.pdb
+KAUST-PI-7.pdb: c1(c(cc(c2c1cccc2)c1c2c(c(n3c(=O)c4c(cc5c(oc6c(cc7c([C@@]8(c9c(cc%10c(oc%11c(cc%12c(c(=O)n(c%12=O)*)c%11)o%10)c9)[C@]7(c7c8cccc7)C(C)C)C(C)C)c6)o5)c4)c3=O)c(c1)C)cccc2)C)*.[H-]	PIM-PIs/mol_pdb\KAUST-PI-7.pdb
+PIM-PI-12.pdb: c12c(cc3c(c1)[C@@]1(c4c([C@@]3(C)CC1)cc1c(c4)C(=O)N(C1=O)c1c3c(c(cc1C)c1cc(c(c4c1cccc4)*)C)cccc3)C)C(=O)N(C2=O)*	PIM-PIs/mol_pdb\PIM-PI-12.pdb
+SPFDA-DMN.pdb: c1c2c(-c3c([C@]42CCc2c4cc4c(c2)C(=O)N(C4=O)c2c4c(c(cc2C)c2c5c(c(c(c2)C)*)cccc5)cccc4)cccc3)cc2c1C(=O)N(C2=O)*	PIM-PIs/mol_pdb\SP*DA-DMN.pdb

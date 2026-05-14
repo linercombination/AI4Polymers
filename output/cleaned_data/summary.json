@@ -1,0 +1,30 @@
+{
+  "col_map": {
+    "membrane_name_raw": "Membrane",
+    "smiles_single": "smiles(single)",
+    "smiles_triple": "smjiles(tirple)",
+    "occupied_volume_1": "Occupied Volume",
+    "occupied_volume_2": "Occupied Volume__2",
+    "ffv": "FFV",
+    "aging_days": "Time（days）",
+    "thickness_um": "thickness(um)",
+    "p_he_barrer": "Gas permeability (barrer) | He（2.59A）",
+    "p_h2_barrer": "H2(2.90A)",
+    "p_n2_barrer": "N2(3.66A)",
+    "p_o2_barrer": "O2(3.44A)",
+    "p_ch4_barrer": "CH4(3.81A)",
+    "p_co2_barrer": "CO2(3.53A)",
+    "sel_h2_n2": "H2/N2",
+    "sel_h2_ch4": "H2/CH4",
+    "sel_o2_n2": "Selectivity | O2/N2",
+    "sel_co2_n2": "CO2/N2",
+    "sel_co2_ch4": "CO2/CH4",
+    "refs_perm": "Refs.",
+    "refs_ffv": "Refs.[FFV]"
+  },
+  "n_rows_clean": 88,
+  "n_ffv_pilot": 12,
+  "n_co2_main": 74,
+  "n_co2_ch4_pair": 71,
+  "n_co2_n2_pair": 71
+}

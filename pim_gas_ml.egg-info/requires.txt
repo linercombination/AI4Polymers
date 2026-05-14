@@ -1,0 +1,17 @@
+joblib
+matplotlib
+numpy
+pandas
+PyYAML
+scikit-learn
+tqdm
+
+[chem]
+rdkit
+
+[full]
+rdkit
+xgboost
+
+[xgboost]
+xgboost

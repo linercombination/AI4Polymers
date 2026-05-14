@@ -1,0 +1,1143 @@
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:z="http://www.zotero.org/namespaces/export#"
+ xmlns:dcterms="http://purl.org/dc/terms/"
+ xmlns:link="http://purl.org/rss/1.0/modules/link/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:bib="http://purl.org/net/biblio#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/"
+ xmlns:vcard="http://nwalsh.com/rdf/vCard#">
+    <bib:Document rdf:about="https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.3c01437">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <link:link rdf:resource="#item_10"/>
+        <dc:subject>Point Cloud-Based</dc:subject>
+        <dc:title>Machine Learning-Guided Prediction of Cocrystals Using Point Cloud-Based Molecular Representation | Chemistry of Materials</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.3c01437</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-04-11 13:44:58</dcterms:dateSubmitted>
+    </bib:Document>
+    <z:Attachment rdf:about="#item_10">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/10/acs.chemmater.html"/>
+        <dc:title>Machine Learning-Guided Prediction of Cocrystals Using Point Cloud-Based Molecular Representation | Chemistry of Materials</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.3c01437</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-04-11 13:45:05</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://ieeexplore.ieee.org/document/9127813/">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0162-8828,%202160-9292,%201939-3539"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Guo</foaf:surname>
+                        <foaf:givenName>Yulan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wang</foaf:surname>
+                        <foaf:givenName>Hanyun</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hu</foaf:surname>
+                        <foaf:givenName>Qingyong</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Liu</foaf:surname>
+                        <foaf:givenName>Hao</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Liu</foaf:surname>
+                        <foaf:givenName>Li</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bennamoun</foaf:surname>
+                        <foaf:givenName>Mohammed</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_18"/>
+        <dc:title>Deep Learning for 3D Point Clouds: A Survey</dc:title>
+        <dcterms:abstract>Point cloud learning has lately attracted increasing attention due to its wide applications in many areas, such as computer vision, autonomous driving, and robotics. As a dominating technique in AI, deep learning has been successfully used to solve various 2D vision problems. However, deep learning on point clouds is still in its infancy due to the unique challenges faced by the processing of point clouds with deep neural networks. Recently, deep learning on point clouds has become even thriving, with numerous methods being proposed to address different problems in this area. To stimulate future research, this paper presents a comprehensive review of recent progress in deep learning methods for point clouds. It covers three major tasks, including 3D shape classiﬁcation, 3D object detection and tracking, and 3D point cloud segmentation. It also presents comparative results on several publicly available datasets, together with insightful observations and inspiring future research directions.</dcterms:abstract>
+        <dc:date>2021-12-1</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>Deep Learning for 3D Point Clouds</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://ieeexplore.ieee.org/document/9127813/</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-04-11 14:04:02</dcterms:dateSubmitted>
+        <dc:rights>https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html</dc:rights>
+        <bib:pages>4338-4364</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0162-8828,%202160-9292,%201939-3539">
+        <prism:volume>43</prism:volume>
+        <dc:title>IEEE Transactions on Pattern Analysis and Machine Intelligence</dc:title>
+        <dc:identifier>DOI 10.1109/TPAMI.2020.3005434</dc:identifier>
+        <prism:number>12</prism:number>
+        <dcterms:alternative>IEEE Trans. Pattern Anal. Mach. Intell.</dcterms:alternative>
+        <dc:identifier>ISSN 0162-8828, 2160-9292, 1939-3539</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_18">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/18/Guo 等 - 2021 - Deep Learning for 3D Point Clouds A Survey.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_20">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/20/Generative Adversarial Networks.pdf"/>
+        <dc:subject>综述</dc:subject>
+        <dc:subject>GAN</dc:subject>
+        <dc:title>Generative Adversarial Networks</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_21">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/21/Learning Representations and Generative Models for 3D Point Clouds.pdf"/>
+        <dc:subject>点云生成</dc:subject>
+        <dc:title>Learning Representations and Generative Models for 3D Point Clouds</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_50">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Vaswani</foaf:surname>
+                        <foaf:givenName>Ashish</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Shazeer</foaf:surname>
+                        <foaf:givenName>Noam</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Parmar</foaf:surname>
+                        <foaf:givenName>Niki</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Uszkoreit</foaf:surname>
+                        <foaf:givenName>Jakob</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jones</foaf:surname>
+                        <foaf:givenName>Llion</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gomez</foaf:surname>
+                        <foaf:givenName>Aidan N</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kaiser</foaf:surname>
+                        <foaf:givenName>Łukasz</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Polosukhin</foaf:surname>
+                        <foaf:givenName>Illia</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_49"/>
+        <dc:title>Attention is All you Need</dc:title>
+        <dcterms:abstract>The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring signiﬁcantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 Englishto-German translation task, improving over the existing best results, including ensembles, by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.0 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature.</dcterms:abstract>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_49">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/49/Vaswani 等 - Attention is All you Need.pdf"/>
+        <dc:subject>transformer</dc:subject>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="http://arxiv.org/abs/1612.00593">
+        <z:itemType>preprint</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>arXiv</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Qi</foaf:surname>
+                        <foaf:givenName>Charles R.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Su</foaf:surname>
+                        <foaf:givenName>Hao</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mo</foaf:surname>
+                        <foaf:givenName>Kaichun</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Guibas</foaf:surname>
+                        <foaf:givenName>Leonidas J.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_55"/>
+        <link:link rdf:resource="#item_54"/>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Computer Science - Computer Vision and Pattern Recognition</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation</dc:title>
+        <dcterms:abstract>Point cloud is an important type of geometric data structure. Due to its irregular format, most researchers transform such data to regular 3D voxel grids or collections of images. This, however, renders data unnecessarily voluminous and causes issues. In this paper, we design a novel type of neural network that directly consumes point clouds and well respects the permutation invariance of points in the input. Our network, named PointNet, provides a unified architecture for applications ranging from object classification, part segmentation, to scene semantic parsing. Though simple, PointNet is highly efficient and effective. Empirically, it shows strong performance on par or even better than state of the art. Theoretically, we provide analysis towards understanding of what the network has learnt and why the network is robust with respect to input perturbation and corruption.</dcterms:abstract>
+        <dc:date>2017-04-10</dc:date>
+        <z:shortTitle>PointNet</z:shortTitle>
+        <z:libraryCatalog>arXiv.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/abs/1612.00593</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-04-20 10:54:54</dcterms:dateSubmitted>
+        <dc:description>arXiv:1612.00593 [cs]</dc:description>
+        <dc:identifier>DOI 10.48550/arXiv.1612.00593</dc:identifier>
+        <prism:number>arXiv:1612.00593</prism:number>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_55">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/55/Qi 等 - 2017 - PointNet Deep Learning on Point Sets for 3D Classification and Segmentation.pdf"/>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://arxiv.org/pdf/1612.00593</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-04-20 10:54:58</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_54">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/54/1612.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/abs/1612.00593</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-04-20 10:54:56</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://linkinghub.elsevier.com/retrieve/pii/S2666386424003369">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:26663864"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Xu</foaf:surname>
+                        <foaf:givenName>Jiaxin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Suleiman</foaf:surname>
+                        <foaf:givenName>Agboola</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Liu</foaf:surname>
+                        <foaf:givenName>Gang</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Perez</foaf:surname>
+                        <foaf:givenName>Michael</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zhang</foaf:surname>
+                        <foaf:givenName>Renzheng</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jiang</foaf:surname>
+                        <foaf:givenName>Meng</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Guo</foaf:surname>
+                        <foaf:givenName>Ruilan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Luo</foaf:surname>
+                        <foaf:givenName>Tengfei</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_79"/>
+        <dc:title>Superior polymeric gas separation membrane designed by explainable graph machine learning</dc:title>
+        <dcterms:abstract>Gas separation using polymer membranes promises to dramatically drive down the energy, carbon, and water intensity of traditional thermally driven separation, but developing the membrane materials is challenging. Here, we demonstrate a graph machine learning (ML) strategy to guide the experimental discovery of synthesizable polymer membranes with performances simultaneously exceeding the empirical upper bounds in multiple industrially important gas-separation tasks. Two predicted candidates are synthesized and experimentally validated to perform beyond the upper bounds for multiple gas pairs (O2/N2, H2/CH4, and H2/N2). Notably, the O2/N2 separation selectivity is 1.6–6.7 times higher than that of existing polymer membranes. The molecular origin of the high performance is revealed by combining the inherent interpretability of our ML model, experimental characterization, and molecule-level simulation. Our study presents a unique explainable ML-experiment combination to tackle challenging energy material design problems in general, and the discovered polymers are beneﬁcial for industrial gas separation.</dcterms:abstract>
+        <dc:date>07/2024</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://linkinghub.elsevier.com/retrieve/pii/S2666386424003369</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-08-21 14:37:44</dcterms:dateSubmitted>
+        <bib:pages>102067</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:26663864">
+        <prism:volume>5</prism:volume>
+        <dc:title>Cell Reports Physical Science</dc:title>
+        <dc:identifier>DOI 10.1016/j.xcrp.2024.102067</dc:identifier>
+        <prism:number>7</prism:number>
+        <dcterms:alternative>Cell Reports Physical Science</dcterms:alternative>
+        <dc:identifier>ISSN 26663864</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_79">
+        <z:itemType>attachment</z:itemType>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="urn:isbn:978-1-4503-9385-0">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:identifier>ISBN 978-1-4503-9385-0</dc:identifier>
+                <dc:title>Proceedings of the 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining</dc:title>
+                <dc:identifier>DOI 10.1145/3534678.3539347</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Washington DC USA</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>ACM</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Liu</foaf:surname>
+                        <foaf:givenName>Gang</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zhao</foaf:surname>
+                        <foaf:givenName>Tong</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Xu</foaf:surname>
+                        <foaf:givenName>Jiaxin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Luo</foaf:surname>
+                        <foaf:givenName>Tengfei</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jiang</foaf:surname>
+                        <foaf:givenName>Meng</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_94"/>
+        <dc:title>Graph Rationalization with Environment-based Augmentations</dc:title>
+        <dcterms:abstract>Rationale is defined as a subset of input features that best explains or supports the prediction by machine learning models. Rationale identification has improved the generalizability and interpretability of neural networks on vision and language data. In graph applications such as molecule and polymer property prediction, identifying representative subgraph structures named as graph rationales plays an essential role in the performance of graph neural networks. Existing graph pooling and/or distribution intervention methods suffer from the lack of examples to learn to identify optimal graph rationales. In this work, we introduce a new augmentation operation called environment replacement that automatically creates virtual data examples to improve rationale identification. We propose an efficient framework that performs rationale-environment separation and representation learning on the real and augmented examples in latent spaces to avoid the high complexity of explicit graph decoding and encoding. Comparing against recent techniques, experiments on seven molecular and four polymer datasets demonstrate the effectiveness and efficiency of the proposed augmentation-based graph rationalization framework. Data and the implementation of the proposed framework are publicly available1.</dcterms:abstract>
+        <dc:date>2022-08-14</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://dl.acm.org/doi/10.1145/3534678.3539347</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-08-21 15:34:47</dcterms:dateSubmitted>
+        <bib:pages>1069-1078</bib:pages>
+        <bib:presentedAt>
+            <bib:Conference>
+                <dc:title>KDD '22: The 28th ACM SIGKDD Conference on Knowledge Discovery and Data Mining</dc:title>
+            </bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_94">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/94/Liu 等 - 2022 - Graph Rationalization with Environment-based Augmentations.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="http://arxiv.org/abs/1704.00028">
+        <z:itemType>preprint</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>arXiv</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gulrajani</foaf:surname>
+                        <foaf:givenName>Ishaan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ahmed</foaf:surname>
+                        <foaf:givenName>Faruk</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Arjovsky</foaf:surname>
+                        <foaf:givenName>Martin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Dumoulin</foaf:surname>
+                        <foaf:givenName>Vincent</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Courville</foaf:surname>
+                        <foaf:givenName>Aaron</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_114"/>
+        <link:link rdf:resource="#item_107"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Statistics - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>Improved Training of Wasserstein GANs</dc:title>
+        <dcterms:abstract>Generative Adversarial Networks (GANs) are powerful generative models, but suffer from training instability. The recently proposed Wasserstein GAN (WGAN) makes progress toward stable training of GANs, but sometimes can still generate only low-quality samples or fail to converge. We find that these problems are often due to the use of weight clipping in WGAN to enforce a Lipschitz constraint on the critic, which can lead to undesired behavior. We propose an alternative to clipping weights: penalize the norm of gradient of the critic with respect to its input. Our proposed method performs better than standard WGAN and enables stable training of a wide variety of GAN architectures with almost no hyperparameter tuning, including 101-layer ResNets and language models over discrete data. We also achieve high quality generations on CIFAR-10 and LSUN bedrooms.</dcterms:abstract>
+        <dc:date>2017-12-25</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>arXiv.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/abs/1704.00028</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-08-31 14:21:29</dcterms:dateSubmitted>
+        <dc:description>arXiv:1704.00028 [cs]</dc:description>
+        <dc:identifier>DOI 10.48550/arXiv.1704.00028</dc:identifier>
+        <prism:number>arXiv:1704.00028</prism:number>
+    </rdf:Description>
+    <bib:Memo rdf:about="#item_114">
+       <rdf:value>Comment: NIPS camera-ready</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_107">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/107/Gulrajani 等 - 2017 - Improved Training of Wasserstein GANs.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="http://arxiv.org/abs/1805.11973">
+        <z:itemType>preprint</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>arXiv</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Cao</foaf:surname>
+                        <foaf:givenName>Nicola De</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kipf</foaf:surname>
+                        <foaf:givenName>Thomas</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_116"/>
+        <link:link rdf:resource="#item_108"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Statistics - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>MolGAN: An implicit generative model for small molecular graphs</dc:title>
+        <dcterms:abstract>Deep generative models for graph-structured data offer a new angle on the problem of chemical synthesis: by optimizing differentiable models that directly generate molecular graphs, it is possible to side-step expensive search procedures in the discrete and vast space of chemical structures. We introduce MolGAN, an implicit, likelihoodfree generative model for small molecular graphs that circumvents the need for expensive graph matching procedures or node ordering heuristics of previous likelihood-based methods. Our method adapts generative adversarial networks (GANs) to operate directly on graph-structured data. We combine our approach with a reinforcement learning objective to encourage the generation of molecules with speciﬁc desired chemical properties. In experiments on the QM9 chemical database, we demonstrate that our model is capable of generating close to 100% valid compounds. MolGAN compares favorably both to recent proposals that use string-based (SMILES) representations of molecules and to a likelihoodbased method that directly generates graphs, albeit being susceptible to mode collapse.</dcterms:abstract>
+        <dc:date>2022-09-27</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>MolGAN</z:shortTitle>
+        <z:libraryCatalog>arXiv.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/abs/1805.11973</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-08-31 14:21:32</dcterms:dateSubmitted>
+        <dc:description>arXiv:1805.11973 [stat]</dc:description>
+        <dc:identifier>DOI 10.48550/arXiv.1805.11973</dc:identifier>
+        <prism:number>arXiv:1805.11973</prism:number>
+    </rdf:Description>
+    <bib:Memo rdf:about="#item_116">
+        <rdf:value>Comment: Code at https://github.com/nicola-decao/MolGAN</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_108">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/108/Cao和Kipf - 2022 - MolGAN An implicit generative model for small molecular graphs.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="http://arxiv.org/abs/1812.04948">
+        <z:itemType>preprint</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>arXiv</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Karras</foaf:surname>
+                        <foaf:givenName>Tero</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Laine</foaf:surname>
+                        <foaf:givenName>Samuli</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Aila</foaf:surname>
+                        <foaf:givenName>Timo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_118"/>
+        <link:link rdf:resource="#item_109"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Statistics - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Computer Science - Neural and Evolutionary Computing</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>A Style-Based Generator Architecture for Generative Adversarial Networks</dc:title>
+        <dcterms:abstract>We propose an alternative generator architecture for generative adversarial networks, borrowing from style transfer literature. The new architecture leads to an automatically learned, unsupervised separation of high-level attributes (e.g., pose and identity when trained on human faces) and stochastic variation in the generated images (e.g., freckles, hair), and it enables intuitive, scale-speciﬁc control of the synthesis. The new generator improves the state-of-the-art in terms of traditional distribution quality metrics, leads to demonstrably better interpolation properties, and also better disentangles the latent factors of variation. To quantify interpolation quality and disentanglement, we propose two new, automated methods that are applicable to any generator architecture. Finally, we introduce a new, highly varied and high-quality dataset of human faces.</dcterms:abstract>
+        <dc:date>2019-03-29</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>arXiv.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/abs/1812.04948</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-08-31 14:21:34</dcterms:dateSubmitted>
+        <dc:description>arXiv:1812.04948 [cs]</dc:description>
+        <dc:identifier>DOI 10.48550/arXiv.1812.04948</dc:identifier>
+        <prism:number>arXiv:1812.04948</prism:number>
+    </rdf:Description>
+    <bib:Memo rdf:about="#item_118">
+       <rdf:value>Comment: CVPR 2019 final version</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_109">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/109/Karras 等 - 2019 - A Style-Based Generator Architecture for Generative Adversarial Networks.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="http://arxiv.org/abs/1406.2661">
+        <z:itemType>preprint</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>arXiv</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Goodfellow</foaf:surname>
+                        <foaf:givenName>Ian J.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Pouget-Abadie</foaf:surname>
+                        <foaf:givenName>Jean</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mirza</foaf:surname>
+                        <foaf:givenName>Mehdi</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Xu</foaf:surname>
+                        <foaf:givenName>Bing</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Warde-Farley</foaf:surname>
+                        <foaf:givenName>David</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ozair</foaf:surname>
+                        <foaf:givenName>Sherjil</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Courville</foaf:surname>
+                        <foaf:givenName>Aaron</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bengio</foaf:surname>
+                        <foaf:givenName>Yoshua</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_110"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Statistics - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>Generative Adversarial Networks</dc:title>
+        <dcterms:abstract>We propose a new framework for estimating generative models via an adversarial process, in which we simultaneously train two models: a generative model G that captures the data distribution, and a discriminative model D that estimates the probability that a sample came from the training data rather than G. The training procedure for G is to maximize the probability of D making a mistake. This framework corresponds to a minimax two-player game. In the space of arbitrary functions G and D, a unique solution exists, with G recovering the training data distribution and D equal to 1/2 everywhere. In the case where G and D are defined by multilayer perceptrons, the entire system can be trained with backpropagation. There is no need for any Markov chains or unrolled approximate inference networks during either training or generation of samples. Experiments demonstrate the potential of the framework through qualitative and quantitative evaluation of the generated samples.</dcterms:abstract>
+        <dc:date>2014-06-10</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>arXiv.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/abs/1406.2661</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-08-31 14:21:36</dcterms:dateSubmitted>
+        <dc:description>arXiv:1406.2661 [stat]</dc:description>
+        <dc:identifier>DOI 10.48550/arXiv.1406.2661</dc:identifier>
+        <prism:number>arXiv:1406.2661</prism:number>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_110">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/110/Goodfellow 等 - 2014 - Generative Adversarial Networks.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="http://arxiv.org/abs/1511.06434">
+        <z:itemType>preprint</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>arXiv</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Radford</foaf:surname>
+                        <foaf:givenName>Alec</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Metz</foaf:surname>
+                        <foaf:givenName>Luke</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Chintala</foaf:surname>
+                        <foaf:givenName>Soumith</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_121"/>
+        <link:link rdf:resource="#item_111"/>
+        <dc:subject>
+            <z:AutomaticTag>
+                <rdf:value>Computer Science - Computer Vision and Pattern Recognition</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks</dc:title>
+        <dcterms:abstract>In recent years, supervised learning with convolutional networks (CNNs) has seen huge adoption in computer vision applications. Comparatively, unsupervised learning with CNNs has received less attention. In this work we hope to help bridge the gap between the success of CNNs for supervised learning and unsupervised learning. We introduce a class of CNNs called deep convolutional generative adversarial networks (DCGANs), that have certain architectural constraints, and demonstrate that they are a strong candidate for unsupervised learning. Training on various image datasets, we show convincing evidence that our deep convolutional adversarial pair learns a hierarchy of representations from object parts to scenes in both the generator and discriminator. Additionally, we use the learned features for novel tasks - demonstrating their applicability as general image representations.</dcterms:abstract>
+        <dc:date>2016-01-07</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>arXiv.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/abs/1511.06434</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-08-31 14:21:39</dcterms:dateSubmitted>
+        <dc:description>arXiv:1511.06434 [cs]</dc:description>
+        <dc:identifier>DOI 10.48550/arXiv.1511.06434</dc:identifier>
+        <prism:number>arXiv:1511.06434</prism:number>
+    </rdf:Description>
+    <bib:Memo rdf:about="#item_121">
+        <rdf:value>Comment: Under review as a conference paper at ICLR 2016</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_111">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/111/Radford 等 - 2016 - Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="http://arxiv.org/abs/1701.07875">
+        <z:itemType>preprint</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>arXiv</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Arjovsky</foaf:surname>
+                        <foaf:givenName>Martin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Chintala</foaf:surname>
+                        <foaf:givenName>Soumith</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bottou</foaf:surname>
+                        <foaf:givenName>Léon</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_112"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Statistics - Machine Learning</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:title>Wasserstein GAN</dc:title>
+        <dcterms:abstract>We introduce a new algorithm named WGAN, an alternative to traditional GAN training. In this new model, we show that we can improve the stability of learning, get rid of problems like mode collapse, and provide meaningful learning curves useful for debugging and hyperparameter searches. Furthermore, we show that the corresponding optimization problem is sound, and provide extensive theoretical work highlighting the deep connections to other distances between distributions.</dcterms:abstract>
+        <dc:date>2017-12-06</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>arXiv.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/abs/1701.07875</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-08-31 14:21:42</dcterms:dateSubmitted>
+        <dc:description>arXiv:1701.07875 [stat]</dc:description>
+        <dc:identifier>DOI 10.48550/arXiv.1701.07875</dc:identifier>
+        <prism:number>arXiv:1701.07875</prism:number>
+    </rdf:Description>
+    <z:Attachment rdf:about="#item_112">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/112/Arjovsky 等 - 2017 - Wasserstein GAN.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_124">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>5</prism:volume>
+                <dc:title>Cell Reports Physical Science</dc:title>
+                <dc:identifier>DOI 10.1016/j.xcrp.2024.102067</dc:identifier>
+                <prism:number>7</prism:number>
+                <dcterms:alternative>Cell Reports Physical Science</dcterms:alternative>
+                <dc:identifier>ISSN 26663864</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Xu</foaf:surname>
+                        <foaf:givenName>Jiaxin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Suleiman</foaf:surname>
+                        <foaf:givenName>Agboola</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Liu</foaf:surname>
+                        <foaf:givenName>Gang</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Perez</foaf:surname>
+                        <foaf:givenName>Michael</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zhang</foaf:surname>
+                        <foaf:givenName>Renzheng</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jiang</foaf:surname>
+                        <foaf:givenName>Meng</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Guo</foaf:surname>
+                        <foaf:givenName>Ruilan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Luo</foaf:surname>
+                        <foaf:givenName>Tengfei</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_123"/>
+        <dc:title>Superior polymeric gas separation membrane designed by explainable graph machine learning</dc:title>
+        <dcterms:abstract>Gas separation using polymer membranes promises to dramatically drive down the energy, carbon, and water intensity of traditional thermally driven separation, but developing the membrane materials is challenging. Here, we demonstrate a graph machine learning (ML) strategy to guide the experimental discovery of synthesizable polymer membranes with performances simultaneously exceeding the empirical upper bounds in multiple industrially important gas-separation tasks. Two predicted candidates are synthesized and experimentally validated to perform beyond the upper bounds for multiple gas pairs (O2/N2, H2/CH4, and H2/N2). Notably, the O2/N2 separation selectivity is 1.6–6.7 times higher than that of existing polymer membranes. The molecular origin of the high performance is revealed by combining the inherent interpretability of our ML model, experimental characterization, and molecule-level simulation. Our study presents a unique explainable ML-experiment combination to tackle challenging energy material design problems in general, and the discovered polymers are beneﬁcial for industrial gas separation.</dcterms:abstract>
+        <dc:date>07/2024</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://linkinghub.elsevier.com/retrieve/pii/S2666386424003369</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-09-01 14:23:33</dcterms:dateSubmitted>
+        <bib:pages>102067</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_123">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/123/Xu 等 - 2024 - Superior polymeric gas separation membrane designed by explainable graph machine learning.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_127">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>5</prism:volume>
+                <dc:title>Cell Reports Physical Science</dc:title>
+                <dc:identifier>DOI 10.1016/j.xcrp.2024.102067</dc:identifier>
+                <prism:number>7</prism:number>
+                <dcterms:alternative>Cell Reports Physical Science</dcterms:alternative>
+                <dc:identifier>ISSN 26663864</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Xu</foaf:surname>
+                        <foaf:givenName>Jiaxin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Suleiman</foaf:surname>
+                        <foaf:givenName>Agboola</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Liu</foaf:surname>
+                        <foaf:givenName>Gang</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Perez</foaf:surname>
+                        <foaf:givenName>Michael</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zhang</foaf:surname>
+                        <foaf:givenName>Renzheng</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jiang</foaf:surname>
+                        <foaf:givenName>Meng</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Guo</foaf:surname>
+                        <foaf:givenName>Ruilan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Luo</foaf:surname>
+                        <foaf:givenName>Tengfei</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_125"/>
+        <dc:title>Superior polymeric gas separation membrane designed by explainable graph machine learning</dc:title>
+        <dc:date>07/2024</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://linkinghub.elsevier.com/retrieve/pii/S2666386424003369</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-09-01 14:26:48</dcterms:dateSubmitted>
+        <bib:pages>102067</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_125">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/125/Xu 等 - 2024 - Superior polymeric gas separation membrane designed by explainable graph machine learning.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_128">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>5</prism:volume>
+                <dc:title>Cell Reports Physical Science</dc:title>
+                <dc:identifier>DOI 10.1016/j.xcrp.2024.102067</dc:identifier>
+                <prism:number>7</prism:number>
+                <dcterms:alternative>Cell Reports Physical Science</dcterms:alternative>
+                <dc:identifier>ISSN 26663864</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Xu</foaf:surname>
+                        <foaf:givenName>Jiaxin</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Suleiman</foaf:surname>
+                        <foaf:givenName>Agboola</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Liu</foaf:surname>
+                        <foaf:givenName>Gang</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Perez</foaf:surname>
+                        <foaf:givenName>Michael</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zhang</foaf:surname>
+                        <foaf:givenName>Renzheng</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jiang</foaf:surname>
+                        <foaf:givenName>Meng</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Guo</foaf:surname>
+                        <foaf:givenName>Ruilan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Luo</foaf:surname>
+                        <foaf:givenName>Tengfei</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_126"/>
+        <dc:title>Superior polymeric gas separation membrane designed by explainable graph machine learning</dc:title>
+        <dcterms:abstract>Gas separation using polymer membranes promises to dramatically drive down the energy, carbon, and water intensity of traditional thermally driven separation, but developing the membrane materials is challenging. Here, we demonstrate a graph machine learning (ML) strategy to guide the experimental discovery of synthesizable polymer membranes with performances simultaneously exceeding the empirical upper bounds in multiple industrially important gas-separation tasks. Two predicted candidates are synthesized and experimentally validated to perform beyond the upper bounds for multiple gas pairs (O2/N2, H2/CH4, and H2/N2). Notably, the O2/N2 separation selectivity is 1.6–6.7 times higher than that of existing polymer membranes. The molecular origin of the high performance is revealed by combining the inherent interpretability of our ML model, experimental characterization, and molecule-level simulation. Our study presents a unique explainable ML-experiment combination to tackle challenging energy material design problems in general, and the discovered polymers are beneﬁcial for industrial gas separation.</dcterms:abstract>
+        <dc:date>07/2024</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://linkinghub.elsevier.com/retrieve/pii/S2666386424003369</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-09-01 14:26:50</dcterms:dateSubmitted>
+        <bib:pages>102067</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_126">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/126/Xu 等 - 2024 - Superior polymeric gas separation membrane designed by explainable graph machine learning.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+   <z:Collection rdf:about="#collection_5"><dc:title>数据库</dc:title></z:Collection>
+    <z:Collection rdf:about="#collection_7">
+        <dc:title>model</dc:title>
+        <dcterms:hasPart rdf:resource="#collection_11"/>
+        <dcterms:hasPart rdf:resource="#collection_8"/>
+        <dcterms:hasPart rdf:resource="#collection_10"/>
+        <dcterms:hasPart rdf:resource="#collection_9"/>
+        <dcterms:hasPart rdf:resource="#item_50"/>
+        <dcterms:hasPart rdf:resource="https://linkinghub.elsevier.com/retrieve/pii/S2666386424003369"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-4503-9385-0"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_11">
+        <dc:title>GAN</dc:title>
+        <dcterms:hasPart rdf:resource="http://arxiv.org/abs/1704.00028"/>
+        <dcterms:hasPart rdf:resource="http://arxiv.org/abs/1805.11973"/>
+        <dcterms:hasPart rdf:resource="http://arxiv.org/abs/1812.04948"/>
+        <dcterms:hasPart rdf:resource="http://arxiv.org/abs/1406.2661"/>
+        <dcterms:hasPart rdf:resource="http://arxiv.org/abs/1511.06434"/>
+        <dcterms:hasPart rdf:resource="http://arxiv.org/abs/1701.07875"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_8">
+        <dc:title>GNN</dc:title>
+        <dcterms:hasPart rdf:resource="#collection_14"/>
+        <dcterms:hasPart rdf:resource="urn:isbn:978-1-4503-9385-0"/>
+        <dcterms:hasPart rdf:resource="#item_124"/>
+        <dcterms:hasPart rdf:resource="#item_127"/>
+        <dcterms:hasPart rdf:resource="#item_128"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_14">
+        <dc:title>GREA</dc:title>
+        <dcterms:hasPart rdf:resource="#item_124"/>
+        <dcterms:hasPart rdf:resource="#item_127"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_10">
+        <dc:title>pointnet</dc:title>
+        <dcterms:hasPart rdf:resource="https://ieeexplore.ieee.org/document/9127813/"/>
+        <dcterms:hasPart rdf:resource="#item_21"/>
+        <dcterms:hasPart rdf:resource="http://arxiv.org/abs/1612.00593"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_9">
+       <dc:title>Transformer</dc:title><dcterms:hasPart rdf:resource="#item_50"/>
+    </z:Collection>
+</rdf:RDF>

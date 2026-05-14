@@ -1,0 +1,12 @@
+Energy                      Average   Err.Est.       RMSD  Tot-Drift
+-------------------------------------------------------------------------------
+Volume                      115.351         --    1.17896    4.80749  (nm^3)
+
+
+Connolly radius 1.65Å³
+Connolly Surface
+  Occupied Volume: 80358.68 Å³
+  Surface Area: 38401.59 Å²
+
+
+FFV≈30.33%

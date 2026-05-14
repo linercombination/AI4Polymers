@@ -1,0 +1,6 @@
+PIM-BTrip.pdb: c12c(cc3c(c1)Oc1c(O3)c(c(c(c1C#N)*)*)C#N)[C@]1(c3c([C@]2(C)c2c1cc1c(c2)cccc1)cc(c(c3)O*)O*)C	benzotriptycene PIMs/mol-pdb\PIM-BTrip.pdb
+PIM-DM-BTrio.pdb: c12c(cc3c(c1)Oc1c(O3)c(c(c(c1C#N)*)*)C#N)[C@]1(c3c([C@]2(C)c2c1cc1c(c2)cc(c(c1)C)C)cc(c(c3)O*)O*)C	benzotriptycene PIMs/mol-pdb\PIM-DM-BTrio.pdb
+PIM-DTFM-BTrip.pdb: C(F)(F)(F)c1c2cc3[C@]4(c5c(cc6c(c5)Oc5c(O6)c(c(c(c5C#N)*)*)C#N)[C@@](c5c4cc(c(c5)O*)O*)(C)c3cc2cc(c1)C(F)(F)F)C	benzotriptycene PIMs/mol-pdb\PIM-DT*M-BTrip.pdb
+PIM-HMI-Trip.pdb: c12c(cc3c(c1)Oc1c(O3)c(c(c(c1C#N)*)*)C#N)[C@]1(c3c([C@]2(C)c2c1cc1c(c2)cc2c(c1)C(C(C2(C)C)(C)C)(C)C)cc(c(c3)O*)O*)C	benzotriptycene PIMs/mol-pdb\PIM-HMI-Trip.pdb
+PIM-TFM-BTrip.pdb: c12c(cc3c(c1)Oc1c(O3)c(c(c(c1C#N)*)*)C#N)[C@]1(c3c([C@]2(C)c2c1cc1c(c2)cc(cc1)C(*)(*)*)cc(c(c3)O*)O*)C	benzotriptycene PIMs/mol-pdb\PIM-T*M-BTrip.pdb
+PIM-TMN-Trip.pdb: c12c(cc3c(c1)Oc1c(O3)c(c(c(c1C#N)*)*)C#N)[C@]1(c3c([C@]2(C)c2c1cc1c(c2)cc2c(c1)C(CCC2(C)C)(C)C)cc(c(c3)O*)O*)C	benzotriptycene PIMs/mol-pdb\PIM-TMN-Trip.pdb

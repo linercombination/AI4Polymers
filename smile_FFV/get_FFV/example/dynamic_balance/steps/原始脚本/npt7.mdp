@@ -1,0 +1,43 @@
+title                   = OPLS Lysozyme NPT equilibration 
+
+; Run parameters
+integrator              = md        ; leap-frog integrator
+nsteps                  = 20000000     ; 1 * 50000 = 50 ps 
+dt                      = 0.001     ; 2 fs
+; Output control
+nstxout                 = 50000       ; save coordinates every 1.0 ps
+nstvout                 = 50000       ; save velocities every 1.0 ps
+nstenergy               = 50000       ; save energies every 1.0 ps
+nstlog                  = 50000       ; update log file every 1.0 ps
+; Bond parameters
+continuation            = no       ; Restarting after NVT 
+constraint_algorithm    = lincs     ; holonomic constraints 
+constraints             = H-bonds   ; bonds involving H are constrained
+lincs_iter              = 1         ; accuracy of LINCS
+lincs_order             = 4         ; also related to accuracy
+; Nonbonded settings 
+cutoff-scheme           = Verlet    ; Buffered neighbor searching
+ns_type                 = grid      ; search neighboring grid cells
+nstlist                 = 10        ; 20 fs, largely irrelevant with Verlet scheme
+rcoulomb                = 1       ; short-range electrostatic cutoff (in nm)
+rvdw                    = 1       ; short-range van der Waals cutoff (in nm)
+DispCorr                = EnerPres  ; account for cut-off vdW scheme
+; Electrostatics
+coulombtype             = PME       ; Particle Mesh Ewald for long-range electrostatics
+pme_order               = 4         ; cubic interpolation
+; Temperature coupling is on
+tcoupl                  = V-rescale             ; modified Berendsen thermostat
+tc-grps                 = system   ; two coupling groups - more accurate
+tau_t                   = 1                ; time constant, in ps
+ref_t                   = 300              ; reference temperature, one for each group, in K
+; Pressure coupling is on
+pcoupl                  = C-rescale  ; Pressure coupling on in NPT
+pcoupltype              = isotropic             ; uniform scaling of box vectors
+tau_p                   = 20             ; time constant, in ps
+ref_p                   = 1                ; reference pressure, in bar
+compressibility         =  4.5e-5              ; isothermal compressibility of water, bar^-1
+refcoord_scaling        = com
+; Periodic boundary conditions
+pbc                     = xyz       ; 3-D PBC
+; Velocity generation
+gen_vel                 = yes        ; Velocity generation is off 

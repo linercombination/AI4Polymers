@@ -1,0 +1,3 @@
+PIM-BTrip-TB.pdb: c12c(cc3c(c1)N(*)CN3*)[C@]1(c3c([C@]2(C)c2c1cc1c(c2)cccc1)cc(c(c3)*)*)C	PIM-EA-TB/mol_pdb\PIM-BTrip-TB.pdb
+PIM-EA-TB.pdb: c1(cc2c(cc1*)[C@@]1(c3c([C@]2(CC1)C)cc1c(c3)N(CN(C1)*)C*)C)*	PIM-EA-TB/mol_pdb\PIM-EA-TB.pdb
+PIM-Trip-TB.pdb: c12c(cc3c(c1)N(*)CN3*)[C@]1(c3c([C@]2(C)c2c1cccc2)cc(c(c3)*)*)C	PIM-EA-TB/mol_pdb\PIM-Trip-TB.pdb

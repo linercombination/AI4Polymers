@@ -1,0 +1,284 @@
+Metadata-Version: 2.4
+Name: pim-gas-ml
+Version: 0.1.0
+Summary: Baseline training scaffold for PIM gas-separation experiments
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: joblib
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: PyYAML
+Requires-Dist: scikit-learn
+Requires-Dist: tqdm
+Provides-Extra: chem
+Requires-Dist: rdkit; extra == "chem"
+Provides-Extra: xgboost
+Requires-Dist: xgboost; extra == "xgboost"
+Provides-Extra: full
+Requires-Dist: rdkit; extra == "full"
+Requires-Dist: xgboost; extra == "full"
+
+# PIM Gas Separation ML Scaffold
+
+Chinese version: [README_zh.md](C:/Users/16976/Desktop/smile_FFV/README_zh.md)
+
+## What This Repo Is For
+
+This workspace provides a lightweight, reproducible training scaffold for the current project mainline:
+
+`SMILES/graph + aging (+ optional thickness) -> CO2-centered property prediction (permeability + pair targets) -> Robeson-style screening`
+
+The code is aligned with the current cleaned data reality:
+
+- grouped baseline modeling for `CO2` permeability
+- pair-specific `CO2/CH4` and `CO2/N2` selectivity tasks
+- Robeson-style plotting and heuristic screening exports
+- reusable RDKit feature generation from `smiles_single`
+- a separate small-sample `FFV` pilot path
+
+It is not yet a full platform for:
+
+- finalized family-aware evaluation
+- explainable GNN training
+- formal literature-fit Robeson upper-bound distance modeling
+- inverse design or GAN-based generation
+
+## Project Layout
+
+- [task.md](C:/Users/16976/Desktop/smile_FFV/task.md): current English task definition
+- [task_zh.md](C:/Users/16976/Desktop/smile_FFV/task_zh.md): current Chinese task definition
+- [polymer_pim_gas_separation_pipeline.md](C:/Users/16976/Desktop/smile_FFV/polymer_pim_gas_separation_pipeline.md): research plan
+- [PIMs_family_classification_scheme.md](C:/Users/16976/Desktop/smile_FFV/PIMs_family_classification_scheme.md): family-label design
+- [output/cleaned_data](C:/Users/16976/Desktop/smile_FFV/output/cleaned_data): cleaned datasets and summaries
+- [configs](C:/Users/16976/Desktop/smile_FFV/configs): ready-to-run experiment configs
+- [scripts/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/scripts/train_baseline.py): main training entry point
+- [pim_ml](C:/Users/16976/Desktop/smile_FFV/pim_ml): feature, split, model, reporting, and screening helpers
+
+### File Structure
+
+```text
+smile_FFV/
+|-- configs/
+|   |-- co2_grouped_baseline.yaml
+|   |-- co2_ch4_screening.yaml
+|   |-- co2_n2_screening.yaml
+|   `-- ffv_pilot.yaml
+|-- output/
+|   |-- cleaned_data/
+|   `-- experiments/
+|-- pim_ml/
+|   |-- features.py
+|   |-- models.py
+|   |-- reporting.py
+|   |-- splits.py
+|   `-- train_baseline.py
+|-- requirements/
+|   |-- base.txt
+|   `-- server.txt
+|-- scripts/
+|   `-- train_baseline.py
+|-- PIMs_family_classification_scheme.md
+|-- polymer_pim_gas_separation_pipeline.md
+|-- task.md
+|-- task_zh.md
+|-- README.md
+|-- README_zh.md
+|-- environment.yml
+`-- pyproject.toml
+```
+
+## Environment Setup
+
+The project separates code from dependencies so the environment can be recreated locally or on a server.
+
+### Recommended: Conda environment
+
+Use [environment.yml](C:/Users/16976/Desktop/smile_FFV/environment.yml):
+
+```bash
+conda env create -f environment.yml
+conda activate pim-gas-ml
+```
+
+This is preferred because `rdkit` is more reliable from `conda-forge` than from plain pip.
+
+### Optional: pip-style dependency files
+
+If you manage the Python interpreter yourself, use:
+
+- [requirements/base.txt](C:/Users/16976/Desktop/smile_FFV/requirements/base.txt)
+- [requirements/server.txt](C:/Users/16976/Desktop/smile_FFV/requirements/server.txt)
+
+Typical usage:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements/server.txt
+pip install -e .
+```
+
+## Install the Local Package
+
+The workspace is installable via [pyproject.toml](C:/Users/16976/Desktop/smile_FFV/pyproject.toml):
+
+```bash
+pip install -e .
+```
+
+This also gives you:
+
+```bash
+pim-train-baseline --config configs/co2_grouped_baseline.yaml
+```
+
+If `xgboost` is unavailable, the training code skips it and records the reason in the run log.
+
+## Quick Start
+
+### 1. Run the grouped `CO2` permeability baseline
+
+```bash
+python scripts/train_baseline.py --config configs/co2_grouped_baseline.yaml
+```
+
+### 2. Run `CO2/CH4` screening
+
+```bash
+python scripts/train_baseline.py --config configs/co2_ch4_screening.yaml
+```
+
+### 3. Run `CO2/N2` screening
+
+```bash
+python scripts/train_baseline.py --config configs/co2_n2_screening.yaml
+```
+
+### 4. Run the `FFV` pilot
+
+```bash
+python scripts/train_baseline.py --config configs/ffv_pilot.yaml
+```
+
+### 5. Optionally name a run directory
+
+```bash
+python scripts/train_baseline.py --config configs/co2_ch4_screening.yaml --run-name first_co2_ch4_run
+```
+
+## What the Training Script Does
+
+For each config, the script:
+
+1. loads the cleaned CSV subset
+2. builds Morgan fingerprint features from `smiles_single`
+3. adds a small RDKit descriptor block
+4. adds experimental numeric inputs such as `log1p(aging_days)` and optional `thickness_um`
+5. applies the requested cross-validation strategy
+6. trains baseline regressors
+7. saves metrics, predictions, plots, and final refit models
+8. optionally exports Robeson-style screening outputs when the config enables `screening`
+
+Supported CV modes:
+
+- `group_kfold`
+- `loo`
+- `kfold`
+
+Supported models:
+
+- `ridge`
+- `random_forest`
+- `svr`
+- `hist_gb`
+- `xgboost` when available
+
+## Training Visibility
+
+The console now shows:
+
+- a live progress bar covering all folds and final refits
+- per-fold completion logs with elapsed time
+- final metric ranking for each model
+
+## Default Configs
+
+### `CO2` grouped baseline
+
+- dataset: `output/cleaned_data/co2_main_subset.csv`
+- target: `log10_p_co2_barrer`
+- split: `GroupKFold` by `membrane_name_raw`
+
+### `CO2/CH4` screening
+
+- dataset: `output/cleaned_data/co2_ch4_subset.csv`
+- target: `log10_sel_co2_ch4_from_perm`
+- split: `GroupKFold` by `membrane_name_raw`
+- screening x-axis: `log10_p_co2_barrer`
+
+### `CO2/N2` screening
+
+- dataset: `output/cleaned_data/co2_n2_subset.csv`
+- target: `log10_sel_co2_n2_from_perm`
+- split: `GroupKFold` by `membrane_name_raw`
+- screening x-axis: `log10_p_co2_barrer`
+
+### `FFV` pilot
+
+- dataset: `output/cleaned_data/ffv_pilot_subset.csv`
+- target: `ffv`
+- split: leave-one-out
+
+## Default Outputs
+
+Each run writes to its configured output root, for example:
+
+- [output/experiments/co2_grouped_baseline](C:/Users/16976/Desktop/smile_FFV/output/experiments/co2_grouped_baseline)
+- [output/experiments/co2_ch4_screening](C:/Users/16976/Desktop/smile_FFV/output/experiments/co2_ch4_screening)
+- [output/experiments/co2_n2_screening](C:/Users/16976/Desktop/smile_FFV/output/experiments/co2_n2_screening)
+
+Inside a run folder you will typically get:
+
+- `resolved_config.yaml`
+- `train.log`
+- `dataset_summary.json`
+- `feature_manifest.csv`
+- `split_manifest.csv`
+- `predictions.csv`
+- `fold_metrics.csv`
+- `summary_metrics.csv`
+- `models/*.joblib`
+- `plots/*.png`
+
+When screening is enabled, you also get:
+
+- `screening_predictions.csv`
+- `best_model_screening.csv`
+- `{model_name}_screening.csv`
+- `plots/{model_name}_robeson.png`
+
+## Robeson-Style Screening Note
+
+The current screening layer is intentionally conservative:
+
+- it plots `log10 P_CO2` against predicted or true pair selectivity
+- it exports a heuristic `screening_score_pred = log10 P_CO2 + predicted log10 selectivity`
+- it does not yet fit or enforce a literature upper-bound equation
+
+So the current output should be described as `Robeson-style screening`, not as a formal upper-bound exceedance claim.
+
+## Important Limitations
+
+- family columns are still mostly unpopulated, so family-aware split is not yet the default code path
+- the current scaffold does not yet include GNN training
+- reported selectivity and permeability-derived selectivity are not automatically reconciled into one policy
+- `FFV` remains exploratory and is not a required upstream module for the main `CO2` workflow
+
+## Recommended Next Steps
+
+1. Populate a first-pass family label table and write it back to the cleaned assets.
+2. Add family-aware split modes on top of grouped membrane splits.
+3. Add direct partner-permeability tasks for `CO2/CH4` and `CO2/N2`.
+4. Add an explainable graph baseline after the grouped descriptor baselines are stable.
+5. Upgrade the screening layer from heuristic ranking to a formal upper-bound distance model when the policy is ready.

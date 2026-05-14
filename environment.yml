@@ -1,0 +1,17 @@
+name: pim-gas-ml
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - rdkit
+  - numpy
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - pyyaml
+  - joblib
+  - tqdm
+  - xgboost
+  - pip:
+      - -e .

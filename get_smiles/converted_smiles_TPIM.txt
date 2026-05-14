@@ -1,0 +1,4 @@
+TPIM-1.pdb: c12c(cc3=[N]=C4C(=[N]=c3c1)CC(=C(C4)*)*)[C@]1(c3c([C@]2(C(C)C)c2c1cccc2)cc(c(c3)O*)O*)C(C)C	TPIM/mol_pdb\TPIM-1.pdb
+TPIM-2-c.pdb: c12c(cc3c(c1)cc1c(c3)cc(c(c1)*)*)[C@]1(c3c([C@]2(CCC)c2c1cccc2)cc(c(c3)O*)O*)CCC	TPIM/mol_pdb\TPIM-2-c.pdb
+TPIM-2-s.pdb: C12=C([SH+]C3=[N]=c4c(=[N]=C3[SH+]1)cc(c(c4)*)*)[C@]1(c3c([C@]2(CCC)c2c1cccc2)cc(c(c3)O*)O*)CCC	TPIM/mol_pdb\TPIM-2-s.pdb
+TPIM-2.pdb: c12c(cc3=[N]=c4c(=[N]=c3c1)cc(c(c4)*)*)[C@]1(c3c([C@]2(CCC)c2c1cccc2)cc(c(c3)O*)O*)CCC	TPIM/mol_pdb\TPIM-2.pdb

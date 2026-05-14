@@ -1,0 +1,34 @@
+seed: 42
+
+representation:
+  method: descriptor_2d
+
+dataset:
+  csv_path: output/cleaned_data/ffv_pilot_subset.csv
+  target_column: ffv
+  group_column:
+  id_columns:
+    - sample_id
+    - membrane_name_raw
+    - source_sheet
+    - source_row_excel
+
+features:
+  smiles_column: smiles_single
+  aging_column: aging_days
+  thickness_column: thickness_um
+  fingerprint_radius: 2
+  fingerprint_bits: 512
+
+cv:
+  mode: loo
+
+models:
+  - ridge
+  - random_forest
+  - svr
+  - hist_gb
+  - xgboost
+
+output:
+  root_dir: output/experiments/ffv_pilot

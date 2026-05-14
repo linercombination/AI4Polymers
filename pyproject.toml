@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pim-gas-ml"
+version = "0.1.0"
+description = "Baseline training scaffold for PIM gas-separation experiments"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "joblib",
+  "matplotlib",
+  "numpy",
+  "pandas",
+  "PyYAML",
+  "scikit-learn",
+  "tqdm",
+]
+
+[project.optional-dependencies]
+chem = ["rdkit"]
+xgboost = ["xgboost"]
+full = ["rdkit", "xgboost"]
+
+[project.scripts]
+pim-train-baseline = "pim_ml.train_baseline:main"
+
+[tool.setuptools.packages.find]
+include = ["pim_ml*"]

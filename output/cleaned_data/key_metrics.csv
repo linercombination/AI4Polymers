@@ -1,0 +1,16 @@
+﻿metric,value
+rows_total,88
+unique_membrane_names,36
+rows_with_smiles,87
+rows_with_ffv,13
+rows_with_aging,82
+rows_with_thickness,35
+rows_with_p_co2,74
+rows_with_p_ch4,71
+rows_with_p_n2,77
+rows_with_sel_co2_ch4,74
+rows_with_sel_co2_n2,72
+eligible_ffv_pilot,12
+eligible_co2_main,74
+eligible_co2_ch4_pair,71
+eligible_co2_n2_pair,71

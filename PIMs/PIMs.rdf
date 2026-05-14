@@ -1,0 +1,680 @@
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:z="http://www.zotero.org/namespaces/export#"
+ xmlns:dcterms="http://purl.org/dc/terms/"
+ xmlns:bib="http://purl.org/net/biblio#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:link="http://purl.org/rss/1.0/modules/link/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/">
+    <bib:Article rdf:about="https://link.springer.com/10.1007/s40820-024-01610-2">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:2311-6706,%202150-5551"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Qiu</foaf:surname>
+                        <foaf:givenName>Boya</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gao</foaf:surname>
+                        <foaf:givenName>Yong</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gorgojo</foaf:surname>
+                        <foaf:givenName>Patricia</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Fan</foaf:surname>
+                        <foaf:givenName>Xiaolei</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_73"/>
+        <dc:title>Membranes of Polymer of Intrinsic Microporosity PIM-1 for Gas Separation: Modification Strategies and Meta-Analysis</dc:title>
+        <dcterms:abstract>Polymers of intrinsic microporosity (PIMs) have received considerable attention for making high-performance membranes for carbon dioxide separation over the last two decades, owing to their highly permeable porous structures. However, challenges regarding its relatively low selectivity, physical aging, and plasticisation impede relevant industrial adoptions for gas separation. To address these issues, several strategies including chain modification, post-modification, blending with other polymers, and the addition of fillers, have been developed and explored. PIM-1 is the most investigated PIMs, and hence here we review the stateof-the-arts of the modification strategies of PIM-1 critically and discuss the progress achieved for addressing the aforementioned challenges via meta-analysis. Additionally, the development of PIM-1-based thin film composite membranes is commented as well, shedding light on their potential in industrial gas separation. We hope that the review can be a timely snapshot of the relevant state-of-the-arts of PIMs guiding future design and optimisation of PIMs-based membranes for enhanced performance towards a higher technology readiness level for practical applications.</dcterms:abstract>
+        <dc:date>12/2025</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>Membranes of Polymer of Intrinsic Microporosity PIM-1 for Gas Separation</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://link.springer.com/10.1007/s40820-024-01610-2</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-08-21 11:34:21</dcterms:dateSubmitted>
+        <bib:pages>114</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:2311-6706,%202150-5551">
+        <prism:volume>17</prism:volume>
+        <dc:title>Nano-Micro Letters</dc:title>
+        <dc:identifier>DOI 10.1007/s40820-024-01610-2</dc:identifier>
+        <prism:number>1</prism:number>
+        <dcterms:alternative>Nano-Micro Lett.</dcterms:alternative>
+        <dc:identifier>ISSN 2311-6706, 2150-5551</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_73">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/73/Qiu 等 - 2025 - Membranes of Polymer of Intrinsic Microporosity PIM-1 for Gas Separation Modification Strategies an.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://linkinghub.elsevier.com/retrieve/pii/S0032386120305668">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:00323861"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>McKeown</foaf:surname>
+                        <foaf:givenName>Neil B.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_103"/>
+        <dc:title>Polymers of Intrinsic Microporosity (PIMs)</dc:title>
+        <dcterms:abstract>Based on cumulative research from the past two decades, this personal perspective defines the structurally unique features of Polymers of Intrinsic Microporosity (PIMs), which result in a distinct combination of properties, including solution-processability and microporosity, providing organic materials suitable for the fabrication of membranes that perform efficient molecular sieving.</dcterms:abstract>
+        <dc:date>08/2020</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://linkinghub.elsevier.com/retrieve/pii/S0032386120305668</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-08-24 14:01:18</dcterms:dateSubmitted>
+        <bib:pages>122736</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:00323861">
+        <prism:volume>202</prism:volume>
+        <dc:title>Polymer</dc:title>
+        <dc:identifier>DOI 10.1016/j.polymer.2020.122736</dc:identifier>
+        <dcterms:alternative>Polymer</dcterms:alternative>
+        <dc:identifier>ISSN 00323861</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_103">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/103/McKeown - 2020 - Polymers of Intrinsic Microporosity (PIMs).pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_130">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>17</prism:volume>
+                <dc:title>Nano-Micro Letters</dc:title>
+                <dc:identifier>DOI 10.1007/s40820-024-01610-2</dc:identifier>
+                <prism:number>1</prism:number>
+                <dcterms:alternative>Nano-Micro Lett.</dcterms:alternative>
+                <dc:identifier>ISSN 2311-6706, 2150-5551</dc:identifier>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Qiu</foaf:surname>
+                        <foaf:givenName>Boya</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gao</foaf:surname>
+                        <foaf:givenName>Yong</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gorgojo</foaf:surname>
+                        <foaf:givenName>Patricia</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Fan</foaf:surname>
+                        <foaf:givenName>Xiaolei</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_129"/>
+        <dc:title>Membranes of Polymer of Intrinsic Microporosity PIM-1 for Gas Separation: Modification Strategies and Meta-Analysis</dc:title>
+        <dcterms:abstract>Polymers of intrinsic microporosity (PIMs) have received considerable attention for making high-performance membranes for carbon dioxide separation over the last two decades, owing to their highly permeable porous structures. However, challenges regarding its relatively low selectivity, physical aging, and plasticisation impede relevant industrial adoptions for gas separation. To address these issues, several strategies including chain modification, post-modification, blending with other polymers, and the addition of fillers, have been developed and explored. PIM-1 is the most investigated PIMs, and hence here we review the stateof-the-arts of the modification strategies of PIM-1 critically and discuss the progress achieved for addressing the aforementioned challenges via meta-analysis. Additionally, the development of PIM-1-based thin film composite membranes is commented as well, shedding light on their potential in industrial gas separation. We hope that the review can be a timely snapshot of the relevant state-of-the-arts of PIMs guiding future design and optimisation of PIMs-based membranes for enhanced performance towards a higher technology readiness level for practical applications.</dcterms:abstract>
+        <dc:date>12/2025</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>Membranes of Polymer of Intrinsic Microporosity PIM-1 for Gas Separation</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://link.springer.com/10.1007/s40820-024-01610-2</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-09-09 01:58:58</dcterms:dateSubmitted>
+        <bib:pages>114</bib:pages>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_129">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/129/Qiu 等 - 2025 - Membranes of Polymer of Intrinsic Microporosity PIM-1 for Gas Separation Modification Strategies an.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://linkinghub.elsevier.com/retrieve/pii/S2211339821000873">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:22113398"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wang</foaf:surname>
+                        <foaf:givenName>Yingge</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ghanem</foaf:surname>
+                        <foaf:givenName>Bader S</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Han</foaf:surname>
+                        <foaf:givenName>Yu</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Pinnau</foaf:surname>
+                        <foaf:givenName>Ingo</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_131"/>
+        <dc:title>State-of-the-art polymers of intrinsic microporosity for high-performance gas separation membranes</dc:title>
+        <dc:date>03/2022</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://linkinghub.elsevier.com/retrieve/pii/S2211339821000873</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-10-03 10:43:29</dcterms:dateSubmitted>
+        <bib:pages>100755</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:22113398">
+        <prism:volume>35</prism:volume>
+        <dc:title>Current Opinion in Chemical Engineering</dc:title>
+        <dc:identifier>DOI 10.1016/j.coche.2021.100755</dc:identifier>
+        <dcterms:alternative>Current Opinion in Chemical Engineering</dcterms:alternative>
+        <dc:identifier>ISSN 22113398</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_131">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/131/Wang 等 - 2022 - State-of-the-art polymers of intrinsic microporosity for high-performance gas separation membranes.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://xlink.rsc.org/?DOI=C9EE01384A">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1754-5692,%201754-5706"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Comesaña-Gándara</foaf:surname>
+                        <foaf:givenName>Bibiana</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Chen</foaf:surname>
+                        <foaf:givenName>Jie</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bezzu</foaf:surname>
+                        <foaf:givenName>C. Grazia</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Carta</foaf:surname>
+                        <foaf:givenName>Mariolino</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Rose</foaf:surname>
+                        <foaf:givenName>Ian</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ferrari</foaf:surname>
+                        <foaf:givenName>Maria-Chiara</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Esposito</foaf:surname>
+                        <foaf:givenName>Elisa</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Fuoco</foaf:surname>
+                        <foaf:givenName>Alessio</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jansen</foaf:surname>
+                        <foaf:givenName>Johannes C.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>McKeown</foaf:surname>
+                        <foaf:givenName>Neil B.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_133"/>
+        <dc:title>Redefining the Robeson upper bounds for CO&lt;sub&gt;2&lt;/sub&gt; /CH&lt;sub&gt;4&lt;/sub&gt; and CO&lt;sub&gt;2&lt;/sub&gt; /N&lt;sub&gt;2&lt;/sub&gt; separations using a series of ultrapermeable benzotriptycene-based polymers of intrinsic microporosity</dc:title>
+        <dcterms:abstract>Ultrapermeable benzotriptycene-based PIMs show exceptional gas selectivities that define new positions for the CO
+              2
+              /CH
+              4
+              and CO
+              2
+              /N
+              2
+              Robeson upper bounds.
+            
+          , 
+            
+              Membranes composed of Polymers of Intrinsic Microporosity (PIMs) have the potential for energy efficient industrial gas separations. Here we report the synthesis and gas permeability data of a series of ultrapermeable PIMs, of two-dimensional chain conformation and based on benzotriptycene structural units, that demonstrate remarkable ideal selectivity for most gas pairs of importance. In particular, the CO
+              2
+              ultrapermeability and high selectivity for CO
+              2
+              over CH
+              4
+              , of key importance for the upgrading of natural gas and biogas, and for CO
+              2
+              over N
+              2
+              , of importance for cost-effective carbon capture from power plants, exceed the performance of the current state-of-the-art polymers. All of the gas permeability data from this series of benzotriptycene-based PIMs are placed well above the current 2008 Robeson upper bounds for CO
+              2
+              /CH
+              4
+              and CO
+              2
+              /N
+              2
+              . Indeed, the data for some of these polymers fall into a linear correlation on the benchmark Robeson plots [
+              i.e.
+              log(
+              P
+              CO2
+              /
+              P
+              CH4
+              )
+              versus
+              log 
+              P
+              CO2
+              and log(
+              P
+              CO2
+              /
+              P
+              N2
+              )
+              versus
+              log 
+              P
+              CO2
+              ], which are parallel to, but significantly above, that of the 2008 CO
+              2
+              /CH
+              4
+              and CO
+              2
+              /N
+              2
+              upper bounds, allowing their revision. The redefinition of these upper bounds sets new aspirational targets for polymer chemists to aim for and will result in more attractive parametric estimates of energy and cost efficiencies for carbon capture and natural/bio gas upgrading using state-of-the-art CO
+              2
+              separation membranes.</dcterms:abstract>
+        <dc:date>2019</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://xlink.rsc.org/?DOI=C9EE01384A</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-10-03 12:42:25</dcterms:dateSubmitted>
+        <bib:pages>2733-2740</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1754-5692,%201754-5706">
+        <prism:volume>12</prism:volume>
+        <dc:title>Energy &amp; Environmental Science</dc:title>
+        <dc:identifier>DOI 10.1039/C9EE01384A</dc:identifier>
+        <prism:number>9</prism:number>
+        <dcterms:alternative>Energy Environ. Sci.</dcterms:alternative>
+        <dc:identifier>ISSN 1754-5692, 1754-5706</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_133">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/133/Comesaña-Gándara 等 - 2019 - Redefining the Robeson upper bounds for CO2 CH4 and CO2 N2.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://pubs.acs.org/doi/10.1021/acs.chemrev.7b00629">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0009-2665,%201520-6890"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Low</foaf:surname>
+                        <foaf:givenName>Ze-Xian</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Budd</foaf:surname>
+                        <foaf:givenName>Peter M.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>McKeown</foaf:surname>
+                        <foaf:givenName>Neil B.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Patterson</foaf:surname>
+                        <foaf:givenName>Darrell A.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_135"/>
+        <dc:title>Gas Permeation Properties, Physical Aging, and Its Mitigation in High Free Volume Glassy Polymers</dc:title>
+        <dcterms:abstract>Hundreds of polymers have been evaluated as membrane materials for gas separations, but fewer than 10 have made it into current commercial applications, mainly due to the eﬀects of physical aging and plasticization. Eﬀorts to overcome these two problems are a signiﬁcant focus in gas separation membrane research, in conjunction with improving membrane separation performance to surpass the Robeson upper bounds of selectivity versus permeability for commercially important gas pairs. While there has been extensive research, ranging from manipulating the chemistry of existing polymers (e.g., thermally rearranged or cross-linked polyimides) to synthesizing new polymers such as polymers of intrinsic microporosity (PIMs), there have been three major oversights that this review addresses: (1) the need to compare the approaches to achieving the best performance in order to identify their eﬀectiveness in improving gas transport properties and in mitigating aging, (2) a common standardized aging protocol that allows rapid determination of the success (or not) of these approaches, and (3) standard techniques that can be used to characterize aging and plasticization across all studies to enable them to be robustly and equally compared. In this review, we also provide our perspectives on a few key aspects of research related to high free volume polymer membranes: (1) the importance of Robeson plots for membrane aging studies, (2) eliminating thermal history, (3) measurement and reporting of gas permeability and aging rate, (4) aging and storing conditions, and (5) promising approaches to mitigate aging.</dcterms:abstract>
+        <dc:date>2018-06-27</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://pubs.acs.org/doi/10.1021/acs.chemrev.7b00629</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-10-04 10:11:55</dcterms:dateSubmitted>
+        <bib:pages>5871-5911</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0009-2665,%201520-6890">
+        <prism:volume>118</prism:volume>
+        <dc:title>Chemical Reviews</dc:title>
+        <dc:identifier>DOI 10.1021/acs.chemrev.7b00629</dc:identifier>
+        <prism:number>12</prism:number>
+        <dcterms:alternative>Chem. Rev.</dcterms:alternative>
+        <dc:identifier>ISSN 0009-2665, 1520-6890</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_135">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/135/Low 等 - 2018 - Gas Permeation Properties, Physical Aging, and Its Mitigation in High Free Volume Glassy Polymers.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://pubs.acs.org/doi/10.1021/ma200345v">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:0024-9297,%201520-5835"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Larsen</foaf:surname>
+                        <foaf:givenName>Gregory S.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lin</foaf:surname>
+                        <foaf:givenName>Ping</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hart</foaf:surname>
+                        <foaf:givenName>Kyle E.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Colina</foaf:surname>
+                        <foaf:givenName>Coray M.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_137"/>
+        <dc:title>Molecular Simulations of PIM-1-like Polymers of Intrinsic Microporosity</dc:title>
+        <dcterms:abstract>Polymers of intrinsic microporosity, or PIMs, are characterized by rigid and nonlinear or nonplanar backbones that inhibit space eﬃcient packing, thus creating microporosity. PIM-1 has been well studied by both simulations and experiments and is compared in this work to two diﬀerent PIM-1-like polymers, PIM-1c and PIM-1n. A detailed method for the generation of representative structures, including charge assignment from ab initio calculations, is presented along with simulated characterization of the pore size distributions, surface areas, structure factors, and methane adsorption isotherms. Simulated scattering for PIM-1c and PIM-1n show similar characteristic peaks as PIM-1, suggesting similar conformations. Adsorption isotherms of methane in PIM-1, PIM-1c, and PIM-1n were also predicted and compared to experimental data for PIM-1. Downloaded via ZHEJIANG UNIV on October 14, 2025 at 02:05:20 (UTC). See https://pubs.acs.org/sharingguidelines for options on how to legitimately share published articles.</dcterms:abstract>
+        <dc:date>2011-09-13</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://pubs.acs.org/doi/10.1021/ma200345v</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-10-14 02:08:44</dcterms:dateSubmitted>
+        <bib:pages>6944-6951</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:0024-9297,%201520-5835">
+        <prism:volume>44</prism:volume>
+        <dc:title>Macromolecules</dc:title>
+        <dc:identifier>DOI 10.1021/ma200345v</dc:identifier>
+        <prism:number>17</prism:number>
+        <dcterms:alternative>Macromolecules</dcterms:alternative>
+        <dc:identifier>ISSN 0024-9297, 1520-5835</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_137">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/137/Larsen 等 - 2011 - Molecular Simulations of PIM-1-like Polymers of Intrinsic Microporosity.pdf"/>
+        <dc:subject>MD</dc:subject>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://linkinghub.elsevier.com/retrieve/pii/S0376738821004737">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:03767388"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wu</foaf:surname>
+                        <foaf:givenName>Albert X.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lin</foaf:surname>
+                        <foaf:givenName>Sharon</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mizrahi Rodriguez</foaf:surname>
+                        <foaf:givenName>Katherine</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Benedetti</foaf:surname>
+                        <foaf:givenName>Francesco M.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Joo</foaf:surname>
+                        <foaf:givenName>Taigyu</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Grosz</foaf:surname>
+                        <foaf:givenName>Aristotle F.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Storme</foaf:surname>
+                        <foaf:givenName>Kayla R.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Roy</foaf:surname>
+                        <foaf:givenName>Naksha</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Syar</foaf:surname>
+                        <foaf:givenName>Duha</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Smith</foaf:surname>
+                        <foaf:givenName>Zachary P.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_140"/>
+        <dc:title>Revisiting group contribution theory for estimating fractional free volume of microporous polymer membranes</dc:title>
+        <dcterms:abstract>Fractional free volume (FFV) is a commonly used metric for the development of structure–property relationships for polymer membranes. The most common method to calculate FFV uses Bondi’s group contribution method, first introduced in 1964. While updated in 1997, there has not been a significant compilation of new structural motifs since the advent of linear microporous polymers. In this study, we critically examined the assumptions in Bondi’s original method and provide four recommendations to streamline and improve the accuracy of calculating van der Waals volume (VW ) for any group. Using these recommendations, we created an updated list of VW values for structural groups commonly present in microporous polymers. The VW and FFV values were then calculated for a database of 123 microporous and high free volume polymers from the literature, showing an average 7% decrease in VW and corresponding increase in FFV by a factor of 24% when compared to prior group contribution correlations in the literature. The significant apparent increase in estimated FFV provides a new perspective to understand and interpret the role of free volume on the separation performance of linear microporous polymers. Additionally, standardization of the group contribution method allows for the direct comparison of FFV values across studies.</dcterms:abstract>
+        <dc:date>10/2021</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://linkinghub.elsevier.com/retrieve/pii/S0376738821004737</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2025-10-14 05:30:06</dcterms:dateSubmitted>
+        <bib:pages>119526</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:03767388">
+        <prism:volume>636</prism:volume>
+        <dc:title>Journal of Membrane Science</dc:title>
+        <dc:identifier>DOI 10.1016/j.memsci.2021.119526</dc:identifier>
+        <dcterms:alternative>Journal of Membrane Science</dcterms:alternative>
+        <dc:identifier>ISSN 03767388</dc:identifier>
+    </bib:Journal>
+    <z:Attachment rdf:about="#item_140">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/140/Wu 等 - 2021 - Revisiting group contribution theory for estimating fractional free volume of microporous polymer me.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="#item_143">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wu</foaf:surname>
+                        <foaf:givenName>Albert X</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lin</foaf:surname>
+                        <foaf:givenName>Sharon</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Rodriguez</foaf:surname>
+                        <foaf:givenName>Katherine Mizrahi</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Benedetti</foaf:surname>
+                        <foaf:givenName>Francesco M</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Joo</foaf:surname>
+                        <foaf:givenName>Taigyu</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Grosz</foaf:surname>
+                        <foaf:givenName>Aristotle F</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Storme</foaf:surname>
+                        <foaf:givenName>Kayla R</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Roy</foaf:surname>
+                        <foaf:givenName>Naksha</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Syar</foaf:surname>
+                        <foaf:givenName>Duha</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Smith</foaf:surname>
+                        <foaf:givenName>Zachary P</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <link:link rdf:resource="#item_141"/>
+        <dc:title>Revisiting Group Contribution Theory for Estimating Fractional Free Volume of Microporous Polymer Membranes – Supplementary Information</dc:title>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Zotero</z:libraryCatalog>
+    </bib:Article>
+    <z:Attachment rdf:about="#item_141">
+        <z:itemType>attachment</z:itemType>
+        <z:path rdf:resource="files/141/Wu 等 - Revisiting Group Contribution Theory for Estimating Fractional Free Volume of Microporous Polymer Me.pdf"/>
+        <dc:title>PDF</dc:title>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+</rdf:RDF>
