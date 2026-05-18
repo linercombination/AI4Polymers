@@ -23,6 +23,14 @@
 - 严格按文献方程拟合的 Robeson 上界距离建模
 - 逆向设计或 GAN 生成
 
+## 流程总览
+
+![PIM 气体分离机器学习流程图](./output/imagegen/pim_workflow_overview.png)
+
+## 四档表示与模型对比
+
+![四档结构表示与模型对比图](./output/imagegen/pim_four_track_comparison.png)
+
 ## 项目结构
 
 - [task.md](C:/Users/16976/Desktop/smile_FFV/task.md)：英文任务说明

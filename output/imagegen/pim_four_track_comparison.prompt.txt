@@ -1,0 +1,41 @@
+ORIGINAL PROMPT
+Use case: scientific-educational
+Asset type: README method comparison infographic
+Primary request: Create a polished horizontal comparison infographic showing four modeling tracks for polymer property prediction.
+Scene/backdrop: clean white background with subtle grid and soft teal highlights
+Subject: four vertical comparison cards arranged side by side with a shared evaluation row at the bottom
+Style/medium: premium academic infographic, precise, clean, publication-ready
+Composition/framing: wide landscape, four equal columns, readable labels, minimal clutter
+Color palette: navy, teal, steel blue, sage accents
+Text (verbatim): "Four Representation Tracks"; "Track 1 2D Descriptor"; "Track 2 2D+3D Descriptor"; "Track 3 2D Graph"; "Track 4 3D Graph"; "Shared Split"; "Shared Metrics"
+Constraints: Track 1 card shows Morgan fingerprints plus RDKit descriptors with a sklearn icon; Track 2 shows Track 1 plus 3D descriptors like shape and volume; Track 3 shows atom-bond graph feeding a GNN; Track 4 shows 3D molecular conformer feeding a 3D GNN; bottom shared row shows grouped split by membrane identity, convergence curves, MAE RMSE R2, and fair comparison arrows; include a small callout that FFV can be added later as an auxiliary feature rather than a required core branch
+Avoid: no paragraph blocks, no exaggerated 3D effects, no purple, no black background, no watermark
+
+REVISED PROMPT
+Create a polished scientific-educational README method comparison infographic in a wide 2048x1152 landscape format. Clean white background with a very subtle light-gray grid and soft teal highlights. Premium academic infographic style, precise, clean, publication-ready, vector-like, minimal clutter, highly readable labels.
+
+Top centered title text exactly: "Four Representation Tracks"
+
+Main layout: four equal vertical comparison cards arranged side by side across the canvas, with a shared evaluation row spanning the full width at the bottom. Use navy, teal, steel blue, and sage accents only. No purple, no black background, no watermark, no heavy 3D effects.
+
+Each card should have a crisp rounded rectangle with light shadow and thin steel-blue outline.
+
+Card 1 heading text exactly: "Track 1 2D Descriptor"
+Visuals inside card 1: a simple 2D polymer/molecule icon, labels for Morgan fingerprints and RDKit descriptors as compact chips or icon rows, and a small sklearn-style model icon on the output side. Show a left-to-right flow inside the card.
+
+Card 2 heading text exactly: "Track 2 2D+3D Descriptor"
+Visuals inside card 2: include everything from Track 1 plus added 3D descriptor chips/icons such as shape and volume. Keep them compact and clearly additive. Also feed to a sklearn-style model icon. Clean left-to-right flow.
+
+Card 3 heading text exactly: "Track 3 2D Graph"
+Visuals inside card 3: atom-bond graph diagram feeding a GNN block. Use simple node-edge molecular graph icon, arrows into a labeled GNN module. Clean technical style.
+
+Card 4 heading text exactly: "Track 4 3D Graph"
+Visuals inside card 4: 3D molecular conformer made of nodes connected in space, feeding a 3D GNN block. Keep 3D cue subtle and academic, not dramatic. Clean arrows.
+
+Bottom shared row spanning all columns with a unified panel. Include two labels exactly: "Shared Split" and "Shared Metrics"
+
+Within the shared row, show grouped split by membrane identity, convergence curves, MAE RMSE R2, and fair comparison arrows across all four tracks. Arrange as concise icon-and-label modules, not paragraphs. Use small arrows or brackets to indicate the same split and same metrics applied fairly to all tracks.
+
+Add a small neat side callout bubble or footer note that says FFV can be added later as an auxiliary feature rather than a required core branch. Make it small and secondary.
+
+Overall composition: wide landscape, balanced spacing, precise alignment, readable typography, editorial README infographic aesthetic.

@@ -24,6 +24,14 @@ It is not yet a full platform for:
 - formal literature-fit Robeson upper-bound distance modeling
 - inverse design or GAN-based generation
 
+## Workflow Overview
+
+![PIM gas separation ML workflow](output/imagegen/pim_workflow_overview.png)
+
+## Four Representation Tracks
+
+![Four representation tracks](output/imagegen/pim_four_track_comparison.png)
+
 ## Project Layout
 
 - [task.md](C:/Users/16976/Desktop/smile_FFV/task.md): current English task definition

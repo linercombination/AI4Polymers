@@ -1,0 +1,37 @@
+ORIGINAL PROMPT
+Use case: scientific-educational
+Asset type: README hero infographic for a polymer informatics repository
+Primary request: Create a polished horizontal scientific workflow infographic for PIM gas separation membrane research.
+Scene/backdrop: clean white background with subtle pale blue gradient bands, conference-poster quality
+Subject: a six-step end-to-end research pipeline with clear left-to-right flow arrows
+Style/medium: modern academic infographic, crisp vector-like rendering, highly legible layout, not cartoonish
+Composition/framing: wide landscape, six rounded panels in one row, balanced spacing, strong visual hierarchy
+Color palette: navy, teal, cyan, light gray, restrained scientific palette
+Text (verbatim): "PIM Gas Separation ML Workflow"; "1 Data Curation"; "2 Task Subsets"; "3 Molecular Representation"; "4 Grouped Training"; "5 Evaluation"; "6 Screening"
+Constraints: Step 1 shows literature tables, membrane names, SMILES cleanup, family labels; Step 2 shows CO2 permeability, CO2/CH4 selectivity, CO2/N2 selectivity, FFV pilot as a small exploratory branch not the core; Step 3 shows four representations: 2D descriptors, 2D+3D descriptors, 2D molecular graph, 3D molecular graph; Step 4 shows grouped cross-validation by membrane identity and model comparison; Step 5 shows loss curves, MAE RMSE R2, predicted vs actual scatter; Step 6 shows Robeson-style plot, ranked candidate membranes, and deployment-oriented output folder icon
+Avoid: no dense paragraphs, no fake chemistry formulas, no extra stages, no purple theme, no dark background, no watermark
+
+REVISED PROMPT
+Create a polished horizontal scientific workflow infographic at 2048x1152 for a polymer informatics repository README hero image. Clean white background with subtle pale blue gradient bands, conference-poster quality, modern academic infographic, crisp vector-like rendering, highly legible, not cartoonish. Wide landscape composition with six rounded rectangular panels in one row, balanced spacing, strong visual hierarchy, connected by clear left-to-right flow arrows. Restrained scientific palette: navy, teal, cyan, light gray.
+
+Top title centered: "PIM Gas Separation ML Workflow"
+
+Panel 1 title: "1 Data Curation"
+Visuals: literature tables, membrane names, cleaned SMILES strings, family labels/tags, tidy database icons, spreadsheet/document symbols. Show cleanup arrows and normalization symbols. No fake chemistry formulas.
+
+Panel 2 title: "2 Task Subsets"
+Visuals: distinct labeled task cards for "CO2 permeability", "CO2/CH4 selectivity", "CO2/N2 selectivity" as the core. Include a small side branch labeled "FFV pilot" as exploratory and visibly secondary, not the main path.
+
+Panel 3 title: "3 Molecular Representation"
+Visuals: four compact sub-blocks clearly labeled: "2D descriptors", "2D+3D descriptors", "2D molecular graph", "3D molecular graph". Use abstract molecular icons, descriptor grids, graph nodes/edges, and simple 3D lattice/network cues.
+
+Panel 4 title: "4 Grouped Training"
+Visuals: grouped cross-validation by membrane identity, split/fold diagrams grouped by membrane icons or name tags, and model comparison cards/charts. Emphasize fair train/validation separation by membrane identity.
+
+Panel 5 title: "5 Evaluation"
+Visuals: loss curves, metric badges labeled "MAE", "RMSE", "R2", and a predicted-vs-actual scatter plot with diagonal reference line. Clean, minimal, scientific.
+
+Panel 6 title: "6 Screening"
+Visuals: a Robeson-style plot, ranked candidate membrane list, and a deployment-oriented output folder icon. Suggest top candidates and screening results for practical use.
+
+Overall layout: elegant spacing, consistent iconography, subtle shadows, thin outlines, navy/teal/cyan accents, light gray supporting elements. Ensure all specified text is present exactly as written, highly legible. Avoid dense paragraphs, extra stages, purple theme, dark background, watermark, and fake chemistry formulas.
