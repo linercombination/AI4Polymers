@@ -207,6 +207,18 @@ Or reuse one config and override the representation on the command line:
 python scripts/train_baseline.py --config configs/co2_grouped_descriptor_2d.yaml --method descriptor_2d_3d
 ```
 
+You can also change the repository-wide fallback default in:
+
+- [pim_ml/methods/__init__.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/methods/__init__.py)
+
+by editing:
+
+```python
+DEFAULT_METHOD_NAME = "descriptor_2d"
+```
+
+This is the least recommended switching path because it changes the behavior of any config that does not explicitly set `representation.method`.
+
 List the current method status at any time:
 
 ```bash

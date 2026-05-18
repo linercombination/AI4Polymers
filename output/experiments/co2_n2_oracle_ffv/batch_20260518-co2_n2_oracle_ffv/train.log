@@ -1,0 +1,36 @@
+Run directory: output\experiments\co2_n2_oracle_ffv\batch_20260518-co2_n2_oracle_ffv
+Dataset: output\cleaned_data\co2_n2_subset.csv
+Experiment mode: oracle_ffv
+Representation method: descriptor_2d (2D descriptor baseline)
+Source rows before filters: 71
+Rows used: 8
+Target: log10_sel_co2_n2_from_perm
+Group column: membrane_name_raw
+CV mode: group_kfold
+Folds: 5
+Features: 525
+Models requested: ridge, random_forest, svr, hist_gb, xgboost
+Models run: ridge, random_forest, svr, hist_gb, xgboost
+Convergence diagnostics:
+- fold_metrics.csv now includes train metrics and train-vs-validation gaps
+- convergence_summary.csv summarizes iterative loss availability by model/fold
+Screening mode: CO2/N2 | x=log10_p_co2_barrer | y=log10_sel_co2_n2_from_perm
+Reference upper bound for ranking: 2008
+Summary metrics:
+- ridge: MAE=0.1007, RMSE=0.1278, R2=-0.5093, n_predictions=8
+- random_forest: MAE=0.1018, RMSE=0.1283, R2=-0.5207, n_predictions=8
+- hist_gb: MAE=0.1071, RMSE=0.1255, R2=-0.4551, n_predictions=8
+- svr: MAE=0.1090, RMSE=0.1324, R2=-0.6192, n_predictions=8
+- xgboost: MAE=0.1282, RMSE=0.1546, R2=-1.2082, n_predictions=8
+Dropped all-missing feature columns:
+- thickness_um
+Dataset filters:
+- log10_ffv: before=71, after=8, dropped=63
+Family coverage:
+- backbone_family: 0
+- contortion_unit_family: 0
+- modification_family: 0
+Iterative loss history exported for:
+- hist_gb
+Best-model screening top candidate:
+- model=ridge, sample_id=S006, membrane_name_raw=PIM-1-M, screening_rank_score=0.2126

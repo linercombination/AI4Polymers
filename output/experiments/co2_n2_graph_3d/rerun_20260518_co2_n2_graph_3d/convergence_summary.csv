@@ -1,0 +1,11 @@
+model_name,fold_id,convergence_type,n_iterations,final_train_loss,final_validation_loss
+distance_gnn_small,1,iterative_loss,22,0.02818374628467219,0.11755383759737015
+distance_gnn_small,2,iterative_loss,22,0.02923963081679846,0.09539522230625153
+distance_gnn_small,3,iterative_loss,22,0.05454812401480842,0.08047505468130112
+distance_gnn_small,4,iterative_loss,21,0.04412116227965606,0.05788706615567207
+distance_gnn_small,5,iterative_loss,22,0.04537930153310299,0.06729264557361603
+distance_gnn_medium,1,iterative_loss,24,0.049443104304373264,0.32327648997306824
+distance_gnn_medium,2,iterative_loss,25,0.03454571289190075,0.12318204343318939
+distance_gnn_medium,3,iterative_loss,21,0.047784340290123954,0.13979536294937134
+distance_gnn_medium,4,iterative_loss,21,0.044502567990045795,0.09197942167520523
+distance_gnn_medium,5,iterative_loss,21,0.04300824774984728,0.1328415721654892

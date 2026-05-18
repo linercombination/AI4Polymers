@@ -209,6 +209,20 @@ python scripts/train_baseline.py --config configs/co2_grouped_descriptor_2d.yaml
 python scripts/train_baseline.py --config configs/co2_grouped_descriptor_2d.yaml --method descriptor_2d_3d
 ```
 
+还可以直接修改仓库级默认值，位置在：
+
+- [pim_ml/methods/__init__.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/methods/__init__.py)
+
+把这一行：
+
+```python
+DEFAULT_METHOD_NAME = "descriptor_2d"
+```
+
+改成你想要的默认方法。
+
+但这通常不是最推荐的切换方式，因为它会影响所有没有显式写 `representation.method` 的配置文件。
+
 随时查看当前方法状态：
 
 ```bash

@@ -15,9 +15,12 @@ Provides-Extra: chem
 Requires-Dist: rdkit; extra == "chem"
 Provides-Extra: xgboost
 Requires-Dist: xgboost; extra == "xgboost"
+Provides-Extra: graph
+Requires-Dist: torch; extra == "graph"
 Provides-Extra: full
 Requires-Dist: rdkit; extra == "full"
 Requires-Dist: xgboost; extra == "full"
+Requires-Dist: torch; extra == "full"
 
 # PIM Gas Separation ML Scaffold
 
@@ -60,25 +63,29 @@ Open these first if you are reading the project:
 - [README_zh.md](C:/Users/16976/Desktop/smile_FFV/README_zh.md): Chinese usage guide
 - [task.md](C:/Users/16976/Desktop/smile_FFV/task.md) and [task_zh.md](C:/Users/16976/Desktop/smile_FFV/task_zh.md): current task definition
 - [polymer_pim_gas_separation_pipeline.md](C:/Users/16976/Desktop/smile_FFV/polymer_pim_gas_separation_pipeline.md): research plan
+- [docs/13_graph_training_backend.md](C:/Users/16976/Desktop/smile_FFV/docs/13_graph_training_backend.md): graph backend design and run instructions
 
 Edit these if you want to run experiments without changing Python code:
 
 - [configs](C:/Users/16976/Desktop/smile_FFV/configs): all experiment YAML files
 - [configs/co2_grouped_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d.yaml): Track 1 explicit 2D descriptor config
 - [configs/co2_grouped_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d_3d.yaml): Track 2 explicit 2D+3D descriptor config
-- [configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml): Track 3 future graph config placeholder
-- [configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml): Track 4 future graph config placeholder
+- [configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml): Track 3 explicit 2D graph config
+- [configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml): Track 4 explicit 3D graph config
+- [configs/co2_ch4_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_ch4_descriptor_2d.yaml) and [configs/co2_n2_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_n2_descriptor_2d.yaml): explicit screening configs for Track 1
+- [configs/co2_ch4_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_ch4_descriptor_2d_3d.yaml) and [configs/co2_n2_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_n2_descriptor_2d_3d.yaml): explicit screening configs for Track 2
 
 Run these if you want to execute training:
 
 - [scripts/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/scripts/train_baseline.py): thin entry script
-- [pim_ml/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/train_baseline.py): real trainer, CLI, logging, and reporting
+- [pim_ml/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/train_baseline.py): main CLI router plus table trainer
+- [pim_ml/train_graph.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/train_graph.py): dedicated graph-training backend for `graph_2d` and `graph_3d`
 
 Inspect these after a run finishes:
 
 - [output/cleaned_data](C:/Users/16976/Desktop/smile_FFV/output/cleaned_data): cleaned datasets and summaries
 - [output/experiments](C:/Users/16976/Desktop/smile_FFV/output/experiments): run folders, metrics, plots, and saved models
-- [pim_ml/methods](C:/Users/16976/Desktop/smile_FFV/pim_ml/methods): per-representation feature logic and future graph scaffolds
+- [pim_ml/methods](C:/Users/16976/Desktop/smile_FFV/pim_ml/methods): per-representation feature logic for descriptors and graph methods
 
 ### File Structure
 
@@ -89,10 +96,18 @@ smile_FFV/
 |   |-- co2_grouped_descriptor_2d_3d.yaml
 |   |-- co2_grouped_graph_2d.yaml
 |   |-- co2_grouped_graph_3d.yaml
+|   |-- co2_ch4_descriptor_2d.yaml
+|   |-- co2_ch4_descriptor_2d_3d.yaml
+|   |-- co2_ch4_graph_2d.yaml
+|   |-- co2_ch4_graph_3d.yaml
 |   |-- co2_grouped_baseline.yaml
 |   |-- co2_ch4_screening.yaml
 |   |-- co2_ch4_oracle_ffv.yaml
 |   |-- co2_grouped_oracle_ffv.yaml
+|   |-- co2_n2_descriptor_2d.yaml
+|   |-- co2_n2_descriptor_2d_3d.yaml
+|   |-- co2_n2_graph_2d.yaml
+|   |-- co2_n2_graph_3d.yaml
 |   |-- co2_n2_oracle_ffv.yaml
 |   |-- co2_n2_screening.yaml
 |   `-- ffv_pilot.yaml
@@ -110,9 +125,11 @@ smile_FFV/
 |   |-- models.py
 |   |-- reporting.py
 |   |-- splits.py
-|   `-- train_baseline.py
+|   |-- train_baseline.py
+|   `-- train_graph.py
 |-- requirements/
 |   |-- base.txt
+|   |-- graph.txt
 |   `-- server.txt
 |-- scripts/
 |   `-- train_baseline.py
@@ -147,6 +164,7 @@ If you manage the Python interpreter yourself, use:
 
 - [requirements/base.txt](C:/Users/16976/Desktop/smile_FFV/requirements/base.txt)
 - [requirements/server.txt](C:/Users/16976/Desktop/smile_FFV/requirements/server.txt)
+- [requirements/graph.txt](C:/Users/16976/Desktop/smile_FFV/requirements/graph.txt) for graph runs
 
 Typical usage:
 
@@ -154,6 +172,13 @@ Typical usage:
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements/server.txt
+pip install -e .
+```
+
+For graph methods, install the graph dependency bundle instead:
+
+```bash
+pip install -r requirements/graph.txt
 pip install -e .
 ```
 
@@ -192,14 +217,31 @@ Use one of the ready-made configs:
 
 - Track 1 `descriptor_2d`: [configs/co2_grouped_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d.yaml) - runnable now
 - Track 2 `descriptor_2d_3d`: [configs/co2_grouped_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d_3d.yaml) - runnable now
-- Track 3 `graph_2d`: [configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml) - scaffold only for now
-- Track 4 `graph_3d`: [configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml) - scaffold only for now
+- Track 3 `graph_2d`: [configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml) - runnable after installing `torch`
+- Track 4 `graph_3d`: [configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml) - runnable after installing `torch`
+
+The same four-track naming pattern is now also available for screening tasks:
+
+- `CO2/CH4`: `co2_ch4_descriptor_2d.yaml`, `co2_ch4_descriptor_2d_3d.yaml`, `co2_ch4_graph_2d.yaml`, `co2_ch4_graph_3d.yaml`
+- `CO2/N2`: `co2_n2_descriptor_2d.yaml`, `co2_n2_descriptor_2d_3d.yaml`, `co2_n2_graph_2d.yaml`, `co2_n2_graph_3d.yaml`
 
 Or reuse one config and override the representation on the command line:
 
 ```bash
 python scripts/train_baseline.py --config configs/co2_grouped_descriptor_2d.yaml --method descriptor_2d_3d
 ```
+
+You can also change the repository-wide fallback default in:
+
+- [pim_ml/methods/__init__.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/methods/__init__.py)
+
+by editing:
+
+```python
+DEFAULT_METHOD_NAME = "descriptor_2d"
+```
+
+This is the least recommended switching path because it changes the behavior of any config that does not explicitly set `representation.method`.
 
 List the current method status at any time:
 
@@ -210,7 +252,26 @@ pim-train-baseline --list-methods
 Notes:
 
 - `co2_grouped_baseline.yaml` remains as the backward-compatible alias for the old default Track 1 setup.
-- `graph_2d` and `graph_3d` configs are intentionally present now so future graph training can plug into the same experiment layout, but the current trainer will stop with a clear message if you try to run them today.
+- `graph_2d` and `graph_3d` now use a dedicated graph trainer instead of the old table backend.
+- If `torch` is missing, the graph entrypoint stops immediately with a clear install hint instead of failing later inside training.
+
+## Graph Prerequisite
+
+Graph runs need PyTorch. The repository already includes the code path and configs, but the current local environment must contain `torch` before `graph_2d` or `graph_3d` can start.
+
+Recommended setup:
+
+```bash
+conda env create -f environment.yml
+conda activate pim-gas-ml
+```
+
+Or, if you already manage Python yourself:
+
+```bash
+pip install -r requirements/graph.txt
+pip install -e .
+```
 
 ## Quick Start
 
@@ -267,13 +328,12 @@ python scripts/train_baseline.py --config configs/co2_n2_oracle_ffv.yaml
 For each config, the script:
 
 1. loads the cleaned CSV subset
-2. builds Morgan fingerprint features from `smiles_single`
-3. adds a small RDKit descriptor block
-4. adds experimental numeric inputs such as `log1p(aging_days)` and optional `thickness_um`
-5. applies the requested cross-validation strategy
-6. trains baseline regressors
-7. saves metrics, predictions, plots, and final refit models
-8. optionally exports Robeson-style screening outputs when the config enables `screening`
+2. builds either descriptor features or graph records depending on `representation.method`
+3. adds experimental numeric inputs such as `log1p(aging_days)` and optional `thickness_um`
+4. applies the requested cross-validation strategy
+5. trains either sklearn regressors or dense graph regressors
+6. saves metrics, predictions, plots, and final refit models
+7. optionally exports Robeson-style screening outputs when the config enables `screening`
 
 Supported CV modes:
 
@@ -288,13 +348,15 @@ Supported models:
 - `svr`
 - `hist_gb`
 - `xgboost` when available
+- `gcn_small` and `gcn_medium` for `graph_2d`
+- `distance_gnn_small` and `distance_gnn_medium` for `graph_3d`
 
 Representation methods:
 
 - `descriptor_2d`: current default mainline, directly runnable
 - `descriptor_2d_3d`: table pipeline extended with 3D numeric descriptor slots, directly runnable
-- `graph_2d`: scaffolded directory and config placeholder for future graph training
-- `graph_3d`: scaffolded directory and config placeholder for future 3D graph training
+- `graph_2d`: dedicated 2D graph pipeline with atom features plus dense message passing
+- `graph_3d`: dedicated 3D graph pipeline with RDKit conformers plus distance-aware dense message passing
 
 ## Training Visibility
 
@@ -415,7 +477,8 @@ Inside a run folder you will typically get:
 - `fold_metrics.csv`
 - `convergence_summary.csv`
 - `summary_metrics.csv`
-- `models/*.joblib`
+- `models/*.joblib` for table runs
+- `models/*.pt` for graph runs
 - `plots/*.png`
 - `convergence/*.csv`
 

@@ -2,11 +2,12 @@
 
 ## 1. 当前仓库的环境文件
 
-当前已经有三套依赖入口：
+当前已经有四套依赖入口：
 
-- `environment.yml`
-- `requirements/base.txt`
-- `requirements/server.txt`
+1. `environment.yml`
+2. `requirements/base.txt`
+3. `requirements/server.txt`
+4. `requirements/graph.txt`
 
 以及包定义：
 
@@ -14,9 +15,9 @@
 
 ## 2. 这几套文件各自的定位
 
-### `environment.yml`
+### 2.1 `environment.yml`
 
-适合本地或服务器上直接创建 Conda 环境，已经包含：
+适合本地或服务器直接创建 Conda 环境，当前已经包含：
 
 - `python=3.11`
 - `rdkit`
@@ -28,42 +29,57 @@
 - `joblib`
 - `tqdm`
 - `xgboost`
+- `pytorch`
 
-并通过 `pip -e .` 安装当前项目。
+并通过：
 
-### `requirements/base.txt`
+- `pip -e .`
 
-只包含最基础的 Python 依赖，不含 `rdkit` 和 `xgboost`。
+安装当前项目。
 
-### `requirements/server.txt`
+### 2.2 `requirements/base.txt`
 
-在 `base.txt` 基础上额外加入：
+只包含最基础的 Python 依赖。
+
+### 2.3 `requirements/server.txt`
+
+在 `base.txt` 基础上补充：
 
 - `xgboost`
 
-## 3. 为什么推荐新建独立环境
+适合只运行表格方法。
 
-这一步尤其适合后续服务器训练，因为可以把：
+### 2.4 `requirements/graph.txt`
 
-- Python 版本
-- RDKit
-- xgboost
-- 当前项目代码
+在 `server.txt` 基础上补充：
 
-统一锁定在一个相对稳定的环境里，减少“本地能跑、服务器不能跑”的情况。
+- `torch`
 
-## 4. 推荐安装方式
+适合运行：
 
-### 方案 A：Conda
+- `graph_2d`
+- `graph_3d`
+
+## 3. 推荐安装方式
+
+### 3.1 推荐：Conda
 
 ```bash
 conda env create -f environment.yml
 conda activate pim-gas-ml
 ```
 
-### 方案 B：venv + pip
+优点：
 
-如果你已经在服务器上有稳定 Python 环境，也可以：
+- RDKit 更稳定
+- PyTorch 一并纳入环境
+- 后续迁移到服务器更容易复现
+
+### 3.2 可选：venv + pip
+
+如果你已经自己管理 Python：
+
+表格方法：
 
 ```bash
 python -m venv .venv
@@ -72,7 +88,16 @@ pip install -r requirements\server.txt
 pip install -e .
 ```
 
-## 5. 为什么还要 `pip install -e .`
+图方法：
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements\graph.txt
+pip install -e .
+```
+
+## 4. 为什么还要 `pip install -e .`
 
 因为命令行入口：
 
@@ -80,13 +105,19 @@ pip install -e .
 pim-train-baseline
 ```
 
-是通过 `pyproject.toml` 里的 `project.scripts` 暴露出来的。没有安装当前项目，这个命令通常不可用。
+是通过 `pyproject.toml` 里的 `project.scripts` 暴露出来的。
 
-## 6. 服务器部署时最建议保留什么
+如果没有把当前项目安装为本地包：
 
-建议最少同步以下内容：
+- 命令行入口通常不可用
+- 本地模块导入也更容易混乱
+
+## 5. 服务器部署时建议同步哪些内容
+
+最少建议同步：
 
 - `configs/`
+- `docs/`
 - `pim_ml/`
 - `scripts/`
 - `requirements/`
@@ -94,26 +125,49 @@ pim-train-baseline
 - `pyproject.toml`
 - `output/cleaned_data/`
 
-其中 `output/cleaned_data/` 很重要，因为当前训练入口直接依赖这些清洗后 CSV。
+其中 `output/cleaned_data/` 很重要，因为当前训练入口直接依赖这些清洗后子集。
 
-## 7. CPU / GPU 的现实建议
+## 6. CPU / GPU 的现实建议
 
-当前 baseline 完全可以先在 CPU 上跑：
+### 6.1 表格方法
 
-- 数据规模小
-- 模型都是传统机器学习回归器
+当前完全可以先在 CPU 上跑：
+
+- 样本量不大
+- 模型是经典机器学习回归器
 - 训练时间可控
 
-因此服务器的主要价值不是 GPU，而是：
+### 6.2 图方法
 
-- 环境更稳定
-- 可批量跑多个配置
-- 方便做长期复现实验
+当前图方法也能在 CPU 上跑，但：
 
-## 8. 部署后的标准运行方式
+- 速度会明显慢于表格方法
+- 如果后续扩展样本量，更建议上 GPU
+
+因此服务器的价值主要有两层：
+
+1. 环境统一和复现更稳定
+2. 图方法后续扩展时更方便
+
+## 7. 当前部署后的标准运行命令
+
+表格方法：
 
 ```bash
-pim-train-baseline --config configs/co2_ch4_screening.yaml
+pim-train-baseline --config configs/co2_grouped_descriptor_2d.yaml
 ```
 
-建议把每次 run 的输出保存在默认时间戳目录，不要反复覆盖同一个结果目录，这样后续回溯会更清晰。
+图方法：
+
+```bash
+pim-train-baseline --config configs/co2_grouped_graph_2d.yaml
+```
+
+## 8. 依赖未安装时会发生什么
+
+当前仓库已经做了显式提示：
+
+- 若没有安装 `xgboost`，表格训练会跳过该模型并记录原因
+- 若没有安装 `torch`，图训练会在启动时立刻报出清晰提示
+
+这比“训练到中途才崩溃”更适合服务器批量实验管理。

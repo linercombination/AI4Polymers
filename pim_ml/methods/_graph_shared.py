@@ -130,33 +130,49 @@ def _conformer_to_heavy_atom_coordinates(mol: Chem.Mol) -> np.ndarray:
     return np.asarray(rows, dtype=np.float32)
 
 
+def generate_planar_coordinates(smiles: str) -> np.ndarray:
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is None:
+        raise ValueError(f"Failed to parse SMILES for 2D fallback generation: {smiles}")
+
+    mol_2d = Chem.Mol(mol)
+    AllChem.Compute2DCoords(mol_2d)
+    coords = _conformer_to_heavy_atom_coordinates(mol_2d)
+    if coords.shape[1] == 3:
+        coords[:, 2] = 0.0
+    return coords.astype(np.float32)
+
+
 def generate_heavy_atom_coordinates(smiles: str) -> np.ndarray:
     RDLogger.DisableLog("rdApp.*")
     try:
-        heavy_mol = Chem.MolFromSmiles(smiles)
-        if heavy_mol is None:
-            raise ValueError(f"Failed to parse SMILES for 3D generation: {smiles}")
+        try:
+            heavy_mol = Chem.MolFromSmiles(smiles)
+            if heavy_mol is None:
+                raise ValueError(f"Failed to parse SMILES for 3D generation: {smiles}")
 
-        mol_with_h = Chem.AddHs(heavy_mol)
-        params = AllChem.ETKDGv3()
-        params.randomSeed = 42
-        params.useRandomCoords = True
-        status = AllChem.EmbedMolecule(mol_with_h, params)
-        if status != 0:
-            params.randomSeed = 31415
+            mol_with_h = Chem.AddHs(heavy_mol)
+            params = AllChem.ETKDGv3()
+            params.randomSeed = 42
+            params.useRandomCoords = True
             status = AllChem.EmbedMolecule(mol_with_h, params)
-        if status != 0:
-            raise ValueError("RDKit conformer generation failed")
+            if status != 0:
+                params.randomSeed = 31415
+                status = AllChem.EmbedMolecule(mol_with_h, params)
+            if status != 0:
+                raise ValueError("RDKit conformer generation failed")
 
-        has_dummy_atoms = any(atom.GetAtomicNum() == 0 for atom in mol_with_h.GetAtoms())
-        if not has_dummy_atoms:
-            try:
-                AllChem.UFFOptimizeMolecule(mol_with_h, maxIters=200)
-            except Exception:
-                pass
+            has_dummy_atoms = any(atom.GetAtomicNum() == 0 for atom in mol_with_h.GetAtoms())
+            if not has_dummy_atoms:
+                try:
+                    AllChem.UFFOptimizeMolecule(mol_with_h, maxIters=200)
+                except Exception:
+                    pass
 
-        mol_no_h = Chem.RemoveHs(mol_with_h)
-        return _conformer_to_heavy_atom_coordinates(mol_no_h)
+            mol_no_h = Chem.RemoveHs(mol_with_h)
+            return _conformer_to_heavy_atom_coordinates(mol_no_h)
+        except Exception:
+            return generate_planar_coordinates(smiles)
     finally:
         RDLogger.EnableLog("rdApp.*")
 

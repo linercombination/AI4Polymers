@@ -28,7 +28,7 @@ METHOD_MODULES = {
     "graph_3d": "pim_ml.methods.graph_3d",
 }
 
-DEFAULT_METHOD_NAME = "descriptor_2d"
+DEFAULT_METHOD_NAME = "descriptor_2d_3d"
 
 
 def list_available_methods() -> list[str]:

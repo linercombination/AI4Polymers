@@ -1,0 +1,30 @@
+{
+  "dataset_path": "output\\cleaned_data\\ffv_pilot_subset.csv",
+  "experiment_mode": "baseline",
+  "representation_method": "descriptor_2d",
+  "representation_label": "2D descriptor baseline",
+  "source_rows_before_filters": 12,
+  "rows": 12,
+  "unique_groups": null,
+  "target_column": "ffv",
+  "feature_count": 524,
+  "dropped_feature_columns": [
+    "thickness_um"
+  ],
+  "dataset_filters": [],
+  "cv_mode": "loo",
+  "n_folds": 12,
+  "family_coverage": {
+    "backbone_family": 0,
+    "contortion_unit_family": 0,
+    "modification_family": 0
+  },
+  "convergence_artifacts": {
+    "fold_metrics_includes_train_metrics": true,
+    "iterative_history_models": [
+      "hist_gb"
+    ]
+  },
+  "screening": null,
+  "skipped_models": []
+}

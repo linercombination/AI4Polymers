@@ -1,0 +1,25 @@
+Run directory: output\experiments\co2_ch4_graph_3d\rerun_20260518_co2_ch4_graph_3d
+Dataset: output\cleaned_data\co2_ch4_subset.csv
+Experiment mode: baseline
+Representation method: graph_3d (3D graph model)
+Source rows before filters: 71
+Rows used: 71
+Target: log10_sel_co2_ch4_from_perm
+Group column: membrane_name_raw
+CV mode: group_kfold
+Folds: 5
+Node features: 11
+Global features: 4
+Coordinate features: 3
+Models requested: distance_gnn_small, distance_gnn_medium
+Models run: distance_gnn_small, distance_gnn_medium
+Training device: cpu
+Convergence diagnostics:
+- fold_metrics.csv includes train metrics and train-vs-validation gaps
+- convergence_summary.csv summarizes graph epoch histories by model/fold
+Screening mode: CO2/CH4 | x=log10_p_co2_barrer | y=log10_sel_co2_ch4_from_perm
+Reference upper bound for ranking: 2008
+Summary metrics:
+- distance_gnn_small: MAE=0.1212, RMSE=0.1625, R2=0.2749
+- distance_gnn_medium: MAE=0.2048, RMSE=0.2749, R2=-1.0749
+Runtime seconds: 42.01

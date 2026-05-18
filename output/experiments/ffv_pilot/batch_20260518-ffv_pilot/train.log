@@ -1,0 +1,30 @@
+Run directory: output\experiments\ffv_pilot\batch_20260518-ffv_pilot
+Dataset: output\cleaned_data\ffv_pilot_subset.csv
+Experiment mode: baseline
+Representation method: descriptor_2d (2D descriptor baseline)
+Source rows before filters: 12
+Rows used: 12
+Target: ffv
+Group column: None
+CV mode: loo
+Folds: 12
+Features: 524
+Models requested: ridge, random_forest, svr, hist_gb, xgboost
+Models run: ridge, random_forest, svr, hist_gb, xgboost
+Convergence diagnostics:
+- fold_metrics.csv now includes train metrics and train-vs-validation gaps
+- convergence_summary.csv summarizes iterative loss availability by model/fold
+Summary metrics:
+- random_forest: MAE=0.0289, RMSE=0.0371, R2=-0.2153, n_predictions=12
+- hist_gb: MAE=0.0312, RMSE=0.0374, R2=-0.2299, n_predictions=12
+- svr: MAE=0.0345, RMSE=0.0367, R2=-0.1862, n_predictions=12
+- xgboost: MAE=0.0416, RMSE=0.0492, R2=-1.1327, n_predictions=12
+- ridge: MAE=0.0433, RMSE=0.0495, R2=-1.1592, n_predictions=12
+Dropped all-missing feature columns:
+- thickness_um
+Family coverage:
+- backbone_family: 0
+- contortion_unit_family: 0
+- modification_family: 0
+Iterative loss history exported for:
+- hist_gb

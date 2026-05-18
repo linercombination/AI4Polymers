@@ -12,8 +12,11 @@ pim_ml/models.py
 pim_ml/reporting.py
 pim_ml/splits.py
 pim_ml/train_baseline.py
+pim_ml/train_graph.py
 pim_ml/methods/__init__.py
 pim_ml/methods/_descriptor_shared.py
+pim_ml/methods/_graph_models.py
+pim_ml/methods/_graph_shared.py
 pim_ml/methods/_table_models.py
 pim_ml/methods/descriptor_2d/__init__.py
 pim_ml/methods/descriptor_2d/features.py

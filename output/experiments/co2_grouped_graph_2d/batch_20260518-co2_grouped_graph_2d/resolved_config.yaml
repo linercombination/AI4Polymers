@@ -1,0 +1,37 @@
+seed: 42
+experiment:
+  display_name: CO2 grouped comparison - Track 3 2D graph
+  representation_track: track_3_graph_2d
+  runner_status: ready
+  note: Requires the optional torch dependency and uses the dedicated graph trainer.
+representation:
+  method: graph_2d
+dataset:
+  csv_path: output/cleaned_data/co2_main_subset.csv
+  target_column: log10_p_co2_barrer
+  group_column: membrane_name_raw
+  id_columns:
+  - sample_id
+  - membrane_name_raw
+  - source_sheet
+  - source_row_excel
+features:
+  smiles_column: smiles_single
+  aging_column: aging_days
+  thickness_column: thickness_um
+  fingerprint_radius: 2
+  fingerprint_bits: 512
+cv:
+  mode: group_kfold
+  n_splits: 5
+graph_training:
+  batch_size: 16
+  max_epochs: 120
+  patience: 20
+  learning_rate: 0.001
+  weight_decay: 0.0001
+models:
+- gcn_small
+- gcn_medium
+output:
+  root_dir: output/experiments/co2_grouped_graph_2d

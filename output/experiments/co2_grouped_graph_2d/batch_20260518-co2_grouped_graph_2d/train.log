@@ -1,0 +1,23 @@
+Run directory: output\experiments\co2_grouped_graph_2d\batch_20260518-co2_grouped_graph_2d
+Dataset: output\cleaned_data\co2_main_subset.csv
+Experiment mode: baseline
+Representation method: graph_2d (2D graph model)
+Source rows before filters: 74
+Rows used: 74
+Target: log10_p_co2_barrer
+Group column: membrane_name_raw
+CV mode: group_kfold
+Folds: 5
+Node features: 11
+Global features: 4
+Coordinate features: 0
+Models requested: gcn_small, gcn_medium
+Models run: gcn_small, gcn_medium
+Training device: cpu
+Convergence diagnostics:
+- fold_metrics.csv includes train metrics and train-vs-validation gaps
+- convergence_summary.csv summarizes graph epoch histories by model/fold
+Summary metrics:
+- gcn_small: MAE=0.5126, RMSE=0.6124, R2=-0.0843
+- gcn_medium: MAE=0.6282, RMSE=0.7627, R2=-0.6817
+Runtime seconds: 37.44

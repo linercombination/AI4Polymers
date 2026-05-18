@@ -1,0 +1,32 @@
+Run directory: output\experiments\co2_n2_descriptor_2d\batch_20260518-co2_n2_descriptor_2d
+Dataset: output\cleaned_data\co2_n2_subset.csv
+Experiment mode: baseline
+Representation method: descriptor_2d (2D descriptor baseline)
+Source rows before filters: 71
+Rows used: 71
+Target: log10_sel_co2_n2_from_perm
+Group column: membrane_name_raw
+CV mode: group_kfold
+Folds: 5
+Features: 525
+Models requested: ridge, random_forest, svr, hist_gb, xgboost
+Models run: ridge, random_forest, svr, hist_gb, xgboost
+Convergence diagnostics:
+- fold_metrics.csv now includes train metrics and train-vs-validation gaps
+- convergence_summary.csv summarizes iterative loss availability by model/fold
+Screening mode: CO2/N2 | x=log10_p_co2_barrer | y=log10_sel_co2_n2_from_perm
+Reference upper bound for ranking: 2008
+Summary metrics:
+- random_forest: MAE=0.1077, RMSE=0.1716, R2=0.1629, n_predictions=71
+- ridge: MAE=0.1104, RMSE=0.1795, R2=0.0847, n_predictions=71
+- svr: MAE=0.1234, RMSE=0.1881, R2=-0.0054, n_predictions=71
+- xgboost: MAE=0.1254, RMSE=0.1935, R2=-0.0645, n_predictions=71
+- hist_gb: MAE=0.1306, RMSE=0.1922, R2=-0.0496, n_predictions=71
+Family coverage:
+- backbone_family: 0
+- contortion_unit_family: 0
+- modification_family: 0
+Iterative loss history exported for:
+- hist_gb
+Best-model screening top candidate:
+- model=random_forest, sample_id=S048, membrane_name_raw=PIM-TMN-Trip, screening_rank_score=0.3261

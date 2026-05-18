@@ -1,21 +1,28 @@
 # FFV 过渡实验设计
 
-这份文档专门说明 `FFV` 如何在当前效果较差的情况下，仍然以“可控、无泄漏、可解释”的方式被纳入后续研究方案。
+这份文档专门说明 `FFV` 如何在当前样本量不足的情况下，以“可控、无泄漏、可解释”的方式纳入研究主线。
 
-注意：本文件现在同时描述两件事：
+它区分三件事：
 
+1. `baseline`
+2. `oracle_ffv`
+3. `stacked_ffv`
+
+其中：
+
+- `baseline` 已经稳定可运行
 - `oracle_ffv` 已经有可直接运行的配置
-- `stacked_ffv` 仍然是后续目标设计
+- `stacked_ffv` 仍然是后续计划
 
 ## 1. 为什么需要这份设计
 
-当前 `FFV` pilot 数据只有 `12` 行，直接做稳定的：
+当前 `FFV` pilot 数据量很小，直接稳定做：
 
 `SMILES -> FFV -> downstream gas prediction`
 
 往往不现实。
 
-但我们仍然想先回答一个更有价值的问题：
+但在进入完整链路之前，我们仍然想先回答一个更基础的问题：
 
 `如果 FFV 能被完美获得，它到底值不值得被纳入下游任务？`
 
@@ -23,129 +30,129 @@
 
 ## 2. 三层实验模式
 
-## 2.1 `baseline`
+### 2.1 `baseline`
 
 当前主线基线：
 
 - 输入：`SMILES + aging (+ optional thickness)`
 - 下游任务：`CO2`、`CO2/CH4`、`CO2/N2`
 
-## 2.2 `oracle_ffv`
+它回答的问题是：
 
-过渡性上限实验：
+`在不依赖 FFV 的情况下，当前主线能做到什么程度？`
 
-- 输入：baseline + 真实 `ffv`
-- 作用：给出“完美 FFV”能带来的理论上限
+### 2.2 `oracle_ffv`
+
+理想信息注入上限实验：
+
+- 输入：baseline + 真实 `FFV`
+- 代码中具体是 `log10_ffv -> ffv_oracle_log10`
+- 只保留 `FFV` 真值存在的样本
 
 它回答的问题是：
 
-1. FFV 是否有潜在增益
-2. 这个潜在增益大不大
-3. 是否值得继续投入 FFV 数据补充
+`如果测试样本的真实 FFV 完全已知，下游性能最多可能提升多少？`
 
-当前仓库已经提供 3 个可运行配置：
+这不是部署流程，而是理论上限或敏感性评估。
+
+### 2.3 `stacked_ffv`
+
+未来完整链路：
+
+- 第一步：`SMILES -> predicted FFV`
+- 第二步：`predicted FFV + baseline features -> downstream target`
+
+它回答的问题是：
+
+`真实可部署的两阶段链路，能回收多少 oracle 上限带来的收益？`
+
+## 3. 当前 `oracle_ffv` 的代码实现
+
+对应配置：
 
 - `configs/co2_grouped_oracle_ffv.yaml`
 - `configs/co2_ch4_oracle_ffv.yaml`
 - `configs/co2_n2_oracle_ffv.yaml`
 
-当前实现规则是：
+它们的两个关键部分是：
 
-- 先用 `require_non_missing_columns: [log10_ffv]` 过滤，只保留 `FFV` 非缺失样本
-- 再把 `log10_ffv` 作为 `ffv_oracle_log10` 特征加入模型
-- 下游评估方式仍保持 grouped split
+### 3.1 样本过滤
 
-所以它是严格的 FFV-overlap upper-bound experiment，而不是“全样本增强版”。
+```yaml
+require_non_missing_columns:
+  - log10_ffv
+```
 
-## 2.3 `stacked_ffv`
+含义：
 
-未来全链路实验：
+- 没有真实 `FFV` 的样本直接不进入这次实验
 
-- 上游：`SMILES -> FFV`
-- 下游：`SMILES + aging (+ optional thickness) + predicted_FFV -> gas task`
+### 3.2 真值注入
 
-这一步才是真正的 FFV 级联建模。
+```yaml
+extra_numeric_features:
+  - column: log10_ffv
+    feature_name: ffv_oracle_log10
+    transform: identity
+    add_missing_indicator: false
+```
 
-## 3. 正确的比较顺序
+含义：
 
-推荐固定比较下面三组：
+- 直接把真实 `FFV` 当成输入特征送给下游模型
 
-1. `baseline`
-2. `oracle_ffv`
-3. `stacked_ffv`
+## 4. 它为什么不叫“消融实验”
 
-这样可以把两个问题分开：
+`oracle_ffv` 更准确的中文是：
 
-1. FFV 这个物理量本身有没有价值
-2. 当前 FFV 预测器是否已经足以把这部分价值传递到下游
+- 上限实验
+- 理想上界实验
+- 真值注入对照实验
 
-## 4. 最关键的泄漏规则
+它不是典型的“消融实验”，因为它不是把某个模块去掉，而是额外给了一个测试时本来不该知道的理想信息。
 
-`oracle_ffv` 和 `stacked_ffv` 最大的区别不只是特征来源，还在于数据泄漏风险。
+## 5. 如何解读结果
 
-### `oracle_ffv`
+### 5.1 如果 `oracle_ffv` 明显优于 baseline
 
-它本身是上限实验，所以可以直接使用真实 `ffv`。
+说明：
 
-但必须在报告中明确写成：
+- FFV 理论上是有价值的
+- 后续继续做 `stacked_ffv` 是值得的
 
-- upper-bound experiment
-- sensitivity experiment
-- oracle setting
+### 5.2 如果 `oracle_ffv` 和 baseline 差不多
 
-不能把它写成已经可部署的完整预测链。
+说明：
 
-### `stacked_ffv`
+- 即使 FFV 完美已知，它对当前任务也没有明显帮助
+- 那么后续投入 FFV 支线的优先级就应该下降
 
-这一步绝对不能把同一行样本的真实 `ffv` 直接喂给下游验证集。
+## 6. 理想关系
 
-正确做法是：
+后续若三层都具备，常见关系应该是：
 
-1. 先对 FFV 任务做交叉验证预测
-2. 为每一条下游样本生成无泄漏的 `ffv_oof_pred`
-3. 下游模型只使用 `ffv_oof_pred`
+`baseline <= stacked_ffv <= oracle_ffv`
 
-## 5. 当前代码改造时建议的最小实现顺序
+也就是：
 
-### 第一步：先跑 `oracle_ffv`
+- `oracle_ffv` 最好
+- `stacked_ffv` 次之
+- `baseline` 最保守
 
-这一步已经可以直接执行，因为：
+## 7. 当前局限
 
-- 不需要先解决 FFV 小样本性能问题
-- 可以立刻回答“FFV 值不值得”
-- 还能提前验证下游接口设计是否合理
+`oracle_ffv` 的现实限制也必须明确写出：
 
-### 第二步：再加 `stacked_ffv`
+- 它使用的是真实 FFV，而不是预测 FFV
+- 它只在有 `FFV` 真值的小样本子集上运行
+- 因此它只能作为方向验证或上限评估，不能作为最终结论
 
-这一步需要：
+## 8. 当前最合理的研究位置
 
-1. 上游 FFV 预测结果缓存
-2. out-of-fold 特征回写
-3. 下游配置能够显式区分 `true_ffv` 和 `predicted_ffv`
+在当前项目里，`oracle_ffv` 最合理的位置是：
 
-## 6. 文档和结果中应该怎样命名
+1. 先跑四档结构表示主线
+2. 再用 `oracle_ffv` 回答“FFV 值不值得继续投入”
+3. 若上限明显存在，再推进 `stacked_ffv`
 
-建议统一使用下面的实验名：
-
-- `baseline`
-- `oracle_ffv`
-- `stacked_ffv`
-
-不要混用：
-
-- `ffv-enhanced`
-- `full_chain`
-- `ideal_ffv`
-
-除非这些名称在配置和输出里也同步规范化。
-
-## 7. 当前最合理的表述方式
-
-如果你现在要写阶段性方案，最稳妥的表述是：
-
-1. 当前主线仍是 grouped baseline 与 pair screening。
-2. `FFV pilot` 负责判断 FFV 是否有可学习信号。
-3. `oracle_ffv` 负责量化 FFV 的理论上限价值。
-4. `stacked_ffv` 是后续数据补全后的真实全链路目标。
-
-这样既不会高估当前 FFV 模型，也不会把 FFV 彻底排除在方案之外。
+这样研究路径最稳，也最容易解释。

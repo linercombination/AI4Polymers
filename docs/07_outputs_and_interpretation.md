@@ -8,7 +8,7 @@
 
 下生成一整套结果文件。
 
-其中通常包含 3 个子目录：
+其中通常包含三个子目录：
 
 - `plots/`
 - `models/`
@@ -19,135 +19,186 @@
 ### 2.1 配置与日志
 
 - `resolved_config.yaml`
-  保存本次实际执行的配置快照。
+  保存本次实际运行时的完整配置快照。
 
 - `train.log`
-  保存 run 摘要、模型指标排名、screening 摘要等文字信息。
+  保存运行摘要、模型排名、screening 摘要等文字信息。
 
 ### 2.2 数据与切分
 
 - `dataset_summary.json`
-  记录样本量、分组数、特征数、family 覆盖、screening 参数等。
+  记录：
 
-  当前还会额外记录：
+  - 数据路径
+  - 实验模式
+  - 表示方法
+  - 样本量
+  - 分组数
+  - 特征维度
+  - 数据过滤记录
+  - screening 参数
 
-  - `experiment_mode`
-  - `source_rows_before_filters`
-  - `dataset_filters`
-  - `dropped_feature_columns`
+  对图方法还会额外写入：
+
+  - `node_feature_count`
+  - `global_feature_count`
+  - `coordinate_feature_count`
+  - `graph_training`
+  - `device`
 
 - `feature_manifest.csv`
-  记录每个特征属于哪个 block。
+  说明每个特征属于哪个 block。
+
+  表格方法常见 block：
+
+  - `morgan_fingerprint`
+  - `rdkit_descriptor`
+  - `experimental_numeric`
+  - `descriptor_3d`
+
+  图方法常见 block：
+
+  - `graph_node_feature`
+  - `graph_coordinate`
+  - `experimental_numeric`
+  - `extra_numeric`
+  - `descriptor_3d_numeric`
 
 - `split_manifest.csv`
-  记录每个 fold 的测试样本归属。
+  记录每个 fold 里哪些样本进入了测试集，用于检查 grouped split 是否符合预期。
 
-### 2.3 预测与指标
+### 2.3 指标与预测
 
 - `predictions.csv`
-  所有模型在交叉验证测试折上的逐样本预测。
+  是最重要的逐样本结果表，通常包含：
+
+  - 样本 ID
+  - 膜名称
+  - fold 编号
+  - 模型名
+  - `y_true`
+  - `y_pred`
+  - `residual`
 
 - `fold_metrics.csv`
-  每个模型、每个 fold 的训练集和验证集指标。
+  是逐 fold 的指标表，当前会同时记录：
+
+  - 训练集 MAE / RMSE / R2
+  - 验证集 MAE / RMSE / R2
+  - train-vs-validation gap
 
 - `summary_metrics.csv`
-  每个模型在全体交叉验证测试样本上的汇总指标。
-
-### 2.4 收敛诊断
+  是模型级汇总表，按 MAE 排序后通常可以直接看出当前 best model。
 
 - `convergence_summary.csv`
-- `convergence/*.csv`
-- `plots/*_convergence.png`
+  汇总每个模型、每个 fold 是否有真正的迭代 loss 记录。
 
-### 2.5 最终模型参数
+### 2.4 模型参数文件
 
-- `models/*.joblib`
+表格方法：
 
-## 3. `predictions.csv` 应该怎么看
+- 保存为 `models/*.joblib`
 
-这个文件主要回答“模型对每条测试样本到底预测成了什么”。
+图方法：
 
-关键列包括：
+- 保存为 `models/*.pt`
 
-- 样本标识列
-- `model_name`
-- `fold_id`
-- `y_true`
-- `y_pred`
-- `residual`
+注意：
 
-如果启用了 screening，还会多出：
+- 保存的是“全体样本重训后的最终模型”
+- 不是单独某一个 fold 的模型
 
-- `screening_x_true`
+## 3. 图像输出说明
 
-## 4. `summary_metrics.csv` 应该怎么看
+### 3.1 `plots/*_parity.png`
 
-这个文件是最直接的模型排名表。
+看预测值和真实值是否靠近对角线：
 
-默认已经按 `MAE` 从小到大排序，所以第一行通常就是当前最优模型。
+- 越靠近对角线越好
+- 系统性偏离说明模型有整体高估或低估
 
-以当前 `co2_ch4_screening/20260513_210443` 为例：
+### 3.2 `plots/*_residuals.png`
 
-- `random_forest` 的 `MAE` 最低，为 `0.1473`
-- 但所有模型 `R2` 都小于 0
+看残差分布是否有系统偏差：
 
-这表示：
+- 残差围绕 0 更理想
+- 如果某一段明显偏正或偏负，说明模型在某区间有结构性误差
 
-- 当前 run 里 `random_forest` 是相对最优
-- 但这一批模型整体泛化表现仍不理想
+### 3.3 `plots/model_comparison_mae.png`
 
-## 5. 图表怎么解读
+直接比较不同模型的 MAE：
 
-### 5.1 `*_parity.png`
+- 越低越好
 
-看预测值是否贴近对角线。
+### 3.4 `plots/*_convergence.png`
 
-- 越贴近越好
-- 如果整体偏离明显，说明系统误差较大
+如果模型是迭代式训练，就会有收敛曲线。
 
-### 5.2 `*_residuals.png`
+当前：
 
-看残差是否围绕 0 随机分布。
+- `hist_gb` 会有这类曲线
+- 图方法也会有 epoch 级曲线
 
-- 如果出现趋势线或扇形分布，通常说明模型存在系统性偏差
+看图时重点关注：
 
-### 5.3 `model_comparison_mae.png`
+- 训练 loss 是否稳定下降
+- 验证 loss 是否也同步下降
+- 是否过早出现训练下降而验证恶化
 
-看不同模型的 MAE 条形图。
+## 4. screening 相关输出
 
-- 它适合快速看排序
-- 不足以单独证明模型“已经可靠”
+如果配置开启了 screening，还会额外生成：
 
-### 5.4 `*_convergence.png`
+- `screening_predictions.csv`
+- `best_model_screening.csv`
+- `robeson_upper_bounds.json`
+- `{model_name}_screening.csv`
+- `plots/{model_name}_robeson.png`
 
-只对有逐迭代历史的模型最有用，主要看：
+### 4.1 `screening_predictions.csv`
 
-- train loss 是否下降
-- validation loss 是否稳定
-- 是否提前停止
+把所有模型的 screening 结果拼接到一起。
 
-## 6. 当前建议的结果汇报顺序
+### 4.2 `best_model_screening.csv`
 
-1. 先报 `summary_metrics.csv`
-2. 再报 `fold_metrics.csv`
-3. 再展示 parity 与 residual 图
-4. 若为 `hist_gb`，补充 convergence 图
-5. 如果是 screening 任务，再补 Robeson 风格图与 top candidate 表
+只保留当前最优模型的 screening 表，更适合直接看候选排序。
 
-## 7. 一个实际可用的结果检查清单
+### 4.3 `{model_name}_screening.csv`
 
-训练完后，建议最少检查这几项：
+记录某个模型的：
+
+- 真实/预测选择性
+- 相对上界距离
+- screening 排名分数
+- `pred_rank`
+
+## 5. 如何解读 `oracle_ffv` 与普通基线
+
+如果你在对比：
+
+- `baseline`
+- `oracle_ffv`
+
+那么优先看：
 
 1. `summary_metrics.csv`
 2. `fold_metrics.csv`
-3. `train.log`
+3. `best_model_screening.csv`
+
+判断逻辑是：
+
+- 若 `oracle_ffv` 明显优于 baseline，说明 FFV 理论上有帮助
+- 若提升很小，说明 FFV 在当前任务中的边际价值有限
+
+## 6. 当前最推荐的查看顺序
+
+单次 run 完成后，建议按下面顺序打开：
+
+1. `summary_metrics.csv`
+2. `fold_metrics.csv`
+3. `predictions.csv`
 4. `plots/model_comparison_mae.png`
-5. 最优模型对应的 `parity` 与 `residuals`
-
-这样可以最快判断这次 run 是“可汇报”还是“还需要继续改数据/特征/任务定义”。
-
-如果本次运行的是 `oracle_ffv`，还建议额外确认：
-
-1. `dataset_summary.json` 里的 `experiment_mode` 是否为 `oracle_ffv`
-2. `dataset_filters` 是否记录了 `log10_ffv` 非缺失过滤
-3. `feature_manifest.csv` 中是否出现 `ffv_oracle_log10`
+5. `plots/*_parity.png`
+6. `plots/*_residuals.png`
+7. `plots/*_convergence.png`
+8. 若是 screening 任务，再看 `best_model_screening.csv` 和 `plots/*_robeson.png`

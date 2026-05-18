@@ -1,0 +1,23 @@
+Run directory: output\experiments\co2_grouped_graph_3d\debug_graph3d_after_fix
+Dataset: output\cleaned_data\co2_main_subset.csv
+Experiment mode: baseline
+Representation method: graph_3d (3D graph model)
+Source rows before filters: 74
+Rows used: 74
+Target: log10_p_co2_barrer
+Group column: membrane_name_raw
+CV mode: group_kfold
+Folds: 5
+Node features: 11
+Global features: 4
+Coordinate features: 3
+Models requested: distance_gnn_small, distance_gnn_medium
+Models run: distance_gnn_small, distance_gnn_medium
+Training device: cpu
+Convergence diagnostics:
+- fold_metrics.csv includes train metrics and train-vs-validation gaps
+- convergence_summary.csv summarizes graph epoch histories by model/fold
+Summary metrics:
+- distance_gnn_small: MAE=0.4198, RMSE=0.4726, R2=0.3542
+- distance_gnn_medium: MAE=0.5164, RMSE=0.6202, R2=-0.1119
+Runtime seconds: 46.29

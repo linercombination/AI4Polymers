@@ -1,0 +1,38 @@
+{
+  "dataset_path": "output\\cleaned_data\\co2_main_subset.csv",
+  "experiment_mode": "oracle_ffv",
+  "representation_method": "descriptor_2d",
+  "representation_label": "2D descriptor baseline",
+  "source_rows_before_filters": 74,
+  "rows": 11,
+  "unique_groups": 8,
+  "target_column": "log10_p_co2_barrer",
+  "feature_count": 525,
+  "dropped_feature_columns": [
+    "thickness_um"
+  ],
+  "dataset_filters": [
+    {
+      "type": "require_non_missing_column",
+      "column": "log10_ffv",
+      "before_rows": 74,
+      "after_rows": 11,
+      "dropped_rows": 63
+    }
+  ],
+  "cv_mode": "group_kfold",
+  "n_folds": 5,
+  "family_coverage": {
+    "backbone_family": 0,
+    "contortion_unit_family": 0,
+    "modification_family": 0
+  },
+  "convergence_artifacts": {
+    "fold_metrics_includes_train_metrics": true,
+    "iterative_history_models": [
+      "hist_gb"
+    ]
+  },
+  "screening": null,
+  "skipped_models": []
+}

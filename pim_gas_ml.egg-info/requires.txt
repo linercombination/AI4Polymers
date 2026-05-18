@@ -12,6 +12,10 @@ rdkit
 [full]
 rdkit
 xgboost
+torch
+
+[graph]
+torch
 
 [xgboost]
 xgboost

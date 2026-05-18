@@ -1,38 +1,46 @@
 # 特征工程说明
 
+这份文档只描述当前仓库真实存在的特征构建逻辑，不把未来可能加入的方案写成现有能力。
+
 ## 1. 对应代码
 
-特征构建逻辑全部在：
+表格描述符相关：
 
-- `pim_ml/features.py`
+- `pim_ml/methods/descriptor_2d/features.py`
+- `pim_ml/methods/descriptor_2d_3d/features.py`
+- `pim_ml/methods/_descriptor_shared.py`
 
-训练主程序在：
+图结构相关：
 
-- `pim_ml/train_baseline.py`
+- `pim_ml/methods/graph_2d/features.py`
+- `pim_ml/methods/graph_3d/features.py`
+- `pim_ml/methods/_graph_shared.py`
 
-里调用 `build_feature_frame(...)`。
+## 2. `descriptor_2d` 的特征组成
 
-## 2. 当前特征由三部分组成
+`descriptor_2d` 当前由三部分构成：
 
 ### 2.1 Morgan 指纹
 
-默认参数来自 YAML：
+来自 YAML 配置：
 
-- `fingerprint_radius: 2`
-- `fingerprint_bits: 512`
+- `fingerprint_radius`
+- `fingerprint_bits`
 
-代码通过 RDKit 的 Morgan generator 从 `smiles_single` 构建二进制指纹。
+默认常用值：
+
+- `radius = 2`
+- `bits = 512`
 
 输出列名形式为：
 
 - `fp_0000`
 - `fp_0001`
 - ...
-- `fp_0511`
 
-### 2.2 RDKit 分子描述符
+### 2.2 RDKit 二维描述符
 
-当前固定使用 9 个描述符：
+当前固定使用 9 个：
 
 1. `mol_wt`
 2. `mol_logp`
@@ -44,131 +52,138 @@
 8. `h_acceptors`
 9. `heavy_atom_count`
 
-### 2.3 数值实验字段
+### 2.3 实验数值特征
 
-当前代码会加入：
+当前默认加入：
 
 - `aging_days_log1p`
 - `aging_missing`
 
-如果 YAML 中给定了 `thickness_column`，还会加入：
+如果配置里给了 `thickness_column`，还会加入：
 
 - `thickness_um`
 - `thickness_missing`
 
-如果 YAML 中给定了 `extra_numeric_features`，还会继续加入额外数值列。当前代码支持：
+## 3. `descriptor_2d_3d` 的特征组成
 
-- `identity`
-- `log1p`
-- `log10_positive`
+`descriptor_2d_3d` 不是重新做一套全新表格特征，而是在 `descriptor_2d` 基础上再追加一组 3D 数值特征。
 
-每个额外数值特征都可以单独指定：
+这组特征来自 YAML 中的：
 
-- `column`
-- `feature_name`
-- `transform`
-- `add_missing_indicator`
+- `three_d_numeric_features`
 
-当前 `oracle_ffv` 配置就是用这条接口把 `log10_ffv` 作为 `ffv_oracle_log10` 接入下游模型。
+当前仓库里常见写法是：
 
-## 3. 当前特征总数为什么是 525
+- `occupied_volume_1`
+- `occupied_volume_2`
 
-以 `co2_ch4_screening` 这次实际 run 为例，`dataset_summary.json` 记录的 `feature_count` 是 `525`。
+注意：
 
-来源就是：
+- 这里的“3D”目前是数值列扩展，不是神经网络里的 3D 图
+- 它仍然走表格训练主线
 
-- `512` 个 Morgan bits
-- `9` 个 RDKit 描述符
-- `4` 个实验数值特征
+## 4. `graph_2d` 的图数据构造
 
-总计 `525`。
+`graph_2d` 现在已经可运行。
 
-如果运行 `oracle_ffv`，特征矩阵会额外加入 `ffv_oracle_log10`。
+每条样本会从 `smiles_single` 转换成一个图记录：
 
-但最终 `feature_count` 还要看有没有“整列全缺失”而被自动删除的字段。例如当前 `CO2` `oracle_ffv` 实际 run 中，`thickness_um` 被记录为 `dropped_feature_columns`，所以最终仍是 `525` 列。
+### 4.1 节点
 
-## 4. 缺失值在这里怎么处理
+节点就是原子。
 
-这里需要区分两个阶段：
+当前每个原子提取 11 维特征：
 
-### 4.1 特征构建阶段
+1. 原子序数
+2. 原子度数
+3. 形式电荷
+4. 是否芳香
+5. 是否在环中
+6. 原子质量
+7. 氢原子数
+8. 是否可能有手性
+9. `sp`
+10. `sp2`
+11. `sp3`
 
-- `aging_days` 会先转数值
-- 小于 0 的值会被裁到 0
-- 缺失本身不会在这一步全部删除
+### 4.2 边
 
-### 4.2 模型阶段
+边来自化学键。
 
-真正的缺失值填补在模型 pipeline 里完成，使用 `SimpleImputer(strategy="median")`。
+当前使用键级邻接矩阵表示：
 
-所以训练特征工程本身不会因为个别厚度缺失而直接丢掉整行样本。
+- 单键、双键、芳香键会映射为不同权重
+- 对角线补为 1，表示自连接
 
-## 5. 特征工程的硬约束
+### 4.3 图级全局特征
 
-### 5.1 `smiles_single` 必须能被 RDKit 解析
+图方法并不是只用分子结构，还会拼接实验级数值特征：
 
-`_smiles_to_mol` 会调用 `Chem.MolFromSmiles(smiles)`。如果解析失败，当前实现会直接报错，而不是跳过该样本。
+- aging
+- thickness
+- 以及配置里额外指定的数值列
 
-### 5.2 当前没有使用 `smiles_triple`
+## 5. `graph_3d` 的图数据构造
 
-虽然清洗数据中保留了 `smiles_triple`，但主训练流程目前只使用 `smiles_single`。
+`graph_3d` 在 `graph_2d` 基础上再增加空间坐标和距离信息。
 
-### 5.3 当前没有默认用到 family、温度、压力等附加字段
+### 5.1 坐标来源
 
-这也是为什么方案文档里不能把这些字段写成“默认已纳入特征”。
+当前做法是：
 
-不过 `oracle_ffv` 已经是一个例外：它通过配置显式启用了 `log10_ffv` 这个额外数值特征。
+1. 从 `SMILES` 生成 RDKit 分子
+2. 加氢
+3. 用 `ETKDG` 生成构象
+4. 若可行则尝试 UFF 优化
+5. 去氢后保留重原子坐标
 
-## 6. 训练后会输出什么来帮助核对特征
+因此当前 3D 坐标是：
 
-每次 run 都会生成：
+- `RDKit` 自动生成构象
 
-- `feature_manifest.csv`
+而不是：
 
-它会标出每一列特征属于哪个 block：
+- 实验测得坐标
+- 分子动力学采样平均结构
 
-- `morgan_fingerprint`
-- `rdkit_descriptor`
-- `experimental_numeric`
+### 5.2 3D 邻接
 
-如果某一列特征在当前数据上全为空，训练代码还会：
+当前 3D 图同时使用：
 
-1. 自动从特征矩阵中删除它
-2. 在 `dataset_summary.json` 中记录 `dropped_feature_columns`
+- 原始共价键邻接
+- 基于原子间距离的加权邻接
 
-## 7. 当前特征工程的定位
+距离越近，权重越高；超过 cutoff 的原子对会被截断为 0。
 
-这是一套很适合小样本基线的经典分子表示方案：
+### 5.3 当前定位
 
-- 优点是稳定、可复现、CPU 友好
-- 缺点是对聚合物高阶拓扑和构象信息表达有限
+当前 `graph_3d` 的作用是：
 
-所以它适合作为第一版基线，但不是终点。
+- 先建立一个可复现、可统一评估的三维图基线
 
-## 8. 下一阶段的四档表示如何映射到特征工程
+它不是最终最强的 3D GNN 方案，但已经足以支持四档表示比较。
 
-### Track 1：`2D descriptor baseline`
+## 6. 特征缺失处理
 
-- 继续使用当前 `Morgan + RDKit 2D + experimental numeric`
+表格特征：
 
-### Track 2：`2D+3D descriptor baseline`
+- 交给 `sklearn` 管道中的 `SimpleImputer`
 
-- 在当前特征块基础上新增一块 `3d_descriptor`
-- 可能包括体积、表面积、形状、惯性矩、回转半径等构象特征
-- 仍然输出为固定长度表格特征，因此可以继续复用当前 sklearn 训练框架
+图级全局特征：
 
-### Track 3：`2D graph model`
+- 在图训练器里按训练折统计中位数补齐
+- 再做标准化
 
-- 不再只输出一张表格特征矩阵
-- 需要输出节点、边和图级标签
-- 这时 `features.py` 不再只是“拼 DataFrame”
+坐标：
 
-### Track 4：`3D graph model`
+- 当前要求 3D 构象能成功生成
 
-- 在 Track 3 的基础上再加入原子坐标
-- 需要显式管理 conformer、坐标张量和可能的多构象策略
+## 7. 当前不包含的内容
 
-因此，从工程代价上看：
+当前仓库还没有这些特征能力：
 
-1. Track 2 是当前代码最容易扩展的一步
-2. Track 3/4 会把特征工程从“表格特征”升级为“图数据管道”
+- 真正的 3D 分子描述符大库
+- family one-hot 自动展开
+- PyG / DGL 原生图张量
+- 多构象集成
+- 实验温度、压力等额外过程变量恢复

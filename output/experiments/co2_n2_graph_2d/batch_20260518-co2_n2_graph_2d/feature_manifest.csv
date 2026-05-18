@@ -1,0 +1,16 @@
+feature_name,feature_block
+atomic_num_scaled,graph_node_feature
+degree_scaled,graph_node_feature
+formal_charge,graph_node_feature
+is_aromatic,graph_node_feature
+is_in_ring,graph_node_feature
+mass_scaled,graph_node_feature
+num_hs_scaled,graph_node_feature
+chirality_possible,graph_node_feature
+hybridization_sp,graph_node_feature
+hybridization_sp2,graph_node_feature
+hybridization_sp3,graph_node_feature
+aging_days_log1p,experimental_numeric
+aging_missing,experimental_numeric
+thickness_um,experimental_numeric
+thickness_missing,experimental_numeric
