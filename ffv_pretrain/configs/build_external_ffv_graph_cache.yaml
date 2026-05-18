@@ -1,0 +1,15 @@
+dataset:
+  csv_path: extra_FFV_dataset.csv
+  smiles_column: Smiles
+  target_column: FFV
+  chunk_size: 5000
+  drop_duplicate_canonical_smiles: true
+
+split:
+  train_fraction: 0.90
+  valid_fraction: 0.05
+
+output:
+  cache_dir: ffv_pretrain/output/cache/external_ffv_graph
+  shard_size: 5000
+

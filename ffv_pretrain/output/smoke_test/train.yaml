@@ -1,0 +1,21 @@
+﻿seed: 42
+
+cache:
+  cache_dir: ffv_pretrain/output/smoke_test/cache
+
+model:
+  node_feature_dim: 11
+  hidden_dim: 32
+  num_layers: 2
+  dropout: 0.10
+
+training:
+  device: auto
+  batch_size: 8
+  max_epochs: 1
+  patience: 1
+  learning_rate: 0.001
+  weight_decay: 0.0001
+
+output:
+  run_dir: ffv_pretrain/output/smoke_test/run

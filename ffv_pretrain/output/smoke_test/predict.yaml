@@ -1,0 +1,13 @@
+﻿model:
+  checkpoint_path: ffv_pretrain/output/smoke_test/run/checkpoints/best_model.pt
+
+inference:
+  csv_path: output/cleaned_data/co2_main_subset.csv
+  smiles_column: smiles_single
+  existing_ffv_column: ffv
+  fill_missing_only: true
+  batch_size: 16
+  device: auto
+
+output:
+  csv_path: ffv_pretrain/output/smoke_test/co2_main_with_predicted_ffv.csv

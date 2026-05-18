@@ -1,0 +1,22 @@
+seed: 42
+
+cache:
+  cache_dir: ffv_pretrain/output/cache/external_ffv_graph
+
+model:
+  node_feature_dim: 11
+  hidden_dim: 96
+  num_layers: 4
+  dropout: 0.10
+
+training:
+  device: auto
+  batch_size: 128
+  max_epochs: 20
+  patience: 4
+  learning_rate: 0.001
+  weight_decay: 0.0001
+
+output:
+  run_dir: ffv_pretrain/output/runs/external_ffv_graph_gnn
+

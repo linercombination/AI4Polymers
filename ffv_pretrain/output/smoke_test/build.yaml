@@ -1,0 +1,14 @@
+﻿dataset:
+  csv_path: ffv_pretrain/output/smoke_test/small_ffv.csv
+  smiles_column: Smiles
+  target_column: FFV
+  chunk_size: 32
+  drop_duplicate_canonical_smiles: true
+
+split:
+  train_fraction: 0.80
+  valid_fraction: 0.10
+
+output:
+  cache_dir: ffv_pretrain/output/smoke_test/cache
+  shard_size: 16

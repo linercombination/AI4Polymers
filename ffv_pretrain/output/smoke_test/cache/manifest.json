@@ -1,0 +1,20 @@
+{
+  "source_csv": "ffv_pretrain\\output\\smoke_test\\small_ffv.csv",
+  "cache_dir": "ffv_pretrain\\output\\smoke_test\\cache",
+  "smiles_column": "Smiles",
+  "target_column": "FFV",
+  "rows_total_in_source": 64,
+  "rows_kept": 64,
+  "dropped_missing_target": 0,
+  "dropped_parse_failures": 0,
+  "dropped_duplicates": 0,
+  "num_shards": 4,
+  "shard_size": 16,
+  "split_counts": {
+    "train": 51,
+    "test": 11,
+    "valid": 2
+  },
+  "target_mean": 0.36483967703125,
+  "target_std": 0.036858007873606304
+}

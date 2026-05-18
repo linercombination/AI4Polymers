@@ -1,0 +1,15 @@
+{
+  "cache_dir": "ffv_pretrain\\output\\smoke_test\\cache",
+  "rows_train": 51,
+  "rows_valid": 2,
+  "rows_test": 11,
+  "device": "cpu",
+  "best_epoch": 1,
+  "best_valid_rmse": 0.022848396368775798,
+  "runtime_seconds": 0.17742800002451986,
+  "test_metrics": {
+    "mae": 0.02850709178230979,
+    "rmse": 0.03616229822575069,
+    "r2": -0.032165602228362955
+  }
+}
