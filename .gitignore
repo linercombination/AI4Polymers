@@ -1,3 +1,79 @@
-结项表单.doc
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# Python cache / tooling
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# =========================
+# Virtual environments
+# =========================
+.venv/
+venv/
+env/
+ENV/
+.conda/
+
+# =========================
+# Node
+# =========================
 node_modules/
+
+# =========================
+# Local documents / temp
+# =========================
+结项表单.doc
+结项表单.docx
+*.tmp
+*.temp
+*.bak
+
+# =========================
+# Local SSH / secrets / env
+# =========================
+.env
+.env.*
+*.pem
+*.key
+
+# =========================
+# Large local datasets
+# =========================
 extra_FFV_dataset.csv
+*.parquet
+*.feather
+
+# =========================
+# Training outputs
+# Keep cleaned data and image assets versioned.
+# =========================
+output/experiments/
+ffv_pretrain/output/cache/
+ffv_pretrain/output/runs/
+ffv_pretrain/output/augmented/
+ffv_pretrain/output/smoke_test/
+
+# =========================
+# Model artifacts / logs
+# Avoid global *.pt ignores so tracked source examples stay manageable.
+# =========================
+*.log
+
+# =========================
+# Optional local-only exports
+# Uncomment if you later decide to regenerate these instead of versioning them.
+# =========================
+# output/cleaned_data/
+# output/imagegen/
