@@ -18,6 +18,12 @@ Representation-comparison framing for the next stage:
 3. `2D graph model`: `molecular graph without coordinates -> GNN`
 4. `3D graph model`: `molecular graph with atomic coordinates -> 3D GNN`
 
+External-FFV pretraining framing for the next stage:
+
+1. `2D graph FFV pretrain`: external `FFV` dataset -> `SMILES -> 2D graph GNN -> FFV`
+2. `3D graph FFV pretrain`: external `FFV` dataset -> `SMILES -> 3D graph GNN -> FFV`
+3. `predicted_ffv` downstream comparison: compare `2D-pretrained FFV` and `3D-pretrained FFV` as auxiliary downstream features
+
 ## 2. Research Stance
 
 Use the following claim ladder:
@@ -33,8 +39,9 @@ Use the following claim ladder:
 This means:
 
 - `CO2` prediction is the mainline
-- `FFV` is currently an exploratory side study
+- `FFV` is currently an exploratory but expanding side study
 - any `FFV -> downstream` experiment must be reported as either `oracle_ffv` or `stacked_ffv`
+- any future `stacked_ffv` run should compare both `2D-pretrained` and `3D-pretrained` upstream FFV predictors
 - `GAN` or inverse design is not a first-stage deliverable
 
 ## 3. Priority Order
@@ -48,9 +55,10 @@ Work in this order unless explicitly redirected:
 5. add `3D graph` experiments only after the first three tracks are running
 6. extend to `CO2/CH4`, `CO2/N2`, and Robeson-style screening tasks
 7. add first-pass family labels and family-aware evaluation
-8. run the small-sample `FFV` pilot as an ablation/exploratory study
-9. run and report `oracle_ffv` upper-bound experiments on the FFV-overlap subsets
-10. revisit `stacked_ffv` downstream integration as FFV data grows materially
+8. run the small-sample internal `FFV` pilot as an ablation/exploratory study
+9. build large-scale external `FFV` pretraining with both `2D graph` and `3D graph` tracks
+10. run and report `oracle_ffv` upper-bound experiments on the FFV-overlap subsets
+11. revisit `stacked_ffv` downstream integration with both predicted-FFV tracks
 
 ## 4. Data Sources
 
@@ -262,6 +270,21 @@ Do not use the `FFV` pilot as the main project conclusion.
 
 Do not make the main `CO2` workflow depend on FFV until the FFV dataset becomes substantially larger.
 
+### 11.0 External FFV pretraining expansion
+
+The project now also supports a separate external-FFV pretraining workspace:
+
+`extra_FFV_dataset.csv -> external FFV graph pretrain -> predicted_ffv -> downstream gas prediction`
+
+This external branch should be treated as the main way to grow `FFV` usefulness, because the internal FFV-overlap subset remains too small.
+
+Mandatory comparison rule:
+
+1. run `graph_2d` FFV pretraining
+2. run `graph_3d` FFV pretraining
+3. compare upstream FFV metrics directly
+4. then compare downstream `baseline + predicted_ffv_2d` vs `baseline + predicted_ffv_3d`
+
 ### 11.1 Allowed transition experiment: `oracle_ffv`
 
 Before FFV data is large enough for a trustworthy upstream predictor, it is acceptable to run a controlled upper-bound experiment:
@@ -288,11 +311,17 @@ Mandatory rule:
 
 - downstream validation rows must receive `FFV` values from out-of-fold FFV predictions, not from their own true FFV labels
 
+When the upstream FFV predictor is trained only on the external dataset and never on downstream rows, it is acceptable to precompute `predicted_ffv` for the downstream table. Even in that case, the report should still distinguish:
+
+- `predicted_ffv_from_graph_2d`
+- `predicted_ffv_from_graph_3d`
+
 This means the correct comparison ladder is:
 
 1. `baseline`: `SMILES + aging (+ optional thickness)`
 2. `oracle_ffv`: baseline plus true `ffv` as an upper-bound reference
-3. `stacked_ffv`: baseline plus predicted `ffv` generated in a leakage-safe way
+3. `stacked_ffv_2d`: baseline plus predicted `ffv` from the external `2D graph` FFV pretrainer
+4. `stacked_ffv_3d`: baseline plus predicted `ffv` from the external `3D graph` FFV pretrainer
 
 Do not report `oracle_ffv` gains as if they were already achieved by the real FFV model.
 
@@ -354,8 +383,10 @@ The next recommended tasks are:
 6. generate `CO2/CH4` and `CO2/N2` Robeson plots plus candidate-ranking outputs
 7. populate first-pass family labels in `tidy_data`
 8. create grouped family-aware splits
-9. run the `FFV` pilot as a documented exploratory ablation
-10. report the `oracle_ffv` benchmark so the future stacked workflow has a quantified upper bound
+9. run the internal `FFV` pilot as a documented exploratory ablation
+10. run external `FFV` pretraining for both `graph_2d` and `graph_3d`
+11. report the `oracle_ffv` benchmark so the future stacked workflow has a quantified upper bound
+12. compare downstream `predicted_ffv_2d` and `predicted_ffv_3d` routes before selecting a default stacked workflow
 
 ## 16. Definition of Done
 

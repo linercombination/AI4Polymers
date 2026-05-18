@@ -40,10 +40,15 @@ def build_model_classes():
             hidden_dim: int = 96,
             num_layers: int = 4,
             dropout: float = 0.1,
+            use_coordinates: bool = False,
         ) -> None:
             super().__init__()
+            self.use_coordinates = use_coordinates
+            coordinate_dim = 3 if use_coordinates else 0
+            node_input_dim = node_feature_dim + coordinate_dim
+
             self.node_encoder = nn.Sequential(
-                nn.Linear(node_feature_dim, hidden_dim),
+                nn.Linear(node_input_dim, hidden_dim),
                 nn.ReLU(),
                 nn.Dropout(dropout),
             )
@@ -57,8 +62,13 @@ def build_model_classes():
                 nn.Linear(hidden_dim, 1),
             )
 
-        def forward(self, node_features, adjacency, node_mask):
-            hidden = self.node_encoder(node_features) * node_mask.unsqueeze(-1)
+        def forward(self, node_features, adjacency, node_mask, coordinate_features=None):
+            if self.use_coordinates and coordinate_features is not None:
+                node_inputs = torch.cat([node_features, coordinate_features], dim=-1)
+            else:
+                node_inputs = node_features
+
+            hidden = self.node_encoder(node_inputs) * node_mask.unsqueeze(-1)
             for layer in self.layers:
                 hidden = layer(hidden, adjacency, node_mask)
 
@@ -71,4 +81,3 @@ def build_model_classes():
             return self.readout(pooled).squeeze(-1)
 
     return GraphFFVRegressor
-

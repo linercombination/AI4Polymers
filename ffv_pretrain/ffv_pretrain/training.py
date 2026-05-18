@@ -21,6 +21,7 @@ class Batch:
     adjacency: object
     node_mask: object
     targets: object
+    coordinate_features: object | None = None
 
 
 def set_seed(seed: int) -> None:
@@ -32,7 +33,14 @@ def set_seed(seed: int) -> None:
         torch.cuda.manual_seed_all(seed)
 
 
-def collate_graph_batch(samples: list[dict], *, torch, target_mean: float, target_std: float) -> Batch:
+def collate_graph_batch(
+    samples: list[dict],
+    *,
+    torch,
+    target_mean: float,
+    target_std: float,
+    use_coordinates: bool,
+) -> Batch:
     batch_size = len(samples)
     max_nodes = max(int(sample["num_nodes"]) for sample in samples)
     node_dim = int(samples[0]["node_features"].shape[1])
@@ -41,18 +49,19 @@ def collate_graph_batch(samples: list[dict], *, torch, target_mean: float, targe
     adjacency_tensor = torch.zeros((batch_size, max_nodes, max_nodes), dtype=torch.float32)
     mask_tensor = torch.zeros((batch_size, max_nodes), dtype=torch.float32)
     target_tensor = torch.zeros((batch_size,), dtype=torch.float32)
+    coordinate_tensor = torch.zeros((batch_size, max_nodes, 3), dtype=torch.float32) if use_coordinates else None
 
     for idx, sample in enumerate(samples):
         num_nodes = int(sample["num_nodes"])
         node_tensor[idx, :num_nodes] = torch.from_numpy(sample["node_features"].astype(np.float32, copy=False))
-        edge_index = sample["edge_index"]
-        edge_weight = sample["edge_weight"]
-        if edge_index.size > 0:
-            adjacency_tensor[idx, edge_index[0], edge_index[1]] = torch.from_numpy(
-                edge_weight.astype(np.float32, copy=False)
-            )
-        adjacency_tensor[idx, :num_nodes, :num_nodes] += torch.eye(num_nodes, dtype=torch.float32)
+        adjacency_tensor[idx, :num_nodes, :num_nodes] = torch.from_numpy(
+            sample["adjacency"].astype(np.float32, copy=False)
+        )
         mask_tensor[idx, :num_nodes] = 1.0
+        if coordinate_tensor is not None and sample["coordinate_features"] is not None:
+            coordinate_tensor[idx, :num_nodes] = torch.from_numpy(
+                sample["coordinate_features"].astype(np.float32, copy=False)
+            )
         target_tensor[idx] = (float(sample["target"]) - target_mean) / target_std
 
     return Batch(
@@ -60,6 +69,7 @@ def collate_graph_batch(samples: list[dict], *, torch, target_mean: float, targe
         adjacency=adjacency_tensor,
         node_mask=mask_tensor,
         targets=target_tensor,
+        coordinate_features=coordinate_tensor,
     )
 
 
@@ -81,6 +91,7 @@ def iter_shard_batches(
     target_mean: float,
     target_std: float,
     shuffle: bool,
+    use_coordinates: bool,
 ):
     torch, _nn = require_torch()
     shards_dir = cache_dir / "shards"
@@ -103,6 +114,7 @@ def iter_shard_batches(
                     torch=torch,
                     target_mean=target_mean,
                     target_std=target_std,
+                    use_coordinates=use_coordinates,
                 )
                 current_batch = []
         if current_batch:
@@ -111,6 +123,7 @@ def iter_shard_batches(
                 torch=torch,
                 target_mean=target_mean,
                 target_std=target_std,
+                use_coordinates=use_coordinates,
             )
 
 
@@ -125,9 +138,15 @@ def run_epoch(*, model, optimizer, device, batch_iter, torch) -> float:
         adjacency = batch.adjacency.to(device)
         node_mask = batch.node_mask.to(device)
         targets = batch.targets.to(device)
+        coordinate_features = batch.coordinate_features.to(device) if batch.coordinate_features is not None else None
 
         optimizer.zero_grad()
-        predictions = model(node_features=node_features, adjacency=adjacency, node_mask=node_mask)
+        predictions = model(
+            node_features=node_features,
+            adjacency=adjacency,
+            node_mask=node_mask,
+            coordinate_features=coordinate_features,
+        )
         loss = loss_fn(predictions, targets)
         loss.backward()
         optimizer.step()
@@ -153,7 +172,14 @@ def predict_split(*, model, device, batch_iter, target_mean: float, target_std: 
             adjacency = batch.adjacency.to(device)
             node_mask = batch.node_mask.to(device)
             targets = batch.targets.to(device)
-            predictions = model(node_features=node_features, adjacency=adjacency, node_mask=node_mask)
+            coordinate_features = batch.coordinate_features.to(device) if batch.coordinate_features is not None else None
+
+            predictions = model(
+                node_features=node_features,
+                adjacency=adjacency,
+                node_mask=node_mask,
+                coordinate_features=coordinate_features,
+            )
             loss = loss_fn(predictions, targets)
 
             predictions_raw = predictions.detach().cpu().numpy() * target_std + target_mean
@@ -181,6 +207,9 @@ def train_from_config(config: dict) -> Path:
     if metadata_df.empty:
         raise ValueError("Cache metadata is empty. Build the graph cache before training.")
 
+    representation_method = manifest.get("representation_method", "graph_2d")
+    use_coordinates = representation_method == "graph_3d"
+
     output_dir = ensure_dir(config["output"]["run_dir"])
     (output_dir / "checkpoints").mkdir(exist_ok=True)
 
@@ -202,6 +231,7 @@ def train_from_config(config: dict) -> Path:
         hidden_dim=int(model_cfg.get("hidden_dim", 96)),
         num_layers=int(model_cfg.get("num_layers", 4)),
         dropout=float(model_cfg.get("dropout", 0.1)),
+        use_coordinates=use_coordinates,
     )
 
     device_name = str(training_cfg.get("device", "auto"))
@@ -234,7 +264,7 @@ def train_from_config(config: dict) -> Path:
 
     epoch_iter = range(1, max_epochs + 1)
     if tqdm is not None:
-        epoch_iter = tqdm(epoch_iter, desc="FFV pretrain", dynamic_ncols=True)
+        epoch_iter = tqdm(epoch_iter, desc=f"FFV pretrain {representation_method}", dynamic_ncols=True)
 
     start_time = time.perf_counter()
     for epoch in epoch_iter:
@@ -249,6 +279,7 @@ def train_from_config(config: dict) -> Path:
                 target_mean=target_mean,
                 target_std=target_std,
                 shuffle=True,
+                use_coordinates=use_coordinates,
             ),
             torch=torch,
         )
@@ -263,6 +294,7 @@ def train_from_config(config: dict) -> Path:
                 target_mean=target_mean,
                 target_std=target_std,
                 shuffle=False,
+                use_coordinates=use_coordinates,
             ),
             target_mean=target_mean,
             target_std=target_std,
@@ -311,6 +343,7 @@ def train_from_config(config: dict) -> Path:
                 target_mean=target_mean,
                 target_std=target_std,
                 shuffle=False,
+                use_coordinates=use_coordinates,
             ),
             target_mean=target_mean,
             target_std=target_std,
@@ -329,11 +362,13 @@ def train_from_config(config: dict) -> Path:
             "hidden_dim": int(model_cfg.get("hidden_dim", 96)),
             "num_layers": int(model_cfg.get("num_layers", 4)),
             "dropout": float(model_cfg.get("dropout", 0.1)),
+            "use_coordinates": use_coordinates,
         },
         "target_mean": target_mean,
         "target_std": target_std,
         "training_config": training_cfg,
         "source_cache_manifest": manifest,
+        "representation_method": representation_method,
         "best_epoch": int(best_epoch),
     }
     torch.save(checkpoint, output_dir / "checkpoints" / "best_model.pt")
@@ -343,6 +378,7 @@ def train_from_config(config: dict) -> Path:
 
     summary = {
         "cache_dir": str(cache_dir),
+        "representation_method": representation_method,
         "rows_train": int(len(train_df)),
         "rows_valid": int(len(valid_df)),
         "rows_test": int(len(test_df)),
@@ -361,4 +397,3 @@ def train_from_config(config: dict) -> Path:
         encoding="utf-8",
     )
     return output_dir
-

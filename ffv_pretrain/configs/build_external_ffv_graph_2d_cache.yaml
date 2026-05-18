@@ -15,3 +15,4 @@ split:
 output:
   cache_dir: ffv_pretrain/output/cache/external_ffv_graph_2d
   shard_size: 5000
+

@@ -34,6 +34,7 @@ def build_graph_cache(config: dict) -> dict:
     dataset_cfg = config["dataset"]
     split_cfg = config["split"]
     output_cfg = config["output"]
+    representation_cfg = config["representation"]
 
     csv_path = Path(dataset_cfg["csv_path"])
     smiles_column = dataset_cfg["smiles_column"]
@@ -41,6 +42,7 @@ def build_graph_cache(config: dict) -> dict:
     chunk_size = int(dataset_cfg.get("chunk_size", 5000))
     shard_size = int(output_cfg.get("shard_size", 5000))
     drop_duplicate = bool(dataset_cfg.get("drop_duplicate_canonical_smiles", False))
+    representation_method = representation_cfg.get("method", "graph_2d")
 
     cache_dir = ensure_dir(output_cfg["cache_dir"])
     shards_dir = ensure_dir(cache_dir / "shards")
@@ -62,7 +64,6 @@ def build_graph_cache(config: dict) -> dict:
         chunk[target_column] = pd.to_numeric(chunk[target_column], errors="coerce")
         chunk = chunk.loc[chunk[target_column].notna()].copy()
         if chunk.empty:
-            dropped_missing_target += len(chunk)
             continue
 
         for row in chunk.itertuples(index=False):
@@ -72,7 +73,7 @@ def build_graph_cache(config: dict) -> dict:
                 dropped_missing_target += 1
                 continue
             try:
-                graph = featurize_smiles(str(smiles))
+                graph = featurize_smiles(str(smiles), representation_method=representation_method)
             except Exception:
                 dropped_parse += 1
                 continue
@@ -92,8 +93,8 @@ def build_graph_cache(config: dict) -> dict:
             record = {
                 "canonical_smiles": canonical_smiles,
                 "node_features": graph["node_features"],
-                "edge_index": graph["edge_index"],
-                "edge_weight": graph["edge_weight"],
+                "adjacency": graph["adjacency"],
+                "coordinate_features": graph["coordinate_features"],
                 "num_nodes": graph["num_nodes"],
                 "target": np.float32(target),
             }
@@ -108,6 +109,7 @@ def build_graph_cache(config: dict) -> dict:
                     "target": float(target),
                     "split": split_name,
                     "num_nodes": int(graph["num_nodes"]),
+                    "representation_method": representation_method,
                 }
             )
             kept_rows += 1
@@ -128,6 +130,7 @@ def build_graph_cache(config: dict) -> dict:
     summary = {
         "source_csv": str(csv_path),
         "cache_dir": str(cache_dir),
+        "representation_method": representation_method,
         "smiles_column": smiles_column,
         "target_column": target_column,
         "rows_total_in_source": int(total_rows),
@@ -143,4 +146,3 @@ def build_graph_cache(config: dict) -> dict:
     }
     write_json(cache_dir / "manifest.json", summary)
     return summary
-

@@ -16,6 +16,7 @@ The code is aligned with the current cleaned data reality:
 - reusable RDKit feature generation from `smiles_single`
 - a separate small-sample `FFV` pilot path
 - ready-to-run `oracle_ffv` configs plus a documented future `stacked_ffv` plan
+- a standalone `ffv_pretrain/` workspace for large-scale external `FFV` pretraining with both `2D graph` and `3D graph` tracks
 
 It is not yet a full platform for:
 
@@ -40,6 +41,9 @@ Open these first if you are reading the project:
 - [task.md](C:/Users/16976/Desktop/smile_FFV/task.md) and [task_zh.md](C:/Users/16976/Desktop/smile_FFV/task_zh.md): current task definition
 - [polymer_pim_gas_separation_pipeline.md](C:/Users/16976/Desktop/smile_FFV/polymer_pim_gas_separation_pipeline.md): research plan
 - [docs/13_graph_training_backend.md](C:/Users/16976/Desktop/smile_FFV/docs/13_graph_training_backend.md): graph backend design and run instructions
+- [docs/15_external_ffv_pretraining.md](C:/Users/16976/Desktop/smile_FFV/docs/15_external_ffv_pretraining.md): external FFV pretraining plan
+- [docs/16_external_ffv_dual_track_addendum.md](C:/Users/16976/Desktop/smile_FFV/docs/16_external_ffv_dual_track_addendum.md): dual-track FFV research addendum
+- [ffv_pretrain/README_zh.md](C:/Users/16976/Desktop/smile_FFV/ffv_pretrain/README_zh.md): standalone FFV pretraining workspace guide
 
 Edit these if you want to run experiments without changing Python code:
 
@@ -72,6 +76,10 @@ smile_FFV/
 |   |-- co2_grouped_descriptor_2d_3d.yaml
 |   |-- co2_grouped_graph_2d.yaml
 |   |-- co2_grouped_graph_3d.yaml
+|   |-- co2_grouped_descriptor_2d_predffv_2d.yaml
+|   |-- co2_grouped_descriptor_2d_predffv_3d.yaml
+|   |-- co2_grouped_graph_2d_predffv_2d.yaml
+|   |-- co2_grouped_graph_3d_predffv_3d.yaml
 |   |-- co2_ch4_descriptor_2d.yaml
 |   |-- co2_ch4_descriptor_2d_3d.yaml
 |   |-- co2_ch4_graph_2d.yaml
@@ -88,6 +96,18 @@ smile_FFV/
 |   |-- co2_n2_screening.yaml
 |   `-- ffv_pilot.yaml
 |-- docs/
+|-- ffv_pretrain/
+|   |-- configs/
+|   |   |-- build_external_ffv_graph_2d_cache.yaml
+|   |   |-- build_external_ffv_graph_3d_cache.yaml
+|   |   |-- train_external_ffv_gnn_2d.yaml
+|   |   |-- train_external_ffv_gnn_3d.yaml
+|   |   `-- predict_ffv_*_for_*.yaml
+|   |-- ffv_pretrain/
+|   |-- requirements/
+|   |-- scripts/
+|   |-- environment.yml
+|   `-- README_zh.md
 |-- output/
 |   |-- cleaned_data/
 |   `-- experiments/
@@ -214,7 +234,7 @@ You can also change the repository-wide fallback default in:
 by editing:
 
 ```python
-DEFAULT_METHOD_NAME = "descriptor_2d"
+DEFAULT_METHOD_NAME = "descriptor_2d_3d"
 ```
 
 This is the least recommended switching path because it changes the behavior of any config that does not explicitly set `representation.method`.
@@ -230,6 +250,26 @@ Notes:
 - `co2_grouped_baseline.yaml` remains as the backward-compatible alias for the old default Track 1 setup.
 - `graph_2d` and `graph_3d` now use a dedicated graph trainer instead of the old table backend.
 - If `torch` is missing, the graph entrypoint stops immediately with a clear install hint instead of failing later inside training.
+
+## Predicted-FFV Downstream Configs
+
+The repository now also includes explicit downstream configs for the stacked FFV comparison.
+
+Naming pattern:
+
+- `*_predffv_2d.yaml`: use the 2D external FFV pretrainer output as an extra downstream feature
+- `*_predffv_3d.yaml`: use the 3D external FFV pretrainer output as an extra downstream feature
+
+Examples:
+
+- `configs/co2_grouped_descriptor_2d_predffv_2d.yaml`
+- `configs/co2_grouped_descriptor_2d_predffv_3d.yaml`
+- `configs/co2_ch4_graph_2d_predffv_2d.yaml`
+- `configs/co2_n2_graph_3d_predffv_3d.yaml`
+
+These configs expect the corresponding augmented CSV files to exist first under:
+
+- `ffv_pretrain/output/augmented/`
 
 ## Graph Prerequisite
 
@@ -397,7 +437,7 @@ The console now shows:
 
 ## FFV Integration Modes
 
-The codebase now supports `baseline` and strict `oracle_ffv` runs. `stacked_ffv` remains the planned full-chain mode.
+The codebase now supports `baseline` and strict `oracle_ffv` runs. `stacked_ffv` remains the planned full-chain mode. The upstream `FFV` predictor is now planned as a controlled dual-track pretraining study, not a single-model shortcut.
 
 ### `baseline`
 
@@ -420,12 +460,81 @@ The codebase now supports `baseline` and strict `oracle_ffv` runs. `stacked_ffv`
 - features: baseline plus predicted `ffv`
 - workflow: `SMILES -> FFV model -> downstream gas model`
 - mandatory rule: downstream validation rows must use out-of-fold FFV predictions, not their own true FFV labels
+- recommended upstream comparison: `graph_2d FFV pretrain` vs `graph_3d FFV pretrain`
+
+## External FFV Pretraining
+
+The repository now includes a dedicated [ffv_pretrain](C:/Users/16976/Desktop/smile_FFV/ffv_pretrain) workspace for large external `FFV` data.
+
+Its purpose is:
+
+1. train a standalone `SMILES -> FFV` predictor on `extra_FFV_dataset.csv`
+2. compare `2D graph` and `3D graph` upstream representations under the same external dataset
+3. write back `predicted_ffv` features for downstream `CO2`, `CO2/CH4`, and `CO2/N2` experiments
+
+Recommended external-FFV comparison ladder:
+
+1. `graph_2d` FFV pretrain
+2. `graph_3d` FFV pretrain
+3. downstream `baseline`
+4. downstream `baseline + predicted_ffv`
+5. downstream `oracle_ffv`
+
+Ready-made FFV pretraining configs now include:
+
+- `ffv_pretrain/configs/build_external_ffv_graph_2d_cache.yaml`
+- `ffv_pretrain/configs/build_external_ffv_graph_3d_cache.yaml`
+- `ffv_pretrain/configs/train_external_ffv_gnn_2d.yaml`
+- `ffv_pretrain/configs/train_external_ffv_gnn_3d.yaml`
+- paired 2D/3D prediction configs for `co2_main`, `co2_ch4`, and `co2_n2`
+
+### Where pretrained FFV models are saved
+
+Each external FFV pretraining run writes its best checkpoint to:
+
+- `ffv_pretrain/output/runs/external_ffv_graph_gnn_2d/checkpoints/best_model.pt`
+- `ffv_pretrain/output/runs/external_ffv_graph_gnn_3d/checkpoints/best_model.pt`
+
+Each checkpoint includes:
+
+- `model_state_dict`
+- `model_config`
+- `target_mean`
+- `target_std`
+- `training_config`
+- `representation_method`
+- `best_epoch`
+
+The same run directory also stores:
+
+- `resolved_config.json`
+- `train_summary.json`
+- `epoch_history.csv`
+
+### How to call a pretrained FFV model
+
+Use the dedicated prediction script with a YAML config:
+
+```bash
+python ffv_pretrain/scripts/predict_external_ffv_gnn.py --config ffv_pretrain/configs/predict_ffv_2d_for_co2_main.yaml
+python ffv_pretrain/scripts/predict_external_ffv_gnn.py --config ffv_pretrain/configs/predict_ffv_3d_for_co2_main.yaml
+```
+
+The config points to:
+
+- `model.checkpoint_path`
+- `inference.csv_path`
+- `inference.smiles_column`
+- `output.csv_path`
+
+The output CSV stores predicted FFV columns and completed FFV columns so they can be reused by downstream configs.
 
 The intended comparison ladder is:
 
 1. `baseline`
-2. `oracle_ffv`
-3. `stacked_ffv`
+2. `stacked_ffv_2d`
+3. `stacked_ffv_3d`
+4. `oracle_ffv`
 
 This lets us answer two separate questions:
 
@@ -506,11 +615,11 @@ These files let you show both:
 ## Important Limitations
 
 - family columns are still mostly unpopulated, so family-aware split is not yet the default code path
-- the current scaffold does not yet include GNN training
+- graph training is now implemented, but the current GNN baselines are still first-pass and should be interpreted cautiously under small data
 - reported selectivity and permeability-derived selectivity are not automatically reconciled into one policy
 - `FFV` remains exploratory and is not a required upstream module for the main `CO2` workflow
 - current `oracle_ffv` runs use only the tiny FFV-overlap subsets, so they should be treated as sensitivity/upper-bound results
-- `stacked_ffv` is still not implemented
+- explicit downstream `predffv_2d` and `predffv_3d` configs now exist, but their scientific value still depends on upstream external-FFV quality
 
 ## Recommended Next Steps
 

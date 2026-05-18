@@ -1,14 +1,14 @@
 model:
-  checkpoint_path: ffv_pretrain/output/runs/external_ffv_graph_gnn/checkpoints/best_model.pt
+  checkpoint_path: ffv_pretrain/output/runs/external_ffv_graph_gnn_2d/checkpoints/best_model.pt
 
 inference:
   csv_path: output/cleaned_data/co2_n2_subset.csv
   smiles_column: smiles_single
   existing_ffv_column: ffv
+  prediction_prefix: external_gnn_2d
   fill_missing_only: true
   batch_size: 256
   device: auto
 
 output:
-  csv_path: ffv_pretrain/output/augmented/co2_n2_subset_with_predicted_ffv.csv
-
+  csv_path: ffv_pretrain/output/augmented/co2_n2_subset_with_predicted_ffv_2d.csv

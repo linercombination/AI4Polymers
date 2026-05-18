@@ -1,68 +1,59 @@
-# PIM 气体分离机器学习脚手架
+# PIM 气体分离机器学习项目说明
 
-英文版请见：[README.md](C:/Users/16976/Desktop/smile_FFV/README.md)
+英文版见 [README.md](C:/Users/16976/Desktop/smile_FFV/README.md)。
 
-## 这个项目是做什么的
+## 项目定位
 
-这个工作区现在已经补齐了一套轻量、可复现、便于后续迁移到服务器的机器学习训练脚手架，服务于当前项目主线：
+这个仓库服务于当前项目主线：
 
 `SMILES/graph + aging (+ optional thickness) -> CO2-centered property prediction (permeability + pair targets) -> Robeson-style screening`
 
-当前代码已经对齐到现在的数据现实，重点支持：
+也就是说，我们当前要解决的不是完整的逆向设计，也不是全气体统一建模，而是先搭建一条与现有清洗数据相匹配、可复现、可比较的 `CO2` 中心建模流程。
 
-- 面向 `CO2` 渗透率主任务的分组 baseline
-- 面向 `CO2/CH4`、`CO2/N2` 的 pair-specific 选择性任务
-- Robeson 风格图表和启发式筛选结果导出
-- 基于 `smiles_single` 的 RDKit 特征构造
-- 独立的 `FFV` 小样本先导实验入口
+当前仓库已经覆盖：
 
-它目前还不是完整研究平台，暂时不包含：
+- `CO2` 渗透率分组建模
+- `CO2/CH4` 与 `CO2/N2` 的 pair-specific 任务
+- Robeson 风格筛选与图表导出
+- 四档结构表示对比
+- `oracle_ffv` 上界实验
+- 独立的外部 `FFV` 双轨预训练工作区 `ffv_pretrain/`
 
-- 最终版 family-aware 评估
-- explainable GNN 正式训练
-- 严格按文献方程拟合的 Robeson 上界距离建模
-- 逆向设计或 GAN 生成
+## 工作流概览
 
-## 流程总览
+![PIM workflow](output/imagegen/pim_workflow_overview.png)
 
-![PIM 气体分离机器学习流程图](./output/imagegen/pim_workflow_overview.png)
+## 四档表示方式
 
-## 四档表示与模型对比
+![Four-track comparison](output/imagegen/pim_four_track_comparison.png)
 
-![四档结构表示与模型对比图](./output/imagegen/pim_four_track_comparison.png)
+当前主任务默认按四档路线比较：
 
-## 项目结构
+1. `descriptor_2d`
+2. `descriptor_2d_3d`
+3. `graph_2d`
+4. `graph_3d`
 
-如果你是第一次看这个仓库，建议先打开这些文件：
+其中：
 
-- [README.md](C:/Users/16976/Desktop/smile_FFV/README.md)：英文使用说明
-- [task.md](C:/Users/16976/Desktop/smile_FFV/task.md) 和 [task_zh.md](C:/Users/16976/Desktop/smile_FFV/task_zh.md)：当前任务说明
-- [polymer_pim_gas_separation_pipeline.md](C:/Users/16976/Desktop/smile_FFV/polymer_pim_gas_separation_pipeline.md)：完整研究方案
-- [docs/13_graph_training_backend.md](C:/Users/16976/Desktop/smile_FFV/docs/13_graph_training_backend.md)：图训练后端的代码对应说明
+- `descriptor_2d`：二维指纹/描述符 + sklearn 回归器
+- `descriptor_2d_3d`：二维特征基础上再加入三维数值描述符
+- `graph_2d`：无坐标分子图 + 图神经网络
+- `graph_3d`：带原子坐标的分子图 + 距离感知图神经网络
 
-如果你想运行实验，但不想改 Python 代码，优先看这些：
+## 先看哪些文件
 
-- [configs](C:/Users/16976/Desktop/smile_FFV/configs)：所有实验 YAML 配置
-- [configs/co2_grouped_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d.yaml)：Track 1，二维描述符显式配置
-- [configs/co2_grouped_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d_3d.yaml)：Track 2，二维加三维描述符显式配置
-- [configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml)：Track 3，二维图模型显式配置
-- [configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml)：Track 4，三维图模型显式配置
-- [configs/co2_ch4_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_ch4_descriptor_2d.yaml) 和 [configs/co2_n2_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_n2_descriptor_2d.yaml)：Track 1 的显式 screening 配置
-- [configs/co2_ch4_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_ch4_descriptor_2d_3d.yaml) 和 [configs/co2_n2_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_n2_descriptor_2d_3d.yaml)：Track 2 的显式 screening 配置
+建议先按下面顺序阅读：
 
-如果你想看实际执行入口，打开这些：
+- [task.md](C:/Users/16976/Desktop/smile_FFV/task.md) 和 [task_zh.md](C:/Users/16976/Desktop/smile_FFV/task_zh.md)：当前任务定义
+- [polymer_pim_gas_separation_pipeline.md](C:/Users/16976/Desktop/smile_FFV/polymer_pim_gas_separation_pipeline.md)：研究总方案
+- [docs/00_workflow_overview.md](C:/Users/16976/Desktop/smile_FFV/docs/00_workflow_overview.md)：整体流程文档
+- [docs/13_graph_training_backend.md](C:/Users/16976/Desktop/smile_FFV/docs/13_graph_training_backend.md)：图模型训练说明
+- [docs/15_external_ffv_pretraining.md](C:/Users/16976/Desktop/smile_FFV/docs/15_external_ffv_pretraining.md)：外部 FFV 预训练方案
+- [docs/16_external_ffv_dual_track_addendum.md](C:/Users/16976/Desktop/smile_FFV/docs/16_external_ffv_dual_track_addendum.md)：2D/3D 双轨 FFV 预训练补充说明
+- [ffv_pretrain/README_zh.md](C:/Users/16976/Desktop/smile_FFV/ffv_pretrain/README_zh.md)：独立 FFV 预训练工作区使用说明
 
-- [scripts/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/scripts/train_baseline.py)：很薄的一层命令入口
-- [pim_ml/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/train_baseline.py)：主命令入口与表格训练后端
-- [pim_ml/train_graph.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/train_graph.py)：`graph_2d` 和 `graph_3d` 的专用图训练后端
-
-如果你想看运行结果，优先打开这些：
-
-- [output/cleaned_data](C:/Users/16976/Desktop/smile_FFV/output/cleaned_data)：清洗后数据与汇总
-- [output/experiments](C:/Users/16976/Desktop/smile_FFV/output/experiments)：训练输出目录、图表、指标和模型参数
-- [pim_ml/methods](C:/Users/16976/Desktop/smile_FFV/pim_ml/methods)：按表示方法拆分的描述符与图方法实现
-
-### 文件结构
+## 仓库结构
 
 ```text
 smile_FFV/
@@ -71,45 +62,37 @@ smile_FFV/
 |   |-- co2_grouped_descriptor_2d_3d.yaml
 |   |-- co2_grouped_graph_2d.yaml
 |   |-- co2_grouped_graph_3d.yaml
-|   |-- co2_ch4_descriptor_2d.yaml
-|   |-- co2_ch4_descriptor_2d_3d.yaml
-|   |-- co2_ch4_graph_2d.yaml
-|   |-- co2_ch4_graph_3d.yaml
-|   |-- co2_grouped_baseline.yaml
-|   |-- co2_ch4_screening.yaml
-|   |-- co2_ch4_oracle_ffv.yaml
 |   |-- co2_grouped_oracle_ffv.yaml
-|   |-- co2_n2_descriptor_2d.yaml
-|   |-- co2_n2_descriptor_2d_3d.yaml
-|   |-- co2_n2_graph_2d.yaml
-|   |-- co2_n2_graph_3d.yaml
-|   |-- co2_n2_oracle_ffv.yaml
-|   |-- co2_n2_screening.yaml
+|   |-- co2_grouped_descriptor_2d_predffv_2d.yaml
+|   |-- co2_grouped_descriptor_2d_predffv_3d.yaml
+|   |-- co2_grouped_graph_2d_predffv_2d.yaml
+|   |-- co2_grouped_graph_3d_predffv_3d.yaml
+|   |-- co2_ch4_*.yaml
+|   |-- co2_n2_*.yaml
 |   `-- ffv_pilot.yaml
 |-- docs/
+|-- ffv_pretrain/
+|   |-- configs/
+|   |-- ffv_pretrain/
+|   |-- requirements/
+|   |-- scripts/
+|   |-- environment.yml
+|   `-- README_zh.md
 |-- output/
 |   |-- cleaned_data/
 |   `-- experiments/
 |-- pim_ml/
-|   |-- features.py
 |   |-- methods/
 |   |   |-- descriptor_2d/
 |   |   |-- descriptor_2d_3d/
 |   |   |-- graph_2d/
 |   |   `-- graph_3d/
-|   |-- models.py
 |   |-- reporting.py
 |   |-- splits.py
 |   |-- train_baseline.py
 |   `-- train_graph.py
 |-- requirements/
-|   |-- base.txt
-|   |-- graph.txt
-|   `-- server.txt
 |-- scripts/
-|   `-- train_baseline.py
-|-- PIMs_family_classification_scheme.md
-|-- polymer_pim_gas_separation_pipeline.md
 |-- task.md
 |-- task_zh.md
 |-- README.md
@@ -118,33 +101,18 @@ smile_FFV/
 `-- pyproject.toml
 ```
 
-## 环境创建方式
+## 环境安装
 
-当前项目已经把“代码”和“依赖”分离开了，方便你后续迁移到服务器。
-
-### 推荐方式：Conda
-
-直接使用 [environment.yml](C:/Users/16976/Desktop/smile_FFV/environment.yml)：
+### 推荐方式：conda
 
 ```bash
 conda env create -f environment.yml
 conda activate pim-gas-ml
 ```
 
-推荐使用 conda 的原因是：
+推荐使用 conda 的原因是 `rdkit` 安装更稳定。
 
-- `rdkit` 在 `conda-forge` 上通常比 pip 更稳定
-- 后续迁移到 Linux 服务器更容易复现
-
-### 可选方式：pip / venv
-
-如果你已经自己管理 Python 解释器，也可以使用：
-
-- [requirements/base.txt](C:/Users/16976/Desktop/smile_FFV/requirements/base.txt)
-- [requirements/server.txt](C:/Users/16976/Desktop/smile_FFV/requirements/server.txt)
-- [requirements/graph.txt](C:/Users/16976/Desktop/smile_FFV/requirements/graph.txt)，用于图模型运行
-
-示例：
+### 可选方式：venv + pip
 
 ```bash
 python -m venv .venv
@@ -153,263 +121,169 @@ pip install -r requirements/server.txt
 pip install -e .
 ```
 
-如果你准备运行图模型，改用：
+如果要跑图模型，再额外安装：
 
 ```bash
 pip install -r requirements/graph.txt
-pip install -e .
 ```
 
-## 本地包安装
-
-项目支持安装为本地可编辑包，配置文件见 [pyproject.toml](C:/Users/16976/Desktop/smile_FFV/pyproject.toml)：
+## 安装本地命令
 
 ```bash
 pip install -e .
 ```
 
-安装完成后，你可以直接使用：
+安装后可以直接使用：
 
 ```bash
 pim-train-baseline --config configs/co2_grouped_baseline.yaml
 ```
 
-如果环境里没有安装 `xgboost`，训练脚本不会直接报错退出，而是自动跳过并在日志里记录原因。
+## 对不熟悉代码的使用者：最短上手路径
 
-## 最短上手路径
+1. 先选一个 `configs/*.yaml`
+2. 运行一条训练命令
+3. 打开对应的 `output/experiments/<run_name>/`
+4. 先看 `summary_metrics.csv`、`predictions.csv`、`plots/*.png`
 
-1. 先去 [configs](C:/Users/16976/Desktop/smile_FFV/configs) 里选一个 YAML 配置。
-2. 用这一份 YAML 跑一条命令。
-3. 到 [output/experiments](C:/Users/16976/Desktop/smile_FFV/output/experiments) 里打开新生成的运行目录。
-4. 先看 `summary_metrics.csv`、`predictions.csv` 和 `plots/*.png`。
-
-示例：
+例如：
 
 ```bash
 python scripts/train_baseline.py --config configs/co2_grouped_descriptor_2d.yaml
 ```
 
-## 表示方法切换
+## 方法切换方式
 
-你可以直接使用已经准备好的四份配置：
+### 方式 1：直接换配置文件
 
-- Track 1 `descriptor_2d`：[configs/co2_grouped_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d.yaml)，当前可直接运行
-- Track 2 `descriptor_2d_3d`：[configs/co2_grouped_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d_3d.yaml)，当前可直接运行
-- Track 3 `graph_2d`：[configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml)，安装 `torch` 后可直接运行
-- Track 4 `graph_3d`：[configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml)，安装 `torch` 后可直接运行
+这是最推荐的方式。
 
-现在 screening 任务也已经补成同样的四轨命名：
+`CO2 grouped`：
 
-- `CO2/CH4`：`co2_ch4_descriptor_2d.yaml`、`co2_ch4_descriptor_2d_3d.yaml`、`co2_ch4_graph_2d.yaml`、`co2_ch4_graph_3d.yaml`
-- `CO2/N2`：`co2_n2_descriptor_2d.yaml`、`co2_n2_descriptor_2d_3d.yaml`、`co2_n2_graph_2d.yaml`、`co2_n2_graph_3d.yaml`
+- `configs/co2_grouped_descriptor_2d.yaml`
+- `configs/co2_grouped_descriptor_2d_3d.yaml`
+- `configs/co2_grouped_graph_2d.yaml`
+- `configs/co2_grouped_graph_3d.yaml`
 
-也可以复用同一份配置，再通过命令行一键切换表示方法：
+`CO2/CH4`：
+
+- `configs/co2_ch4_descriptor_2d.yaml`
+- `configs/co2_ch4_descriptor_2d_3d.yaml`
+- `configs/co2_ch4_graph_2d.yaml`
+- `configs/co2_ch4_graph_3d.yaml`
+
+`CO2/N2`：
+
+- `configs/co2_n2_descriptor_2d.yaml`
+- `configs/co2_n2_descriptor_2d_3d.yaml`
+- `configs/co2_n2_graph_2d.yaml`
+- `configs/co2_n2_graph_3d.yaml`
+
+### 方式 2：命令行覆盖 `method`
 
 ```bash
 python scripts/train_baseline.py --config configs/co2_grouped_descriptor_2d.yaml --method descriptor_2d_3d
 ```
 
-还可以直接修改仓库级默认值，位置在：
+### 方式 3：修改仓库默认回退方法
+
+文件：
 
 - [pim_ml/methods/__init__.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/methods/__init__.py)
 
-把这一行：
+当前默认回退值是：
 
 ```python
-DEFAULT_METHOD_NAME = "descriptor_2d"
+DEFAULT_METHOD_NAME = "descriptor_2d_3d"
 ```
 
-改成你想要的默认方法。
+只有当某个配置文件没有显式写 `representation.method` 时，这个默认值才会生效。  
+由于当前仓库的大多数正式配置都已经显式写明方法，因此这种方式最不推荐。
 
-但这通常不是最推荐的切换方式，因为它会影响所有没有显式写 `representation.method` 的配置文件。
-
-随时查看当前方法状态：
+### 查看当前可用方法
 
 ```bash
 pim-train-baseline --list-methods
 ```
 
-说明：
-
-- `co2_grouped_baseline.yaml` 继续保留，作为历史兼容的 Track 1 默认配置。
-- `graph_2d` 和 `graph_3d` 现在已经改为走专门的图训练后端，不再复用旧的表格训练器。
-- 如果本机没有安装 `torch`，图方法会在启动时立刻给出清晰的安装提示，而不是训练到一半再报错。
-
-## 图模型依赖说明
-
-图模型现在已经有代码入口和配置文件，但运行前需要先安装 `torch`。
-
-推荐方式：
-
-```bash
-conda env create -f environment.yml
-conda activate pim-gas-ml
-```
-
-如果你自己管理 Python 环境：
-
-```bash
-pip install -r requirements/graph.txt
-pip install -e .
-```
-
 ## 快速开始
 
-### 1. 运行 `CO2` 渗透率 grouped baseline
+### 1. 运行 `CO2 grouped` 基线
 
 ```bash
 python scripts/train_baseline.py --config configs/co2_grouped_baseline.yaml
 ```
 
-### 2. 运行 `CO2/CH4` screening
+### 2. 运行 `CO2/CH4` 筛选任务
 
 ```bash
 python scripts/train_baseline.py --config configs/co2_ch4_screening.yaml
 ```
 
-### 3. 运行 `CO2/N2` screening
+### 3. 运行 `CO2/N2` 筛选任务
 
 ```bash
 python scripts/train_baseline.py --config configs/co2_n2_screening.yaml
 ```
 
-### 4. 运行 `FFV` pilot
+### 4. 运行 `FFV` 小样本 pilot
 
 ```bash
 python scripts/train_baseline.py --config configs/ffv_pilot.yaml
 ```
 
-### 5. 指定运行目录名称
-
-```bash
-python scripts/train_baseline.py --config configs/co2_ch4_screening.yaml --run-name first_co2_ch4_run
-```
-
-### 6. 运行严格 `CO2` `oracle_ffv` 上限实验
+### 5. 运行 `oracle_ffv` 上界实验
 
 ```bash
 python scripts/train_baseline.py --config configs/co2_grouped_oracle_ffv.yaml
-```
-
-### 7. 运行 `CO2/CH4` `oracle_ffv` screening
-
-```bash
 python scripts/train_baseline.py --config configs/co2_ch4_oracle_ffv.yaml
-```
-
-### 8. 运行 `CO2/N2` `oracle_ffv` screening
-
-```bash
 python scripts/train_baseline.py --config configs/co2_n2_oracle_ffv.yaml
 ```
 
-## 训练脚本做了什么
+## predicted FFV 下游配置怎么用
 
-每次运行时，脚本会：
+仓库现在已经为三类主任务分别写好了 `predffv_2d` 和 `predffv_3d` 配置。
 
-1. 读取指定的清洗后 CSV 数据子集
-2. 根据 `representation.method` 构造描述符特征或图结构样本
-3. 拼接实验数值特征，例如 `log1p(aging_days)` 和可选的 `thickness_um`
-4. 按配置执行交叉验证切分
-5. 训练 sklearn 回归模型或专门的图回归模型
-6. 保存指标、预测结果、图像和最终全量重训模型
-7. 如果配置开启了 `screening`，额外导出 Robeson 风格结果
+命名规则是：
 
-当前支持的切分方式：
+- `*_predffv_2d.yaml`：下游使用 2D 外部 FFV 预训练模型补出的 `predicted_ffv`
+- `*_predffv_3d.yaml`：下游使用 3D 外部 FFV 预训练模型补出的 `predicted_ffv`
 
-- `group_kfold`
-- `loo`
-- `kfold`
+例如：
 
-当前支持的模型：
+- `configs/co2_grouped_descriptor_2d_predffv_2d.yaml`
+- `configs/co2_grouped_descriptor_2d_predffv_3d.yaml`
+- `configs/co2_ch4_graph_2d_predffv_2d.yaml`
+- `configs/co2_n2_graph_3d_predffv_3d.yaml`
 
-- `ridge`
-- `random_forest`
-- `svr`
-- `hist_gb`
-- `xgboost`，前提是环境中已经安装
-- `gcn_small`、`gcn_medium`，用于 `graph_2d`
-- `distance_gnn_small`、`distance_gnn_medium`，用于 `graph_3d`
+这些配置依赖于 `ffv_pretrain/output/augmented/` 里的回填 CSV，所以必须先完成外部 FFV 预测回填，再运行下游训练。
 
-当前代码中的表示方法目录包括：
+## 当前训练脚本做了什么
 
-- `descriptor_2d`：当前默认主线，可直接运行
-- `descriptor_2d_3d`：在表格特征主线中增加 3D 数值描述符，可直接运行
-- `graph_2d`：二维图结构输入加稠密消息传递图回归
-- `graph_3d`：基于 RDKit 构象和距离加权邻接的三维图回归
+每次运行一个配置时，脚本会：
 
-## 训练过程可见性
+1. 读取清洗后的 CSV
+2. 根据 `representation.method` 构建表格特征或图数据
+3. 加入 `aging_days`、可选 `thickness_um`、以及配置中声明的额外数值特征
+4. 按配置执行 `GroupKFold`、`LOO` 或 `KFold`
+5. 训练对应模型
+6. 输出指标、预测表、图表和最终模型
+7. 如果开启 screening，则额外输出 Robeson 图与候选排序
 
-现在控制台会直接显示：
+控制台现在会显示：
 
-- 覆盖所有 fold 和最终全量 refit 的实时进度条
-- 每个 fold 完成后的耗时与指标
-- 每个 fold 的训练集/验证集指标对照
-- 训练结束后的模型指标排序
+- 总训练进度条
+- 每折完成日志
+- 训练集与验证集指标
+- 最终模型排序
 
-## 当前默认配置
+## 输出结果在哪里
 
-### `CO2` grouped baseline
+主任务结果默认写入：
 
-- 数据集：`output/cleaned_data/co2_main_subset.csv`
-- 目标：`log10_p_co2_barrer`
-- 切分：按 `membrane_name_raw` 做 `GroupKFold`
+- [output/experiments](C:/Users/16976/Desktop/smile_FFV/output/experiments)
 
-### `CO2/CH4` screening
-
-- 数据集：`output/cleaned_data/co2_ch4_subset.csv`
-- 目标：`log10_sel_co2_ch4_from_perm`
-- 切分：按 `membrane_name_raw` 做 `GroupKFold`
-- screening 横轴：`log10_p_co2_barrer`
-
-### `CO2/N2` screening
-
-- 数据集：`output/cleaned_data/co2_n2_subset.csv`
-- 目标：`log10_sel_co2_n2_from_perm`
-- 切分：按 `membrane_name_raw` 做 `GroupKFold`
-- screening 横轴：`log10_p_co2_barrer`
-
-### `FFV` pilot
-
-- 数据集：`output/cleaned_data/ffv_pilot_subset.csv`
-- 目标：`ffv`
-- 切分：`LOO`
-
-### `CO2` grouped `oracle_ffv`
-
-- 数据集：`output/cleaned_data/co2_main_subset.csv`
-- 目标：`log10_p_co2_barrer`
-- 行过滤：要求 `log10_ffv` 非缺失
-- 新增特征：`ffv_oracle_log10`
-- 切分：按 `membrane_name_raw` 做 `GroupKFold`
-
-### `CO2/CH4` `oracle_ffv`
-
-- 数据集：`output/cleaned_data/co2_ch4_subset.csv`
-- 目标：`log10_sel_co2_ch4_from_perm`
-- 行过滤：要求 `log10_ffv` 非缺失
-- 新增特征：`ffv_oracle_log10`
-- 切分：按 `membrane_name_raw` 做 `GroupKFold`
-
-### `CO2/N2` `oracle_ffv`
-
-- 数据集：`output/cleaned_data/co2_n2_subset.csv`
-- 目标：`log10_sel_co2_n2_from_perm`
-- 行过滤：要求 `log10_ffv` 非缺失
-- 新增特征：`ffv_oracle_log10`
-- 切分：按 `membrane_name_raw` 做 `GroupKFold`
-
-## 默认输出内容
-
-每次运行都会写入配置文件中指定的输出根目录，例如：
-
-- [output/experiments/co2_grouped_baseline](C:/Users/16976/Desktop/smile_FFV/output/experiments/co2_grouped_baseline)
-- [output/experiments/co2_grouped_oracle_ffv](C:/Users/16976/Desktop/smile_FFV/output/experiments/co2_grouped_oracle_ffv)
-- [output/experiments/co2_ch4_screening](C:/Users/16976/Desktop/smile_FFV/output/experiments/co2_ch4_screening)
-- [output/experiments/co2_ch4_oracle_ffv](C:/Users/16976/Desktop/smile_FFV/output/experiments/co2_ch4_oracle_ffv)
-- [output/experiments/co2_n2_screening](C:/Users/16976/Desktop/smile_FFV/output/experiments/co2_n2_screening)
-
-单次 run 目录下通常包含：
+每个实验目录通常包含：
 
 - `resolved_config.yaml`
 - `train.log`
@@ -418,106 +292,90 @@ python scripts/train_baseline.py --config configs/co2_n2_oracle_ffv.yaml
 - `split_manifest.csv`
 - `predictions.csv`
 - `fold_metrics.csv`
-- `convergence_summary.csv`
 - `summary_metrics.csv`
-- 表格方法保存为 `models/*.joblib`
-- 图方法保存为 `models/*.pt`
+- `convergence_summary.csv`
+- `models/*.joblib`
+- `models/*.pt`
 - `plots/*.png`
 - `convergence/*.csv`
 
-如果开启了 screening，还会额外生成：
+如果是 screening 任务，还会额外生成：
 
 - `screening_predictions.csv`
 - `best_model_screening.csv`
 - `robeson_upper_bounds.json`
-- `{model_name}_screening.csv`
-- `plots/{model_name}_robeson.png`
+- `plots/*_robeson.png`
 
-## 关于 Robeson 风格 screening 的说明
+## 最终模型参数保存在哪里
 
-当前这层 screening 是有意做得比较保守的：
+表格模型会保存到：
 
-- 图上展示的是 `log10 P_CO2` 与真实或预测的 pair 选择性
-- 现在会为对应气体对叠加文献 Robeson 上界参考线
-- 结果表里会导出真实值和预测值相对上界的距离
-- 当前提供的 pair 配置默认按 `2008` 上界做排序参考
+- `output/experiments/<run_name>/models/*.joblib`
 
-当前内置的参考线包括：
+图模型会保存到：
 
-- `CO2/CH4`：Robeson 2008 和 2019
-- `CO2/N2`：Robeson 2008 和 2019
+- `output/experiments/<run_name>/models/*.pt`
 
-当前代码使用的系数已经对齐到这篇文献的 Table 3：
+主任务训练在交叉验证结束后，会自动用全量数据再拟合一次，并保存这个 full-data refit 模型。
 
-- [Comesaña-Gándara 等 - 2019 - Redefining the Robeson upper bounds for CO2 CH4 and CO2 N2.pdf](C:/Users/16976/Desktop/smile_FFV/PIMs/files/133/Comesaña-Gándara%20等%20-%202019%20-%20Redefining%20the%20Robeson%20upper%20bounds%20for%20CO2%20CH4%20and%20CO2%20N2.pdf)
+## FFV 相关实验的三层含义
 
-所以当前结果更准确的说法是：
+### baseline
 
-- `Robeson-style screening`
+- 输入：`SMILES + aging (+ optional thickness)`
+- 作用：当前主线参考
 
-而不是：
+### oracle_ffv
 
-- 已经严格证明某个候选超过了正式文献上界
+- 输入：baseline + 真实 `ffv`
+- 作用：估计如果 FFV 被完美知道，下游最多能提升多少
+- 注意：只能作为上界实验，不能作为可部署流程结论
 
-## 收敛与训练有效性诊断
+### stacked_ffv
 
-现在脚手架会导出两层“训练是否有效”的证据：
+现在建议拆成两条：
 
-- `fold_metrics.csv`
-  现在除了验证集指标，还包含每个 fold 的训练集指标和 train-vs-validation gap
-- `convergence_summary.csv`
-  记录哪些模型/哪些 fold 具备逐轮 loss 历史
+1. `stacked_ffv_2d`
+2. `stacked_ffv_3d`
 
-对于像 `hist_gb` 这种可迭代模型，run 目录里还会额外生成：
+也就是分别比较：
 
-- `convergence/{model_name}_fold_{k}_history.csv`
-- `plots/{model_name}_fold_{k}_convergence.png`
+- `baseline + predicted_ffv_from_graph_2d`
+- `baseline + predicted_ffv_from_graph_3d`
 
-这些文件可以帮助你同时说明：
-
-- 模型在训练过程中是否稳定收敛
-- 验证表现是否同步合理，而不是只在训练集上收敛
-
-## 当前已知限制
-
-- 清洗数据中的 family 列目前大多还没有正式填充，所以 family-aware split 还不是默认代码路径
-- 当前脚手架还没有接入 GNN 训练
-- “文献报告选择性”和“渗透率反算选择性”还没有自动统一成一条最终标签策略
-- `FFV` 当前仍然只被视为 exploratory pilot，不会强行接入主 `CO2` 流程
-
-## 推荐的下一步
-
-1. 先补一版 `family` 标签映射表
-2. 在训练脚手架中接入 family-aware split
-3. 为 `CO2/CH4` 和 `CO2/N2` 增加直接的第二气体渗透率任务
-4. 在 grouped baseline 稳定后，再加入 explainable graph 模型
-5. 在标签口径稳定后，把 screening 从启发式排序升级为正式 upper-bound distance 模型
-
-## 2026-05-13 FFV 补充说明
-
-当前 `FFV` 仍然不是主流程前置模块，但代码和文档现在已经区分出两种后续实验口径：
-
-### `oracle_ffv`
-
-- baseline 特征加真实 `ffv`
-- 作用：测量“完美 FFV”作为附加特征时的理论上限
-- 当前实现：先过滤掉 `log10_ffv` 缺失行，再把它作为 `ffv_oracle_log10` 加入特征
-- 可直接运行的配置：
-  - `configs/co2_grouped_oracle_ffv.yaml`
-  - `configs/co2_ch4_oracle_ffv.yaml`
-  - `configs/co2_n2_oracle_ffv.yaml`
-- 注意：它是上限实验，不是已经可部署的全链路
-
-### `stacked_ffv`
-
-- baseline 特征加预测 `ffv`
-- 真实链路：`SMILES -> FFV 模型 -> 下游气体模型`
-- 强制规则：下游验证样本必须使用 out-of-fold 的 FFV 预测，而不是自身真值
-
-因此后续最合理的对比顺序是：
+推荐比较梯度为：
 
 1. `baseline`
-2. `oracle_ffv`
-3. `stacked_ffv`
+2. `stacked_ffv_2d`
+3. `stacked_ffv_3d`
+4. `oracle_ffv`
 
-这样可以把“FFV 本身是否有价值”和“当前 FFV 预测器是否已经足够好”这两个问题分开。
+## 外部 FFV 预训练入口
+
+外部大规模 `FFV` 预训练位于：
+
+- [ffv_pretrain](C:/Users/16976/Desktop/smile_FFV/ffv_pretrain)
+
+当前支持两条路线：
+
+1. `graph_2d`
+2. `graph_3d`
+
+更详细说明见：
+
+- [ffv_pretrain/README_zh.md](C:/Users/16976/Desktop/smile_FFV/ffv_pretrain/README_zh.md)
+
+## 主要限制
+
+- family 列目前仍不完整，因此 family-aware split 还不是默认路径
+- 图模型已经可运行，但当前仍是第一版基础实现，结论必须结合小样本风险解读
+- `oracle_ffv` 只在 FFV 重叠子集上运行，应视为上界/敏感性分析
+- `predffv_2d` 与 `predffv_3d` 下游配置已就位，但其实际效果仍取决于上游外部 FFV 预训练质量
+
+## 当前最推荐的推进顺序
+
+1. 先稳定四档主任务结果
+2. 比较 `descriptor_2d`、`descriptor_2d_3d`、`graph_2d`、`graph_3d`
+3. 完成外部 FFV 的 2D/3D 双轨预训练
+4. 生成回填后的 `predicted_ffv` 数据表
+5. 比较 `baseline`、`stacked_ffv_2d`、`stacked_ffv_3d`、`oracle_ffv`

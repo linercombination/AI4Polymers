@@ -1,0 +1,53 @@
+seed: 42
+
+experiment:
+  display_name: CO2 grouped + predicted FFV from 3D pretrain - Track 4 3D graph
+  representation_track: track_4_graph_3d
+  mode: stacked_ffv_3d
+  runner_status: ready
+  note: Requires the optional torch dependency and uses the dedicated graph trainer.
+
+representation:
+  method: graph_3d
+
+dataset:
+  csv_path: ffv_pretrain/output/augmented/co2_main_subset_with_predicted_ffv_3d.csv
+  target_column: log10_p_co2_barrer
+  group_column: membrane_name_raw
+  require_non_missing_columns:
+    - external_gnn_3d_log10_ffv_completed
+  id_columns:
+    - sample_id
+    - membrane_name_raw
+    - source_sheet
+    - source_row_excel
+
+features:
+  smiles_column: smiles_single
+  aging_column: aging_days
+  thickness_column: thickness_um
+  fingerprint_radius: 2
+  fingerprint_bits: 512
+  extra_numeric_features:
+    - column: external_gnn_3d_log10_ffv_completed
+      feature_name: predicted_ffv_3d_log10
+      transform: identity
+      add_missing_indicator: false
+
+cv:
+  mode: group_kfold
+  n_splits: 5
+
+graph_training:
+  batch_size: 16
+  max_epochs: 120
+  patience: 20
+  learning_rate: 0.001
+  weight_decay: 0.0001
+
+models:
+  - distance_gnn_small
+  - distance_gnn_medium
+
+output:
+  root_dir: output/experiments/co2_grouped_graph_3d__predffv_3d

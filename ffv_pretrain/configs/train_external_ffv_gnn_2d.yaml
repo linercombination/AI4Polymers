@@ -22,3 +22,4 @@ training:
 
 output:
   run_dir: ffv_pretrain/output/runs/external_ffv_graph_gnn_2d
+

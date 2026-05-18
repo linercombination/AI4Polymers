@@ -1,5 +1,5 @@
 representation:
-  method: graph_2d
+  method: graph_3d
 
 dataset:
   csv_path: extra_FFV_dataset.csv
@@ -13,5 +13,6 @@ split:
   valid_fraction: 0.05
 
 output:
-  cache_dir: ffv_pretrain/output/cache/external_ffv_graph_2d
+  cache_dir: ffv_pretrain/output/cache/external_ffv_graph_3d
   shard_size: 5000
+

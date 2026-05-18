@@ -12,3 +12,4 @@ inference:
 
 output:
   csv_path: ffv_pretrain/output/augmented/co2_ch4_subset_with_predicted_ffv_2d.csv
+

@@ -1,0 +1,15 @@
+model:
+  checkpoint_path: ffv_pretrain/output/runs/external_ffv_graph_gnn_3d/checkpoints/best_model.pt
+
+inference:
+  csv_path: output/cleaned_data/co2_ch4_subset.csv
+  smiles_column: smiles_single
+  existing_ffv_column: ffv
+  prediction_prefix: external_gnn_3d
+  fill_missing_only: true
+  batch_size: 128
+  device: auto
+
+output:
+  csv_path: ffv_pretrain/output/augmented/co2_ch4_subset_with_predicted_ffv_3d.csv
+

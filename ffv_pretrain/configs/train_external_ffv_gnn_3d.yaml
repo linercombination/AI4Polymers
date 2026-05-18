@@ -1,10 +1,10 @@
 seed: 42
 
 representation:
-  method: graph_2d
+  method: graph_3d
 
 cache:
-  cache_dir: ffv_pretrain/output/cache/external_ffv_graph_2d
+  cache_dir: ffv_pretrain/output/cache/external_ffv_graph_3d
 
 model:
   node_feature_dim: 11
@@ -14,11 +14,12 @@ model:
 
 training:
   device: auto
-  batch_size: 128
+  batch_size: 64
   max_epochs: 20
   patience: 4
   learning_rate: 0.001
   weight_decay: 0.0001
 
 output:
-  run_dir: ffv_pretrain/output/runs/external_ffv_graph_gnn_2d
+  run_dir: ffv_pretrain/output/runs/external_ffv_graph_gnn_3d
+

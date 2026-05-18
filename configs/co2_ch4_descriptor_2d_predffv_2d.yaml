@@ -1,0 +1,58 @@
+seed: 42
+
+experiment:
+  display_name: CO2 CH4 screening + predicted FFV from 2D pretrain - Track 1 2D descriptor
+  representation_track: track_1_descriptor_2d
+  mode: stacked_ffv_2d
+  runner_status: ready
+
+representation:
+  method: descriptor_2d
+
+dataset:
+  csv_path: ffv_pretrain/output/augmented/co2_ch4_subset_with_predicted_ffv_2d.csv
+  target_column: log10_sel_co2_ch4_from_perm
+  group_column: membrane_name_raw
+  require_non_missing_columns:
+    - external_gnn_2d_log10_ffv_completed
+  id_columns:
+    - sample_id
+    - membrane_name_raw
+    - source_sheet
+    - source_row_excel
+
+features:
+  smiles_column: smiles_single
+  aging_column: aging_days
+  thickness_column: thickness_um
+  fingerprint_radius: 2
+  fingerprint_bits: 512
+  extra_numeric_features:
+    - column: external_gnn_2d_log10_ffv_completed
+      feature_name: predicted_ffv_2d_log10
+      transform: identity
+      add_missing_indicator: false
+
+cv:
+  mode: group_kfold
+  n_splits: 5
+
+models:
+  - ridge
+  - random_forest
+  - svr
+  - hist_gb
+  - xgboost
+
+screening:
+  enabled: true
+  pair_label: CO2/CH4
+  reference_upper_bound: "2008"
+  x_column: log10_p_co2_barrer
+  y_column: log10_sel_co2_ch4_from_perm
+  x_axis_label: log10 P_CO2 (Barrer)
+  y_axis_label: log10 alpha CO2/CH4
+
+output:
+  root_dir: output/experiments/co2_ch4_descriptor_2d__predffv_2d
+
