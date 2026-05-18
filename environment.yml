@@ -13,5 +13,6 @@ dependencies:
   - joblib
   - tqdm
   - xgboost
+  - pytorch
   - pip:
       - -e .

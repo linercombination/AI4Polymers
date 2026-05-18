@@ -3,8 +3,8 @@ seed: 42
 experiment:
   display_name: CO2 N2 screening comparison - Track 3 2D graph
   representation_track: track_3_graph_2d
-  runner_status: scaffold_only
-  note: This config is intentionally pre-created for future graph training. The current trainer will stop with a clear NotImplementedError.
+  runner_status: ready
+  note: Requires the optional torch dependency and uses the dedicated graph trainer.
 
 representation:
   method: graph_2d
@@ -30,7 +30,16 @@ cv:
   mode: group_kfold
   n_splits: 5
 
-models: []
+graph_training:
+  batch_size: 16
+  max_epochs: 120
+  patience: 20
+  learning_rate: 0.001
+  weight_decay: 0.0001
+
+models:
+  - gcn_small
+  - gcn_medium
 
 screening:
   enabled: true

@@ -21,7 +21,8 @@ dependencies = [
 [project.optional-dependencies]
 chem = ["rdkit"]
 xgboost = ["xgboost"]
-full = ["rdkit", "xgboost"]
+graph = ["torch"]
+full = ["rdkit", "xgboost", "torch"]
 
 [project.scripts]
 pim-train-baseline = "pim_ml.train_baseline:main"

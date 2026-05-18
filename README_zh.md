@@ -38,27 +38,29 @@
 - [README.md](C:/Users/16976/Desktop/smile_FFV/README.md)：英文使用说明
 - [task.md](C:/Users/16976/Desktop/smile_FFV/task.md) 和 [task_zh.md](C:/Users/16976/Desktop/smile_FFV/task_zh.md)：当前任务说明
 - [polymer_pim_gas_separation_pipeline.md](C:/Users/16976/Desktop/smile_FFV/polymer_pim_gas_separation_pipeline.md)：完整研究方案
+- [docs/13_graph_training_backend.md](C:/Users/16976/Desktop/smile_FFV/docs/13_graph_training_backend.md)：图训练后端的代码对应说明
 
 如果你想运行实验，但不想改 Python 代码，优先看这些：
 
 - [configs](C:/Users/16976/Desktop/smile_FFV/configs)：所有实验 YAML 配置
 - [configs/co2_grouped_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d.yaml)：Track 1，二维描述符显式配置
 - [configs/co2_grouped_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d_3d.yaml)：Track 2，二维加三维描述符显式配置
-- [configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml)：Track 3，未来二维图模型占位配置
-- [configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml)：Track 4，未来三维图模型占位配置
+- [configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml)：Track 3，二维图模型显式配置
+- [configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml)：Track 4，三维图模型显式配置
 - [configs/co2_ch4_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_ch4_descriptor_2d.yaml) 和 [configs/co2_n2_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_n2_descriptor_2d.yaml)：Track 1 的显式 screening 配置
 - [configs/co2_ch4_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_ch4_descriptor_2d_3d.yaml) 和 [configs/co2_n2_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_n2_descriptor_2d_3d.yaml)：Track 2 的显式 screening 配置
 
 如果你想看实际执行入口，打开这些：
 
 - [scripts/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/scripts/train_baseline.py)：很薄的一层命令入口
-- [pim_ml/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/train_baseline.py)：真正的训练、日志、报表与命令行切换逻辑
+- [pim_ml/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/train_baseline.py)：主命令入口与表格训练后端
+- [pim_ml/train_graph.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/train_graph.py)：`graph_2d` 和 `graph_3d` 的专用图训练后端
 
 如果你想看运行结果，优先打开这些：
 
 - [output/cleaned_data](C:/Users/16976/Desktop/smile_FFV/output/cleaned_data)：清洗后数据与汇总
 - [output/experiments](C:/Users/16976/Desktop/smile_FFV/output/experiments)：训练输出目录、图表、指标和模型参数
-- [pim_ml/methods](C:/Users/16976/Desktop/smile_FFV/pim_ml/methods)：按表示方法拆分的特征逻辑与图模型骨架
+- [pim_ml/methods](C:/Users/16976/Desktop/smile_FFV/pim_ml/methods)：按表示方法拆分的描述符与图方法实现
 
 ### 文件结构
 
@@ -98,9 +100,11 @@ smile_FFV/
 |   |-- models.py
 |   |-- reporting.py
 |   |-- splits.py
-|   `-- train_baseline.py
+|   |-- train_baseline.py
+|   `-- train_graph.py
 |-- requirements/
 |   |-- base.txt
+|   |-- graph.txt
 |   `-- server.txt
 |-- scripts/
 |   `-- train_baseline.py
@@ -138,6 +142,7 @@ conda activate pim-gas-ml
 
 - [requirements/base.txt](C:/Users/16976/Desktop/smile_FFV/requirements/base.txt)
 - [requirements/server.txt](C:/Users/16976/Desktop/smile_FFV/requirements/server.txt)
+- [requirements/graph.txt](C:/Users/16976/Desktop/smile_FFV/requirements/graph.txt)，用于图模型运行
 
 示例：
 
@@ -145,6 +150,13 @@ conda activate pim-gas-ml
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements/server.txt
+pip install -e .
+```
+
+如果你准备运行图模型，改用：
+
+```bash
+pip install -r requirements/graph.txt
 pip install -e .
 ```
 
@@ -183,8 +195,8 @@ python scripts/train_baseline.py --config configs/co2_grouped_descriptor_2d.yaml
 
 - Track 1 `descriptor_2d`：[configs/co2_grouped_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d.yaml)，当前可直接运行
 - Track 2 `descriptor_2d_3d`：[configs/co2_grouped_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d_3d.yaml)，当前可直接运行
-- Track 3 `graph_2d`：[configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml)，当前仅为占位配置
-- Track 4 `graph_3d`：[configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml)，当前仅为占位配置
+- Track 3 `graph_2d`：[configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml)，安装 `torch` 后可直接运行
+- Track 4 `graph_3d`：[configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml)，安装 `torch` 后可直接运行
 
 现在 screening 任务也已经补成同样的四轨命名：
 
@@ -206,7 +218,26 @@ pim-train-baseline --list-methods
 说明：
 
 - `co2_grouped_baseline.yaml` 继续保留，作为历史兼容的 Track 1 默认配置。
-- `graph_2d` 和 `graph_3d` 现在先把配置文件位置固定下来，后续补齐图模型训练入口后可以直接沿用；如果你现在运行它们，程序会给出明确提示并停止。
+- `graph_2d` 和 `graph_3d` 现在已经改为走专门的图训练后端，不再复用旧的表格训练器。
+- 如果本机没有安装 `torch`，图方法会在启动时立刻给出清晰的安装提示，而不是训练到一半再报错。
+
+## 图模型依赖说明
+
+图模型现在已经有代码入口和配置文件，但运行前需要先安装 `torch`。
+
+推荐方式：
+
+```bash
+conda env create -f environment.yml
+conda activate pim-gas-ml
+```
+
+如果你自己管理 Python 环境：
+
+```bash
+pip install -r requirements/graph.txt
+pip install -e .
+```
 
 ## 快速开始
 
@@ -263,13 +294,12 @@ python scripts/train_baseline.py --config configs/co2_n2_oracle_ffv.yaml
 每次运行时，脚本会：
 
 1. 读取指定的清洗后 CSV 数据子集
-2. 从 `smiles_single` 构造 Morgan 指纹
-3. 计算一小组 RDKit 分子描述符
-4. 拼接实验数值特征，例如 `log1p(aging_days)` 和可选的 `thickness_um`
-5. 按配置执行交叉验证切分
-6. 训练 baseline 回归模型
-7. 保存指标、预测结果、图像和最终全量重训模型
-8. 如果配置开启了 `screening`，额外导出 Robeson 风格结果
+2. 根据 `representation.method` 构造描述符特征或图结构样本
+3. 拼接实验数值特征，例如 `log1p(aging_days)` 和可选的 `thickness_um`
+4. 按配置执行交叉验证切分
+5. 训练 sklearn 回归模型或专门的图回归模型
+6. 保存指标、预测结果、图像和最终全量重训模型
+7. 如果配置开启了 `screening`，额外导出 Robeson 风格结果
 
 当前支持的切分方式：
 
@@ -284,13 +314,15 @@ python scripts/train_baseline.py --config configs/co2_n2_oracle_ffv.yaml
 - `svr`
 - `hist_gb`
 - `xgboost`，前提是环境中已经安装
+- `gcn_small`、`gcn_medium`，用于 `graph_2d`
+- `distance_gnn_small`、`distance_gnn_medium`，用于 `graph_3d`
 
 当前代码中的表示方法目录包括：
 
 - `descriptor_2d`：当前默认主线，可直接运行
 - `descriptor_2d_3d`：在表格特征主线中增加 3D 数值描述符，可直接运行
-- `graph_2d`：未来 2D 图模型的目录骨架和配置占位
-- `graph_3d`：未来 3D 图模型的目录骨架和配置占位
+- `graph_2d`：二维图结构输入加稠密消息传递图回归
+- `graph_3d`：基于 RDKit 构象和距离加权邻接的三维图回归
 
 ## 训练过程可见性
 
@@ -374,7 +406,8 @@ python scripts/train_baseline.py --config configs/co2_n2_oracle_ffv.yaml
 - `fold_metrics.csv`
 - `convergence_summary.csv`
 - `summary_metrics.csv`
-- `models/*.joblib`
+- 表格方法保存为 `models/*.joblib`
+- 图方法保存为 `models/*.pt`
 - `plots/*.png`
 - `convergence/*.csv`
 

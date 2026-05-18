@@ -18,6 +18,7 @@ class MethodBundle:
     build_feature_frame: FeatureBuilder
     get_model_factories: ModelFactoryLoader
     supports_table_training: bool = True
+    supports_graph_training: bool = False
 
 
 METHOD_MODULES = {
@@ -38,12 +39,23 @@ def describe_available_methods() -> list[dict[str, str | bool]]:
     rows: list[dict[str, str | bool]] = []
     for method_name in list_available_methods():
         bundle = resolve_method_bundle(method_name)
+        if bundle.supports_table_training:
+            backend = "table"
+            status = "ready"
+        elif bundle.supports_graph_training:
+            backend = "graph"
+            status = "ready"
+        else:
+            backend = "unimplemented"
+            status = "scaffold_only"
         rows.append(
             {
                 "name": bundle.name,
                 "label": bundle.label,
                 "supports_table_training": bundle.supports_table_training,
-                "status": "ready" if bundle.supports_table_training else "scaffold_only",
+                "supports_graph_training": bundle.supports_graph_training,
+                "backend": backend,
+                "status": status,
             }
         )
     return rows
@@ -65,4 +77,5 @@ def resolve_method_bundle(method_name: str | None) -> MethodBundle:
         build_feature_frame=module.build_feature_frame,
         get_model_factories=module.get_model_factories,
         supports_table_training=bool(getattr(module, "SUPPORTS_TABLE_TRAINING", True)),
+        supports_graph_training=bool(getattr(module, "SUPPORTS_GRAPH_TRAINING", False)),
     )

@@ -43,7 +43,9 @@ ROBESON_UPPER_BOUNDS = {
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Train baseline regression models for PIM datasets.")
+    parser = argparse.ArgumentParser(
+        description="Train descriptor or graph regression experiments for PIM datasets."
+    )
     parser.add_argument(
         "--config",
         default=None,
@@ -84,11 +86,12 @@ def load_config(config_path: str | Path) -> dict:
 def print_available_methods() -> None:
     print("Available representation methods:")
     for row in describe_available_methods():
-        readiness = (
-            "runnable with the current trainer"
-            if row["supports_table_training"]
-            else "configuration scaffold only; dedicated graph training is not implemented yet"
-        )
+        if row["supports_table_training"]:
+            readiness = "runnable with the current table trainer"
+        elif row["supports_graph_training"]:
+            readiness = "runnable with the dedicated graph trainer"
+        else:
+            readiness = "configuration scaffold only; training backend is not implemented yet"
         print(f"- {row['name']}: {row['label']} [{row['status']}] - {readiness}")
 
 
@@ -259,6 +262,13 @@ def main() -> None:
         return
 
     config = apply_cli_overrides(load_config(args.config), args)
+    representation_cfg = config.get("representation", {})
+    method_bundle = resolve_method_bundle(representation_cfg.get("method"))
+    if method_bundle.supports_graph_training:
+        from pim_ml.train_graph import run_graph_experiment
+
+        run_graph_experiment(args=args, config=config, method_bundle=method_bundle)
+        return
 
     dataset_cfg = config["dataset"]
     feature_cfg = config["features"]
@@ -270,9 +280,9 @@ def main() -> None:
 
     if not method_bundle.supports_table_training:
         raise NotImplementedError(
-            f"Representation method '{method_bundle.name}' is scaffolded but not yet supported by "
-            "the current table-based trainer. Use descriptor_2d or descriptor_2d_3d today, or run "
-            "'pim-train-baseline --list-methods' to inspect the current method status."
+            f"Representation method '{method_bundle.name}' does not expose a runnable backend in the "
+            "current installation. Run 'pim-train-baseline --list-methods' to inspect the current "
+            "method status."
         )
 
     run_dir = create_run_dir(output_cfg["root_dir"], run_name=args.run_name)
