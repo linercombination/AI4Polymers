@@ -34,6 +34,21 @@ def list_available_methods() -> list[str]:
     return sorted(METHOD_MODULES.keys())
 
 
+def describe_available_methods() -> list[dict[str, str | bool]]:
+    rows: list[dict[str, str | bool]] = []
+    for method_name in list_available_methods():
+        bundle = resolve_method_bundle(method_name)
+        rows.append(
+            {
+                "name": bundle.name,
+                "label": bundle.label,
+                "supports_table_training": bundle.supports_table_training,
+                "status": "ready" if bundle.supports_table_training else "scaffold_only",
+            }
+        )
+    return rows
+
+
 def resolve_method_bundle(method_name: str | None) -> MethodBundle:
     resolved_name = method_name or DEFAULT_METHOD_NAME
     module_path = METHOD_MODULES.get(resolved_name)

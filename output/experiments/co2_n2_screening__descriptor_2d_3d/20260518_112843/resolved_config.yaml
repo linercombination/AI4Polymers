@@ -1,0 +1,37 @@
+seed: 42
+representation:
+  method: descriptor_2d_3d
+dataset:
+  csv_path: output/cleaned_data/co2_n2_subset.csv
+  target_column: log10_sel_co2_n2_from_perm
+  group_column: membrane_name_raw
+  id_columns:
+  - sample_id
+  - membrane_name_raw
+  - source_sheet
+  - source_row_excel
+features:
+  smiles_column: smiles_single
+  aging_column: aging_days
+  thickness_column: thickness_um
+  fingerprint_radius: 2
+  fingerprint_bits: 512
+cv:
+  mode: group_kfold
+  n_splits: 5
+models:
+- ridge
+- random_forest
+- svr
+- hist_gb
+- xgboost
+screening:
+  enabled: true
+  pair_label: CO2/N2
+  reference_upper_bound: '2008'
+  x_column: log10_p_co2_barrer
+  y_column: log10_sel_co2_n2_from_perm
+  x_axis_label: log10 P_CO2 (Barrer)
+  y_axis_label: log10 alpha CO2/N2
+output:
+  root_dir: output\experiments\co2_n2_screening__descriptor_2d_3d

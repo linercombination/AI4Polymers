@@ -18,7 +18,7 @@ try:
 except ImportError:  # pragma: no cover - fallback for minimal environments
     tqdm = None
 
-from pim_ml.methods import resolve_method_bundle
+from pim_ml.methods import describe_available_methods, list_available_methods, resolve_method_bundle
 from pim_ml.reporting import (
     create_run_dir,
     plot_convergence_curve,
@@ -46,7 +46,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Train baseline regression models for PIM datasets.")
     parser.add_argument(
         "--config",
-        required=True,
+        default=None,
         help="Path to a YAML config file.",
     )
     parser.add_argument(
@@ -54,12 +54,63 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Optional output run directory name. If omitted, a timestamp is used.",
     )
-    return parser.parse_args()
+    parser.add_argument(
+        "--method",
+        choices=list_available_methods(),
+        default=None,
+        help="Optional representation.method override so you can switch tracks without editing YAML.",
+    )
+    parser.add_argument(
+        "--output-root",
+        default=None,
+        help="Optional override for output.root_dir. Useful when reusing one config for multiple methods.",
+    )
+    parser.add_argument(
+        "--list-methods",
+        action="store_true",
+        help="Print available representation methods and their current readiness, then exit.",
+    )
+    args = parser.parse_args()
+    if not args.list_methods and not args.config:
+        parser.error("--config is required unless --list-methods is used.")
+    return args
 
 
 def load_config(config_path: str | Path) -> dict:
     with Path(config_path).open("r", encoding="utf-8") as handle:
         return yaml.safe_load(handle)
+
+
+def print_available_methods() -> None:
+    print("Available representation methods:")
+    for row in describe_available_methods():
+        readiness = (
+            "runnable with the current trainer"
+            if row["supports_table_training"]
+            else "configuration scaffold only; dedicated graph training is not implemented yet"
+        )
+        print(f"- {row['name']}: {row['label']} [{row['status']}] - {readiness}")
+
+
+def apply_cli_overrides(config: dict, args: argparse.Namespace) -> dict:
+    resolved = dict(config)
+    resolved["representation"] = dict(resolved.get("representation", {}))
+    resolved["output"] = dict(resolved.get("output", {}))
+
+    original_method = resolved["representation"].get("method")
+    if args.method:
+        resolved["representation"]["method"] = args.method
+        if args.output_root:
+            resolved["output"]["root_dir"] = args.output_root
+        elif original_method and args.method != original_method and resolved["output"].get("root_dir"):
+            current_root = Path(resolved["output"]["root_dir"])
+            resolved["output"]["root_dir"] = str(
+                current_root.with_name(f"{current_root.name}__{args.method}")
+            )
+    elif args.output_root:
+        resolved["output"]["root_dir"] = args.output_root
+
+    return resolved
 
 
 def compute_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, float]:
@@ -203,7 +254,11 @@ def apply_dataset_row_filters(frame: pd.DataFrame, dataset_cfg: dict) -> tuple[p
 def main() -> None:
     run_start = time.perf_counter()
     args = parse_args()
-    config = load_config(args.config)
+    if args.list_methods:
+        print_available_methods()
+        return
+
+    config = apply_cli_overrides(load_config(args.config), args)
 
     dataset_cfg = config["dataset"]
     feature_cfg = config["features"]
@@ -216,8 +271,8 @@ def main() -> None:
     if not method_bundle.supports_table_training:
         raise NotImplementedError(
             f"Representation method '{method_bundle.name}' is scaffolded but not yet supported by "
-            "the current table-based trainer. Add a dedicated graph training entry point before "
-            "running this method."
+            "the current table-based trainer. Use descriptor_2d or descriptor_2d_3d today, or run "
+            "'pim-train-baseline --list-methods' to inspect the current method status."
         )
 
     run_dir = create_run_dir(output_cfg["root_dir"], run_name=args.run_name)
@@ -227,6 +282,10 @@ def main() -> None:
 
     log(f"Run directory created at: {run_dir}")
     log(f"Loading config from: {args.config}")
+    if args.method:
+        log(f"CLI override applied: representation.method={args.method}")
+    if args.output_root:
+        log(f"CLI override applied: output.root_dir={args.output_root}")
 
     resolved_config_path = run_dir / "resolved_config.yaml"
     resolved_config_path.write_text(yaml.safe_dump(config, sort_keys=False), encoding="utf-8")

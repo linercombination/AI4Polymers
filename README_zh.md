@@ -33,25 +33,54 @@
 
 ## 项目结构
 
-- [task.md](C:/Users/16976/Desktop/smile_FFV/task.md)：英文任务说明
-- [task_zh.md](C:/Users/16976/Desktop/smile_FFV/task_zh.md)：中文任务说明
+如果你是第一次看这个仓库，建议先打开这些文件：
+
+- [README.md](C:/Users/16976/Desktop/smile_FFV/README.md)：英文使用说明
+- [task.md](C:/Users/16976/Desktop/smile_FFV/task.md) 和 [task_zh.md](C:/Users/16976/Desktop/smile_FFV/task_zh.md)：当前任务说明
 - [polymer_pim_gas_separation_pipeline.md](C:/Users/16976/Desktop/smile_FFV/polymer_pim_gas_separation_pipeline.md)：完整研究方案
-- [PIMs_family_classification_scheme.md](C:/Users/16976/Desktop/smile_FFV/PIMs_family_classification_scheme.md)：family 标签设计
-- [output/cleaned_data](C:/Users/16976/Desktop/smile_FFV/output/cleaned_data)：清洗后的数据资产
-- [configs](C:/Users/16976/Desktop/smile_FFV/configs)：可直接运行的实验配置
-- [scripts/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/scripts/train_baseline.py)：训练入口脚本
-- [pim_ml](C:/Users/16976/Desktop/smile_FFV/pim_ml)：特征、切分、模型、报告和 screening 工具
-- [pim_ml/methods](C:/Users/16976/Desktop/smile_FFV/pim_ml/methods)：按结构表示拆分的方法目录，分别对应 2D descriptor、2D+3D descriptor、2D graph、3D graph
+
+如果你想运行实验，但不想改 Python 代码，优先看这些：
+
+- [configs](C:/Users/16976/Desktop/smile_FFV/configs)：所有实验 YAML 配置
+- [configs/co2_grouped_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d.yaml)：Track 1，二维描述符显式配置
+- [configs/co2_grouped_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d_3d.yaml)：Track 2，二维加三维描述符显式配置
+- [configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml)：Track 3，未来二维图模型占位配置
+- [configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml)：Track 4，未来三维图模型占位配置
+- [configs/co2_ch4_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_ch4_descriptor_2d.yaml) 和 [configs/co2_n2_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_n2_descriptor_2d.yaml)：Track 1 的显式 screening 配置
+- [configs/co2_ch4_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_ch4_descriptor_2d_3d.yaml) 和 [configs/co2_n2_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_n2_descriptor_2d_3d.yaml)：Track 2 的显式 screening 配置
+
+如果你想看实际执行入口，打开这些：
+
+- [scripts/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/scripts/train_baseline.py)：很薄的一层命令入口
+- [pim_ml/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/train_baseline.py)：真正的训练、日志、报表与命令行切换逻辑
+
+如果你想看运行结果，优先打开这些：
+
+- [output/cleaned_data](C:/Users/16976/Desktop/smile_FFV/output/cleaned_data)：清洗后数据与汇总
+- [output/experiments](C:/Users/16976/Desktop/smile_FFV/output/experiments)：训练输出目录、图表、指标和模型参数
+- [pim_ml/methods](C:/Users/16976/Desktop/smile_FFV/pim_ml/methods)：按表示方法拆分的特征逻辑与图模型骨架
 
 ### 文件结构
 
 ```text
 smile_FFV/
 |-- configs/
+|   |-- co2_grouped_descriptor_2d.yaml
+|   |-- co2_grouped_descriptor_2d_3d.yaml
+|   |-- co2_grouped_graph_2d.yaml
+|   |-- co2_grouped_graph_3d.yaml
+|   |-- co2_ch4_descriptor_2d.yaml
+|   |-- co2_ch4_descriptor_2d_3d.yaml
+|   |-- co2_ch4_graph_2d.yaml
+|   |-- co2_ch4_graph_3d.yaml
 |   |-- co2_grouped_baseline.yaml
 |   |-- co2_ch4_screening.yaml
 |   |-- co2_ch4_oracle_ffv.yaml
 |   |-- co2_grouped_oracle_ffv.yaml
+|   |-- co2_n2_descriptor_2d.yaml
+|   |-- co2_n2_descriptor_2d_3d.yaml
+|   |-- co2_n2_graph_2d.yaml
+|   |-- co2_n2_graph_3d.yaml
 |   |-- co2_n2_oracle_ffv.yaml
 |   |-- co2_n2_screening.yaml
 |   `-- ffv_pilot.yaml
@@ -135,6 +164,50 @@ pim-train-baseline --config configs/co2_grouped_baseline.yaml
 
 如果环境里没有安装 `xgboost`，训练脚本不会直接报错退出，而是自动跳过并在日志里记录原因。
 
+## 最短上手路径
+
+1. 先去 [configs](C:/Users/16976/Desktop/smile_FFV/configs) 里选一个 YAML 配置。
+2. 用这一份 YAML 跑一条命令。
+3. 到 [output/experiments](C:/Users/16976/Desktop/smile_FFV/output/experiments) 里打开新生成的运行目录。
+4. 先看 `summary_metrics.csv`、`predictions.csv` 和 `plots/*.png`。
+
+示例：
+
+```bash
+python scripts/train_baseline.py --config configs/co2_grouped_descriptor_2d.yaml
+```
+
+## 表示方法切换
+
+你可以直接使用已经准备好的四份配置：
+
+- Track 1 `descriptor_2d`：[configs/co2_grouped_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d.yaml)，当前可直接运行
+- Track 2 `descriptor_2d_3d`：[configs/co2_grouped_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d_3d.yaml)，当前可直接运行
+- Track 3 `graph_2d`：[configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml)，当前仅为占位配置
+- Track 4 `graph_3d`：[configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml)，当前仅为占位配置
+
+现在 screening 任务也已经补成同样的四轨命名：
+
+- `CO2/CH4`：`co2_ch4_descriptor_2d.yaml`、`co2_ch4_descriptor_2d_3d.yaml`、`co2_ch4_graph_2d.yaml`、`co2_ch4_graph_3d.yaml`
+- `CO2/N2`：`co2_n2_descriptor_2d.yaml`、`co2_n2_descriptor_2d_3d.yaml`、`co2_n2_graph_2d.yaml`、`co2_n2_graph_3d.yaml`
+
+也可以复用同一份配置，再通过命令行一键切换表示方法：
+
+```bash
+python scripts/train_baseline.py --config configs/co2_grouped_descriptor_2d.yaml --method descriptor_2d_3d
+```
+
+随时查看当前方法状态：
+
+```bash
+pim-train-baseline --list-methods
+```
+
+说明：
+
+- `co2_grouped_baseline.yaml` 继续保留，作为历史兼容的 Track 1 默认配置。
+- `graph_2d` 和 `graph_3d` 现在先把配置文件位置固定下来，后续补齐图模型训练入口后可以直接沿用；如果你现在运行它们，程序会给出明确提示并停止。
+
 ## 快速开始
 
 ### 1. 运行 `CO2` 渗透率 grouped baseline
@@ -214,10 +287,10 @@ python scripts/train_baseline.py --config configs/co2_n2_oracle_ffv.yaml
 
 当前代码中的表示方法目录包括：
 
-- `descriptor_2d`：当前默认主线
-- `descriptor_2d_3d`：为后续 3D descriptor 扩展预留的表格方法目录
-- `graph_2d`：后续 2D 图模型目录骨架
-- `graph_3d`：后续 3D 图模型目录骨架
+- `descriptor_2d`：当前默认主线，可直接运行
+- `descriptor_2d_3d`：在表格特征主线中增加 3D 数值描述符，可直接运行
+- `graph_2d`：未来 2D 图模型的目录骨架和配置占位
+- `graph_3d`：未来 3D 图模型的目录骨架和配置占位
 
 ## 训练过程可见性
 

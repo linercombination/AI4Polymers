@@ -34,25 +34,54 @@ It is not yet a full platform for:
 
 ## Project Layout
 
-- [task.md](C:/Users/16976/Desktop/smile_FFV/task.md): current English task definition
-- [task_zh.md](C:/Users/16976/Desktop/smile_FFV/task_zh.md): current Chinese task definition
+Open these first if you are reading the project:
+
+- [README_zh.md](C:/Users/16976/Desktop/smile_FFV/README_zh.md): Chinese usage guide
+- [task.md](C:/Users/16976/Desktop/smile_FFV/task.md) and [task_zh.md](C:/Users/16976/Desktop/smile_FFV/task_zh.md): current task definition
 - [polymer_pim_gas_separation_pipeline.md](C:/Users/16976/Desktop/smile_FFV/polymer_pim_gas_separation_pipeline.md): research plan
-- [PIMs_family_classification_scheme.md](C:/Users/16976/Desktop/smile_FFV/PIMs_family_classification_scheme.md): family-label design
+
+Edit these if you want to run experiments without changing Python code:
+
+- [configs](C:/Users/16976/Desktop/smile_FFV/configs): all experiment YAML files
+- [configs/co2_grouped_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d.yaml): Track 1 explicit 2D descriptor config
+- [configs/co2_grouped_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d_3d.yaml): Track 2 explicit 2D+3D descriptor config
+- [configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml): Track 3 future graph config placeholder
+- [configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml): Track 4 future graph config placeholder
+- [configs/co2_ch4_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_ch4_descriptor_2d.yaml) and [configs/co2_n2_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_n2_descriptor_2d.yaml): explicit screening configs for Track 1
+- [configs/co2_ch4_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_ch4_descriptor_2d_3d.yaml) and [configs/co2_n2_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_n2_descriptor_2d_3d.yaml): explicit screening configs for Track 2
+
+Run these if you want to execute training:
+
+- [scripts/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/scripts/train_baseline.py): thin entry script
+- [pim_ml/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/pim_ml/train_baseline.py): real trainer, CLI, logging, and reporting
+
+Inspect these after a run finishes:
+
 - [output/cleaned_data](C:/Users/16976/Desktop/smile_FFV/output/cleaned_data): cleaned datasets and summaries
-- [configs](C:/Users/16976/Desktop/smile_FFV/configs): ready-to-run experiment configs
-- [scripts/train_baseline.py](C:/Users/16976/Desktop/smile_FFV/scripts/train_baseline.py): main training entry point
-- [pim_ml](C:/Users/16976/Desktop/smile_FFV/pim_ml): feature, split, model, reporting, and screening helpers
-- [pim_ml/methods](C:/Users/16976/Desktop/smile_FFV/pim_ml/methods): per-representation method directories for 2D descriptors, 2D+3D descriptors, 2D graph, and 3D graph
+- [output/experiments](C:/Users/16976/Desktop/smile_FFV/output/experiments): run folders, metrics, plots, and saved models
+- [pim_ml/methods](C:/Users/16976/Desktop/smile_FFV/pim_ml/methods): per-representation feature logic and future graph scaffolds
 
 ### File Structure
 
 ```text
 smile_FFV/
 |-- configs/
+|   |-- co2_grouped_descriptor_2d.yaml
+|   |-- co2_grouped_descriptor_2d_3d.yaml
+|   |-- co2_grouped_graph_2d.yaml
+|   |-- co2_grouped_graph_3d.yaml
+|   |-- co2_ch4_descriptor_2d.yaml
+|   |-- co2_ch4_descriptor_2d_3d.yaml
+|   |-- co2_ch4_graph_2d.yaml
+|   |-- co2_ch4_graph_3d.yaml
 |   |-- co2_grouped_baseline.yaml
 |   |-- co2_ch4_screening.yaml
 |   |-- co2_ch4_oracle_ffv.yaml
 |   |-- co2_grouped_oracle_ffv.yaml
+|   |-- co2_n2_descriptor_2d.yaml
+|   |-- co2_n2_descriptor_2d_3d.yaml
+|   |-- co2_n2_graph_2d.yaml
+|   |-- co2_n2_graph_3d.yaml
 |   |-- co2_n2_oracle_ffv.yaml
 |   |-- co2_n2_screening.yaml
 |   `-- ffv_pilot.yaml
@@ -133,6 +162,50 @@ pim-train-baseline --config configs/co2_grouped_baseline.yaml
 
 If `xgboost` is unavailable, the training code skips it and records the reason in the run log.
 
+## First Run for Non-Coders
+
+1. Pick one YAML file in [configs](C:/Users/16976/Desktop/smile_FFV/configs).
+2. Run one command with that YAML file.
+3. Open the new folder in [output/experiments](C:/Users/16976/Desktop/smile_FFV/output/experiments).
+4. Read `summary_metrics.csv`, `predictions.csv`, and `plots/*.png` first.
+
+Example:
+
+```bash
+python scripts/train_baseline.py --config configs/co2_grouped_descriptor_2d.yaml
+```
+
+## Representation Switching
+
+Use one of the ready-made configs:
+
+- Track 1 `descriptor_2d`: [configs/co2_grouped_descriptor_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d.yaml) - runnable now
+- Track 2 `descriptor_2d_3d`: [configs/co2_grouped_descriptor_2d_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_descriptor_2d_3d.yaml) - runnable now
+- Track 3 `graph_2d`: [configs/co2_grouped_graph_2d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_2d.yaml) - scaffold only for now
+- Track 4 `graph_3d`: [configs/co2_grouped_graph_3d.yaml](C:/Users/16976/Desktop/smile_FFV/configs/co2_grouped_graph_3d.yaml) - scaffold only for now
+
+The same four-track naming pattern is now also available for screening tasks:
+
+- `CO2/CH4`: `co2_ch4_descriptor_2d.yaml`, `co2_ch4_descriptor_2d_3d.yaml`, `co2_ch4_graph_2d.yaml`, `co2_ch4_graph_3d.yaml`
+- `CO2/N2`: `co2_n2_descriptor_2d.yaml`, `co2_n2_descriptor_2d_3d.yaml`, `co2_n2_graph_2d.yaml`, `co2_n2_graph_3d.yaml`
+
+Or reuse one config and override the representation on the command line:
+
+```bash
+python scripts/train_baseline.py --config configs/co2_grouped_descriptor_2d.yaml --method descriptor_2d_3d
+```
+
+List the current method status at any time:
+
+```bash
+pim-train-baseline --list-methods
+```
+
+Notes:
+
+- `co2_grouped_baseline.yaml` remains as the backward-compatible alias for the old default Track 1 setup.
+- `graph_2d` and `graph_3d` configs are intentionally present now so future graph training can plug into the same experiment layout, but the current trainer will stop with a clear message if you try to run them today.
+
 ## Quick Start
 
 ### 1. Run the grouped `CO2` permeability baseline
@@ -212,10 +285,10 @@ Supported models:
 
 Representation methods:
 
-- `descriptor_2d`: current default mainline
-- `descriptor_2d_3d`: table pipeline extended with 3D descriptor slots
-- `graph_2d`: scaffolded directory for future graph training
-- `graph_3d`: scaffolded directory for future 3D graph training
+- `descriptor_2d`: current default mainline, directly runnable
+- `descriptor_2d_3d`: table pipeline extended with 3D numeric descriptor slots, directly runnable
+- `graph_2d`: scaffolded directory and config placeholder for future graph training
+- `graph_3d`: scaffolded directory and config placeholder for future 3D graph training
 
 ## Training Visibility
 
