@@ -15,8 +15,8 @@ model:
 training:
   device: auto
   batch_size: 128
-  max_epochs: 20
-  patience: 4
+  max_epochs: 100
+  patience: 10
   learning_rate: 0.001
   weight_decay: 0.0001
 

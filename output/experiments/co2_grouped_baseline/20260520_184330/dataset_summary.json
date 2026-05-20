@@ -1,0 +1,28 @@
+{
+  "dataset_path": "output/cleaned_data/co2_main_subset.csv",
+  "experiment_mode": "baseline",
+  "representation_method": "descriptor_2d",
+  "representation_label": "2D descriptor baseline",
+  "source_rows_before_filters": 74,
+  "rows": 74,
+  "unique_groups": 31,
+  "target_column": "log10_p_co2_barrer",
+  "feature_count": 525,
+  "dropped_feature_columns": [],
+  "dataset_filters": [],
+  "cv_mode": "group_kfold",
+  "n_folds": 5,
+  "family_coverage": {
+    "backbone_family": 0,
+    "contortion_unit_family": 0,
+    "modification_family": 0
+  },
+  "convergence_artifacts": {
+    "fold_metrics_includes_train_metrics": true,
+    "iterative_history_models": [
+      "hist_gb"
+    ]
+  },
+  "screening": null,
+  "skipped_models": []
+}
