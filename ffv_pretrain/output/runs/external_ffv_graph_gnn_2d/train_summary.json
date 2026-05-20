@@ -1,0 +1,16 @@
+{
+  "cache_dir": "ffv_pretrain/output/cache/external_ffv_graph_2d",
+  "representation_method": "graph_2d",
+  "rows_train": 488323,
+  "rows_valid": 27325,
+  "rows_test": 26977,
+  "device": "cuda",
+  "best_epoch": 43,
+  "best_valid_rmse": 0.012975749020503129,
+  "runtime_seconds": 5644.539909312502,
+  "test_metrics": {
+    "mae": 0.008724169690684895,
+    "rmse": 0.012800119163195066,
+    "r2": 0.9234344990444981
+  }
+}

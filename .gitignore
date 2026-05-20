@@ -59,9 +59,9 @@ extra_FFV_dataset.csv
 # Training outputs
 # Keep cleaned data and image assets versioned.
 # =========================
-output/experiments/
+# output/experiments/
 ffv_pretrain/output/cache/
-ffv_pretrain/output/runs/
+# ffv_pretrain/output/runs/
 ffv_pretrain/output/augmented/
 ffv_pretrain/output/smoke_test/
 
