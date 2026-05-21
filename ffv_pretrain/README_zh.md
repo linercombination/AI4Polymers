@@ -11,6 +11,26 @@
 1. `graph_2d`
 2. `graph_3d`
 
+## 支线流程图
+
+![FFV pretraining branch](../output/imagegen/ffv_pretrain_branch_v2.png)
+
+## 预训练模型架构图
+
+如果你需要单独讲解“这个 FFV 预训练模型本身是什么结构”，可以直接使用下面这张图：
+
+![FFV pretrain GNN](../output/imagegen/arch_ffv_pretrain_gnn.png)
+
+如果你还需要连同主任务中的其它模型一起讲解，可以继续看：
+
+- [docs/19_model_architecture_gallery.md](C:/Users/16976/Desktop/smile_FFV/docs/19_model_architecture_gallery.md)
+
+当前建议口径：
+
+- `graph_2d` 是已经跑通并可优先复现的主路线
+- `graph_3d` 是保留的研究对照路线
+- 对于全量外部数据，`graph_3d` cache 构建目前仍然很慢，不作为默认第一步
+
 ## 这条支线要回答什么
 
 ### 上游问题
@@ -114,6 +134,12 @@ pip install -r ffv_pretrain/requirements/gpu.txt
    - `baseline + predicted_ffv_3d`
    - `oracle_ffv`
 
+当前默认建议：
+
+- 先优先完成 `graph_2d` 全流程
+- `graph_3d` 保留为研究对照路线
+- 对于全量 `extra_FFV_dataset.csv`，`graph_3d` cache 构建当前耗时过长，暂不作为默认执行步骤
+
 ## 1. 建图缓存
 
 ### 2D
@@ -127,6 +153,12 @@ python ffv_pretrain/scripts/build_graph_cache.py --config ffv_pretrain/configs/b
 ```bash
 python ffv_pretrain/scripts/build_graph_cache.py --config ffv_pretrain/configs/build_external_ffv_graph_3d_cache.yaml
 ```
+
+注意：
+
+- `graph_3d` 这一步在全量外部 FFV 数据上通常非常慢，因为需要逐条做 RDKit 3D 构象生成或回退
+- 当前项目中，这条全量 3D cache 路线暂时不作为默认推荐步骤
+- 更推荐先完成 `graph_2d` 结果，再视需要对 `graph_3d` 做抽样验证
 
 缓存输出目录默认是：
 
@@ -270,3 +302,8 @@ python ffv_pretrain/scripts/predict_external_ffv_gnn.py --config ffv_pretrain/co
 1. 不使用 FFV 时主线模型本身有多强
 2. 2D 与 3D 外部 FFV 预训练谁更适合做上游
 3. 当前真实可部署流程距离理想上界还有多远
+
+现阶段执行口径：
+
+- 正式结果优先采用 `graph_2d` 外部 FFV 预训练
+- `graph_3d` 继续保留在研究计划中，但由于全量 cache 耗时过长，可暂缓不做

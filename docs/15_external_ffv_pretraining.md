@@ -2,119 +2,131 @@
 
 ## 1. 方案定位
 
-当前内部 `FFV` 样本太少，因此真正可扩展的 `FFV` 支线不能继续只依赖 `ffv_pilot_subset.csv`。  
-新的可部署路线是：
+当前内部 `FFV` 数据量太小，不能继续把 `ffv_pilot_subset.csv` 视为主线前置模块。  
+因此，这条支线的真实目标是：
 
-`extra_FFV_dataset.csv -> external FFV pretrain -> predicted_ffv -> downstream gas-property training`
+`extra_FFV_dataset.csv -> 外部 FFV 预训练 -> predicted_ffv -> 下游 CO2 / CO2-CH4 / CO2-N2 对比`
 
-并且这里不再只训练一个上游模型，而是明确做两条路线：
+它的角色是：
 
-1. `graph_2d FFV pretrain`
-2. `graph_3d FFV pretrain`
+- 提供可扩展的上游 `FFV` 代理特征来源
+- 支持 `baseline`、`predffv_2d`、`predffv_3d`、`oracle_ffv` 的系统比较
+- 为主任务提供“辅助特征是否有价值”的证据，而不是替代主任务本身
 
-## 2. 研究问题
+需要注意的是，当前项目并不只有这一条 FFV 路线。  
+如果你要看“通过分子模拟直接计算 FFV”的真实步骤，请同时参考：
 
-这条支线现在要回答两个层级的问题。
+- [docs/18_ffv_simulation_workflow.md](C:/Users/16976/Desktop/smile_FFV/docs/18_ffv_simulation_workflow.md)
+- [get_FFV/example/README.md](C:/Users/16976/Desktop/smile_FFV/get_FFV/example/README.md)
 
-### 2.1 上游问题
+## 2. 支线流程图
 
-在大规模外部 `FFV` 数据上：
+![FFV pretraining branch](../output/imagegen/ffv_pretrain_branch_v2.png)
 
-- `2D graph` 和 `3D graph` 哪个更适合学习 `SMILES -> FFV`
+## 2.1 预训练模型本体长什么样
 
-### 2.2 下游问题
+如果你需要解释“FFV 预训练时模型内部到底在做什么”，可以直接看下面这张图：
 
-将两条路线得到的 `predicted_ffv` 回填到主任务后：
+![FFV pretrain model architecture](../output/imagegen/arch_ffv_pretrain_gnn.png)
 
-- `predicted_ffv_2d` 和 `predicted_ffv_3d` 哪个对 `CO2`、`CO2/CH4`、`CO2/N2` 更有帮助
+更完整的逐模型架构说明见：
 
-## 3. 新的比较梯度
+- [docs/19_model_architecture_gallery.md](C:/Users/16976/Desktop/smile_FFV/docs/19_model_architecture_gallery.md)
 
-原本的 FFV 相关比较是：
+## 3. 为什么要同时保留 2D 和 3D
 
-1. `baseline`
-2. `oracle_ffv`
-3. `stacked_ffv`
-
-现在建议细化成：
-
-1. `baseline`
-2. `oracle_ffv`
-3. `baseline + predicted_ffv_from_graph_2d`
-4. `baseline + predicted_ffv_from_graph_3d`
-
-如果后续需要统一命名，也可以叫：
-
-- `stacked_ffv_2d`
-- `stacked_ffv_3d`
-
-## 4. 为什么要同时做 2D 和 3D
-
-如果只做一条外部 FFV 预训练路线，最后即使下游有增益，也无法判断提升到底来自：
+如果只做一条外部 FFV 预训练路线，即使下游有提升，也很难判断提升到底来自：
 
 - 图表示本身
-- 空间坐标信息
-- 或只是随机训练波动
+- 3D 空间信息
+- 还是随机训练波动
 
-因此，和主任务的四档表示对比逻辑一致，外部 FFV 预训练也需要保持结构上的可解释性。
+因此，外部 FFV 预训练也保持双轨结构：
 
-## 5. 当前代码实现
+1. `graph_2d`
+2. `graph_3d`
 
-独立工作区位于 [ffv_pretrain](C:/Users/16976/Desktop/smile_FFV/ffv_pretrain)。
+这样和主任务的四档表示对比逻辑更一致。
 
-### 5.1 支持的表示方式
+## 4. 当前代码对应关系
 
-- `graph_2d`
-- `graph_3d`
+独立工作区位于：
 
-### 5.2 对应功能
+- [ffv_pretrain](C:/Users/16976/Desktop/smile_FFV/ffv_pretrain)
 
-- 建缓存
-- 训练 FFV GNN
-- 预测并回填主任务 CSV
+其中已经支持：
 
-### 5.3 3D 路线的稳定性处理
+- 构图缓存
+- FFV GNN 训练
+- 最优 checkpoint 保存
+- 对主任务 CSV 做 FFV 回填
 
-对于 `graph_3d`：
+相关脚本：
 
-- 优先尝试 RDKit 3D 构象
-- 若构象失败，则退回到 2D 平面坐标并补零 `z`
+- `ffv_pretrain/scripts/build_graph_cache.py`
+- `ffv_pretrain/scripts/train_external_ffv_gnn.py`
+- `ffv_pretrain/scripts/predict_external_ffv_gnn.py`
 
-这样可以避免少数聚合位点或虚原子样本让整套预训练中断。
+## 5. 当前进展与真实状态
+
+### 5.1 已经确认可行的部分
+
+- `graph_2d` 外部 FFV 预训练已经跑通
+- 上游测试结果显示该路线本身具备较好的 `SMILES -> FFV` 学习能力
+- `predffv_2d` 增强表已经成功生成并接入下游对比实验
+
+代表性上游图像可以参考小样本 `FFV pilot` 的一致性示例：
+
+![FFV pilot parity](../output/experiments/ffv_pilot/20260520_185144/plots/hist_gb_parity.png)
+
+注意：
+
+- 这张图来自内部小样本 `ffv_pilot`，不是外部大样本训练本身
+- 它主要用于展示当前仓库里 FFV 相关图表的样式与读法
+
+### 5.2 目前不作为默认路径的部分
+
+- `graph_3d` 全量外部 FFV cache 构建仍然过慢
+- 因为需要逐条做 RDKit 3D 构象生成或 2D 回退
+- 所以这条线当前保留为研究对照，不作为默认执行步骤
 
 ## 6. 推荐执行顺序
 
-1. 建 `graph_2d` 缓存
-2. 建 `graph_3d` 缓存
-3. 训练 `graph_2d` FFV 模型
-4. 训练 `graph_3d` FFV 模型
-5. 比较两者的上游 `FFV` 指标
-6. 用两套模型分别回填主任务数据
-7. 比较下游：
-   - `baseline`
-   - `baseline + predicted_ffv_2d`
-   - `baseline + predicted_ffv_3d`
-   - `oracle_ffv`
+建议按下面顺序推进：
 
-## 7. 与主项目的关系
+1. 建 `graph_2d` cache
+2. 训练 `graph_2d` FFV 预训练模型
+3. 生成 `predicted_ffv_2d` 增强 CSV
+4. 在主任务中运行 `*_predffv_2d.yaml`
+5. 再视资源情况尝试 `graph_3d` cache 与 `predffv_3d`
 
-这条支线仍然不替代主项目主线。
+## 7. 与主任务的关系
+
+这条支线不替代主项目主线。
 
 主线仍然是：
 
-- 四档结构表示下的 `CO2` 与 pair-specific 建模
+- 清洗数据
+- 四档表示对比
+- grouped split
+- 下游 CO2 与 pair-specific 建模
 
-外部 FFV 双轨预训练的角色是：
+FFV 支线只是额外回答两个问题：
 
-- 提供一个真正可扩展的上游 `FFV` 代理特征来源
-- 为后续 stacked 方案提供 2D/3D 两种备选上游表示
+1. 外部大样本能否稳定学到 `SMILES -> FFV`
+2. 学到的 `predicted_ffv` 能否对下游任务提供增益
 
-## 8. 当前文档约定
+## 8. 当前最合理的研究口径
 
-后续在主任务配置、结果表格和论文表述里，需要明确区分：
+到目前为止，更合理的表述是：
 
-- `predicted_ffv_2d`
-- `predicted_ffv_3d`
-- `oracle_ffv`
+- 外部 FFV 预训练在上游任务上是成功的
+- 但 `predicted_ffv` 在下游任务中的收益具有明显的任务依赖性
+- 因此 FFV 当前更适合作为辅助特征研究对象，而不是默认主线前置模块
 
-不要把两条预测路线混写成一个泛化的 `predicted_ffv`。
+## 9. 后续最值得做的事情
+
+1. 完成 `graph_3d` 外部 FFV 预训练的抽样验证
+2. 比较 `predffv_2d` 与 `predffv_3d` 的下游贡献差异
+3. 检查 `predicted_ffv` 与现有描述符之间的信息重叠程度
+4. 优先分析在哪些任务、哪些模型上 FFV 真正有帮助
