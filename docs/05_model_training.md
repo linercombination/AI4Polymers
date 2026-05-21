@@ -51,6 +51,24 @@
 - 使用 `torch`
 - 保存模型为 `.pt`
 
+## 2.3 对外讲解时建议配合看的架构图
+
+如果需要向非 AI 背景读者解释“这些模型在训练时到底做了什么”，建议同时打开：
+
+- [docs/19_model_architecture_gallery.md](C:/Users/16976/Desktop/smile_FFV/docs/19_model_architecture_gallery.md)
+
+其中已经逐个整理了当前真实训练会用到的模型架构图，包括表格模型、2D 图模型、3D 图模型和 FFV 预训练模型。
+
+下面两张是和当前训练后端最直接对应的主图。
+
+### 2D 图模型后端
+
+![2D GCN architecture](../output/imagegen/arch_gcn_2d_models.png)
+
+### 3D 图模型后端
+
+![3D distance GNN architecture](../output/imagegen/arch_distance_gnn_3d_models.png)
+
 ## 3. 当前表格模型
 
 当前可选的表格回归器有：
