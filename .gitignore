@@ -39,6 +39,8 @@ node_modules/
 *.tmp
 *.temp
 *.bak
+*.doc
+*.docx
 *.wxdownload
 ~$*
 
