@@ -23,6 +23,16 @@
 
 ![PIM workflow](output/imagegen/pim_workflow_overview.png)
 
+### 当前可执行的研究流程
+
+![Executable workflow](output/imagegen/pim_workflow_executable_v2.png)
+
+当前状态：
+
+- 主仓库中的四档下游对比流程已经可运行
+- `predffv_2d` 下游增强实验已经完成并形成总结
+- 外部 `graph_3d` FFV 预训练仍属于研究支线，不作为默认执行路径，因为全量 3D cache 构建成本仍然较高
+
 ## 四档表示方式
 
 ![Four-track comparison](output/imagegen/pim_four_track_comparison.png)
@@ -40,6 +50,72 @@
 - `descriptor_2d_3d`：二维特征基础上再加入三维数值描述符
 - `graph_2d`：无坐标分子图 + 图神经网络
 - `graph_3d`：带原子坐标的分子图 + 距离感知图神经网络
+
+## 模型架构图
+
+如果你需要向不懂 AI 的读者解释“这些模型到底在做什么”，可以优先看：
+
+- [docs/19_model_architecture_gallery.md](C:/Users/16976/Desktop/smile_FFV/docs/19_model_architecture_gallery.md)
+
+这份文档按当前真实训练代码，逐个整理了：
+
+- `ridge`
+- `svr`
+- `random_forest`
+- `hist_gb`
+- `xgboost`
+- `gcn_small` / `gcn_medium`
+- `distance_gnn_small` / `distance_gnn_medium`
+- FFV 预训练 GNN
+
+下面这几张是最常用的讲解入口图。
+
+### 表格模型总览
+
+![Table-model overview](output/imagegen/model_arch_table_regression.png)
+
+### 2D 图模型
+
+![2D GNN](output/imagegen/arch_gcn_2d_models.png)
+
+### 3D 图模型
+
+![3D distance GNN](output/imagegen/arch_distance_gnn_3d_models.png)
+
+### FFV 预训练模型
+
+![FFV pretrain GNN](output/imagegen/arch_ffv_pretrain_gnn.png)
+
+## 代表性输出图
+
+下面这些图都来自当前仓库已经跑出的真实结果。
+
+| 数据清洗概览 | 基线模型对比 |
+|---|---|
+| ![Cleaned dataset overview](output/cleaned_data/Overview.png) | ![CO2 grouped model comparison](output/experiments/co2_grouped_descriptor_2d/batch_20260518-co2_grouped_descriptor_2d/plots/model_comparison_mae.png) |
+
+| 预测一致性示例 | 残差示例 |
+|---|---|
+| ![CO2 grouped parity](output/experiments/co2_grouped_descriptor_2d/batch_20260518-co2_grouped_descriptor_2d/plots/random_forest_parity.png) | ![CO2 grouped residuals](output/experiments/co2_grouped_descriptor_2d/batch_20260518-co2_grouped_descriptor_2d/plots/random_forest_residuals.png) |
+
+| Robeson 筛选示例 | FFV 试验示例 |
+|---|---|
+| ![CO2/N2 Robeson plot](output/experiments/co2_n2_screening/20260520_185125/plots/random_forest_robeson.png) | ![FFV pilot parity](output/experiments/ffv_pilot/20260520_185144/plots/hist_gb_parity.png) |
+
+## 文档导航
+
+如果你希望按“研究设计 -> 代码执行 -> 结果解读”的顺序阅读，建议按下面路径看：
+
+- [task.md](C:/Users/16976/Desktop/smile_FFV/task.md) 和 [task_zh.md](C:/Users/16976/Desktop/smile_FFV/task_zh.md)：当前任务定义与约束
+- [polymer_pim_gas_separation_pipeline.md](C:/Users/16976/Desktop/smile_FFV/polymer_pim_gas_separation_pipeline.md)：研究总方案
+- [docs/00_workflow_overview.md](C:/Users/16976/Desktop/smile_FFV/docs/00_workflow_overview.md)：全流程与分支关系
+- [docs/07_outputs_and_interpretation.md](C:/Users/16976/Desktop/smile_FFV/docs/07_outputs_and_interpretation.md)：如何看输出文件、指标和图
+- [docs/14_experiment_results_summary_20260518.md](C:/Users/16976/Desktop/smile_FFV/docs/14_experiment_results_summary_20260518.md)：四档基线实验结果
+- [docs/15_external_ffv_pretraining.md](C:/Users/16976/Desktop/smile_FFV/docs/15_external_ffv_pretraining.md)：外部 FFV 上游支线方案
+- [docs/18_ffv_simulation_workflow.md](C:/Users/16976/Desktop/smile_FFV/docs/18_ffv_simulation_workflow.md)：基于 `get_FFV/example` 的 FFV 模拟计算流程
+- [docs/17_predffv_2d_stacked_results_summary_20260521.md](C:/Users/16976/Desktop/smile_FFV/docs/17_predffv_2d_stacked_results_summary_20260521.md)：当前最完整的 stacked FFV 实验总结与研究结论
+- [docs/19_model_architecture_gallery.md](C:/Users/16976/Desktop/smile_FFV/docs/19_model_architecture_gallery.md)：逐个模型的架构图解
+- [ffv_pretrain/README_zh.md](C:/Users/16976/Desktop/smile_FFV/ffv_pretrain/README_zh.md)：独立 FFV 预训练工作区说明
 
 ## 先看哪些文件
 
@@ -258,6 +334,15 @@ python scripts/train_baseline.py --config configs/co2_n2_oracle_ffv.yaml
 
 这些配置依赖于 `ffv_pretrain/output/augmented/` 里的回填 CSV，所以必须先完成外部 FFV 预测回填，再运行下游训练。
 
+如果你的增强表不在默认目录，而是放在桌面、服务器其他目录或单独的数据盘中，那么在运行下游对比实验前，需要先修改对应配置文件里的：
+
+```yaml
+dataset:
+  csv_path: ...
+```
+
+也就是说，`baseline / stacked_ffv / oracle_ffv` 对比实验读取哪张增强表，是通过各自 `yaml` 中的 `dataset.csv_path` 控制的。
+
 ## 当前训练脚本做了什么
 
 每次运行一个配置时，脚本会：
@@ -365,6 +450,12 @@ python scripts/train_baseline.py --config configs/co2_n2_oracle_ffv.yaml
 
 - [ffv_pretrain/README_zh.md](C:/Users/16976/Desktop/smile_FFV/ffv_pretrain/README_zh.md)
 
+当前执行建议：
+
+- `graph_2d` 外部 FFV 预训练已经适合作为默认上游路线
+- `graph_3d` 全量 cache 构建在大规模外部数据上耗时过长，当前暂不作为默认执行步骤
+- 如果后续继续推进 `graph_3d`，建议先做小样本验证或抽样实验
+
 ## 主要限制
 
 - family 列目前仍不完整，因此 family-aware split 还不是默认路径
@@ -379,3 +470,8 @@ python scripts/train_baseline.py --config configs/co2_n2_oracle_ffv.yaml
 3. 完成外部 FFV 的 2D/3D 双轨预训练
 4. 生成回填后的 `predicted_ffv` 数据表
 5. 比较 `baseline`、`stacked_ffv_2d`、`stacked_ffv_3d`、`oracle_ffv`
+
+补充说明：
+
+- 现阶段更推荐先完成 `graph_2d -> predicted_ffv_2d -> downstream` 这条链路
+- `graph_3d` 保留在方案中，但全量外部 cache 因耗时过长可暂缓执行

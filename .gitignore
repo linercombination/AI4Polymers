@@ -39,6 +39,8 @@ node_modules/
 *.tmp
 *.temp
 *.bak
+*.wxdownload
+~$*
 
 # =========================
 # Local SSH / secrets / env
@@ -61,6 +63,7 @@ extra_FFV_dataset.csv
 # =========================
 # output/experiments/
 ffv_pretrain/output/cache/
+ffv_pretrain/output/output/
 # ffv_pretrain/output/runs/
 ffv_pretrain/output/augmented/
 ffv_pretrain/output/smoke_test/
